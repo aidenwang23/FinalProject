@@ -3,7 +3,7 @@ import random
 import time
 import math
 import os
-from sprite import Player
+from sprites import Player
 
 # screen setup
 pygame.init()
@@ -18,94 +18,108 @@ screen = pygame.display.set_mode(size)
 valid = True
 run = False
 pause = False
+
 # physics components
 gravity = 1500
-x_position = SCREEN_HEIGHT/2
-y_position = SCREEN_WIDTH/2
+jump_strength = 700
+velocity_y = 0
+on_ground = False
+
+x_position = SCREEN_WIDTH / 2
+y_position = SCREEN_HEIGHT / 2
+
 # time
 clock = pygame.time.Clock()
 start_time = time.time()
 pause_time = 0
+
 # keybinds
 left = False
 right = False
 
 # display texts
 display_time = my_font.render("0", True, (0, 0, 0))
-display_time_rect = display_time.get_rect(center = (10, 20))
+display_time_rect = display_time.get_rect(center=(10, 20))
 test = my_font.render("paused", True, (0, 0, 0))
-test_rect = test.get_rect(center = (SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+test_rect = test.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 
 # loads sprite
 a = Player(x_position, y_position, 0.2)
 
-while valid: 
+while valid:
+    dt = clock.tick(120) / 1000  # delta time in seconds
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             valid = False
             run = False
             pause = False
-        # press down keys
         elif event.type == pygame.KEYDOWN:
-            # escape key to pause/unpause
             if event.key == pygame.K_ESCAPE:
-                # to unpause
                 if pause:
                     pause = False
-                # to pause
                 else:
                     pause = True
                     start_pause_time = time.time()
-            # a or left arrow key to move left
             elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 left = True
-            # d or right arrow key to move right
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 right = True
-            # space or up arrow key to jump
             elif event.key == pygame.K_SPACE or event.key == pygame.K_UP:
-                acceleration = -gravity # ill fix this later (jumping)
-        # release keys
+                if on_ground:
+                    velocity_y = -jump_strength
+                    on_ground = False
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                 left = False
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 right = False
 
-    if True: # change to run after
+    if True:  # replace with `if run:` when needed
         if pause:
             pause_time = int(time.time() - start_pause_time)
         else:
-            # displays the time elapsed
+            # elapsed time
             elapsed_time = int(time.time() - start_time) - pause_time
             display_time = my_font.render(f"{elapsed_time}", True, (0, 0, 0))
-            # sets horizontal boundaries
+
+            # horizontal movement
+            if left:
+                x_position -= 400 * dt
+            if right:
+                x_position += 400 * dt
+
+            # gravity and vertical movement
+            velocity_y += gravity * dt
+            y_position += velocity_y * dt
+
+            # floor collision
+            if y_position >= SCREEN_HEIGHT - a.surface.get_height():
+                y_position = SCREEN_HEIGHT - a.surface.get_height()
+                velocity_y = 0
+                on_ground = True
+            else:
+                on_ground = False
+
+            # horizontal bounds
             if x_position < 0:
                 x_position = 0
-            elif x_position > SCREEN_WIDTH: 
-                x_position = SCREEN_WIDTH
-            # sets vertical boundaries
+            elif x_position > SCREEN_WIDTH - a.surface.get_width():
+                x_position = SCREEN_WIDTH - a.surface.get_width()
+
+            # vertical bounds (ceiling)
             if y_position < 0:
                 y_position = 0
-            elif y_position > SCREEN_HEIGHT:
-                y_position = SCREEN_HEIGHT
-            # moves horizontally
-            if left:
-                x_position-=5
-            elif right:
-                x_position+=5
 
-        # moves sprite
-        a.move(x_position, y_position)
+            # update sprite
+            a.move(x_position, y_position)
 
+    # draw
     screen.fill((255, 255, 255))
     screen.blit(display_time, display_time_rect)
-    screen.blit(a.surface, a.position())
-    
+    screen.blit(a.surface, a.position())   
+
     if pause:
         screen.blit(test, test_rect)
 
     pygame.display.flip()
-    clock.tick(120)
-
-pygame.quit()
