@@ -36,12 +36,20 @@ pause_time = 0
 # keybinds
 left = False
 right = False
+jump = False
+left_key = pygame.K_LEFT
+right_key = pygame.K_RIGHT
+jump_key = pygame.K_SPACE
 
 # display texts
 display_time = my_font.render("0", True, (0, 0, 0))
 display_time_rect = display_time.get_rect(center=(10, 20))
 test = my_font.render("paused", True, (0, 0, 0))
 test_rect = test.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+
+# keybind changing test
+change_right = my_font.render("change right keybind", True, (0, 0, 0))
+change_right_rect = change_right.get_rect(center=(1750, 20))
 
 # loads sprite
 a = Player(x_position, y_position, 0.2)
@@ -61,18 +69,18 @@ while valid:
                 else:
                     pause = True
                     start_pause_time = time.time()
-            elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
+            elif event.key == left_key:
                 left = True
-            elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+            elif event.key == right_key:
                 right = True
-            elif event.key == pygame.K_SPACE or event.key == pygame.K_UP:
+            elif event.key == jump_key:
                 if on_ground:
                     velocity_y = -jump_strength
                     on_ground = False
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_a or event.key == pygame.K_LEFT:
+            if event.key == left_key:
                 left = False
-            elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+            elif event.key == right_key:
                 right = False
 
     if True:  # replace with `if run:` when needed
@@ -117,6 +125,7 @@ while valid:
     # draw
     screen.fill((255, 255, 255))
     screen.blit(display_time, display_time_rect)
+    screen.blit(change_right, change_right_rect)
     screen.blit(a.surface, a.position())   
 
     if pause:
