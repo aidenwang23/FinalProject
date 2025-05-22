@@ -1,3 +1,4 @@
+print("Ocean")
 import pygame
 import random
 import time
