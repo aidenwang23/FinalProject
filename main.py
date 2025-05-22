@@ -52,23 +52,29 @@ changing_left = False
 changing_jump = False
 changing_keys = False
 
-# display texts
+# clock text
 display_time = my_font.render(f"{elapsed_time}", True, (0, 0, 0))
 display_time_rect = display_time.get_rect(center=(10, 20))
-paused = my_font.render("paused", True, (0, 0, 0))
-paused_rect = paused.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+
+# paused screen text
+paused_text = my_font.render("paused", True, (0, 0, 0))
+paused_text_rect = paused_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+
+#settings screen text
 settings_text = my_font.render("settings", True, (0, 0, 0))
 settings_text_rect = settings_text.get_rect(center=(SCREEN_WIDTH/2, 20))
 back_text = my_font.render("back", True, (0, 0, 0))
 back_text_rect = back_text.get_rect(center=(40, SCREEN_HEIGHT-25))
 
 # keybind changing text
-change_right = my_font.render("change right keybind", True, (0, 0, 0))
-change_right_rect = change_right.get_rect(center=(1750, 20))
-change_left = my_font.render("change left keybind", True, (0, 0, 0))
-change_left_rect = change_left.get_rect(center=(1760, 65))
-change_jump = my_font.render("change jump keybind", True, (0, 0, 0))
-change_jump_rect = change_jump.get_rect(center=(1745, 110))
+change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (0, 0, 0))
+change_right_rect = change_right.get_rect(center=(SCREEN_WIDTH/2, 20))
+change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (0, 0, 0))
+change_left_rect = change_left.get_rect(center=(SCREEN_WIDTH/2, 65))
+change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (0, 0, 0))
+change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH/2, 110))
+changing_text = my_font.render("press a key to change the keybind", True, (0, 0, 0))
+changing_text_rect = changing_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
 # loads sprite
 a = Player(x_position, y_position, 0.2)
@@ -129,6 +135,14 @@ while valid:
                     changing_jump = False
                     changing_keys = False
 
+    # updates if keybind gets changed
+    change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (0, 0, 0))
+    change_right_rect = change_right.get_rect(center=(SCREEN_WIDTH/2, 20))
+    change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (0, 0, 0))
+    change_left_rect = change_left.get_rect(center=(SCREEN_WIDTH/2, 65))
+    change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (0, 0, 0))
+    change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH/2, 110))
+
     if True:
         if pause:
             pause_time = int(time.time() - start_pause_time) # pause duration
@@ -171,8 +185,10 @@ while valid:
 
     # draw
     screen.fill((255, 255, 255))
-    screen.blit(display_time, display_time_rect)
     screen.blit(a.surface, a.position())
+
+    if run:
+        screen.blit(display_time, display_time_rect)
 
     if not settings:
         screen.blit(settings_text, settings_text_rect)
@@ -189,7 +205,10 @@ while valid:
             if back_text_rect.collidepoint(event.pos):
                 settings = False
 
+    if changing_keys:
+        screen.blit(changing_text, changing_text_rect)
+
     if pause:
-        screen.blit(paused, paused_rect)
+        screen.blit(paused_text, paused_text_rect)
 
     pygame.display.flip()
