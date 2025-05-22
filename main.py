@@ -1,10 +1,10 @@
-print("Ocean")
 import pygame
 import random
 import time
 import math
 import os
 from sprites import Player
+from background import BackgroundManager
 
 # screen setup
 pygame.init()
@@ -14,6 +14,17 @@ SCREEN_HEIGHT = 1020
 SCREEN_WIDTH = 1920
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
+
+# background setup
+background_paths = [
+    "cavern.png", #https://www.shutterstock.com/search/cave-pixel credit
+    "underwater.png", #https://craftpix.net/freebies/free-underwater-world-pixel-art-backgrounds/ credit
+    "forest.png", #https://www.freepik.com/free-photos-vectors/sprite-forest-background credit
+    "sky.jpg", #https://www.vecteezy.com/vector-art/42818355-8bit-pixel-graphic-blue-sky-background-with-clouds credit
+    "space.png" #https://www.istockphoto.com/photos/pixel-art-space credit
+]
+bg_scale = 1.0
+bg_manager = BackgroundManager(background_paths, bg_scale)
 
 # game settings
 valid = True # game running
@@ -173,7 +184,10 @@ while valid:
 
             # vertical bounds
             if y_position < 0:
-                y_position = 0
+                bg_manager.next()  # switch background
+                y_position = SCREEN_HEIGHT - a.surface.get_height()  # respawn at bottom
+                velocity_y = 0
+                on_ground = False
             elif y_position >= SCREEN_HEIGHT - a.surface.get_height():
                 y_position = SCREEN_HEIGHT - a.surface.get_height()
                 velocity_y = 0
@@ -185,7 +199,7 @@ while valid:
             a.move(x_position, y_position)
 
     # draw
-    screen.fill((255, 255, 255))
+    bg_manager.draw(screen)
     screen.blit(a.surface, a.position())
 
     if run:
