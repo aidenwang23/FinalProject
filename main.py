@@ -3,8 +3,7 @@ import random
 import time
 import math
 import os
-from sprites import Player
-from background import BackgroundManager
+from sprites import Player, Background, BackgroundManager
 
 # screen setup
 pygame.init()
@@ -23,7 +22,7 @@ background_paths = [
     "sky.jpg", #https://www.vecteezy.com/vector-art/42818355-8bit-pixel-graphic-blue-sky-background-with-clouds credit
     "space.png" #https://www.istockphoto.com/photos/pixel-art-space credit
 ]
-bg_scale = 1.0
+bg_scale = 3.0
 bg_manager = BackgroundManager(background_paths, bg_scale)
 
 # game settings
@@ -75,7 +74,7 @@ paused_text_rect = paused_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
 #settings screen text
 settings_text = my_font.render("settings", True, (0, 0, 0))
 settings_text_rect = settings_text.get_rect(center=(SCREEN_WIDTH/2, 20))
-back_text = my_font.render("back", True, (0, 0, 0))
+back_text = my_font.render("back", False, (255, 255, 255))
 back_text_rect = back_text.get_rect(center=(40, SCREEN_HEIGHT-25))
 
 # keybind changing text
@@ -156,6 +155,9 @@ while valid:
     change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH/2, 110))
 
     if True:
+        # refreshes the screen
+        screen.fill((0, 0, 0))
+
         if pause:
             pause_time = int(time.time() - start_pause_time) # pause duration
         else:
