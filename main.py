@@ -102,6 +102,8 @@ change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True,
 change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH/2, 110))
 changing_text = my_font.render("press a key to change the keybind", True, (255, 255, 255))
 changing_text_rect = changing_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+changing_error_text = my_font.render("the same key cannot be used for more than one keybind", True, (255, 0, 0))
+changing_error_text_rect = changing_error_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/5))
 
 # loads sprite
 a = Player(x_position, y_position, "idle", 0.2)
@@ -171,14 +173,38 @@ while valid:
                     right_key = event.key
                     changing_right = False
                     changing_keys = False
+                    if right_key == left_key or right_key == jump_key: # duplicate keybinds
+                        changing_right = True
+                        changing_keys = True
+                        if event.type == pygame.KEYDOWN:
+                            if not event.key == left_key and not event.key == jump_key: # redo right keybind
+                                right_key = event.key
+                                changing_right = False
+                                changing_keys = False
                 elif changing_left and changing_keys: # change left keybind
                     left_key = event.key
                     changing_left = False
                     changing_keys = False
-                elif changing_jump and changing_keys: # changing jump keybind
+                    if left_key == right_key or left_key == jump_key: # duplicate keybinds
+                        changing_left = True
+                        changing_keys = True
+                        if event.type == pygame.KEYDOWN:
+                            if not event.key == right_key and not event.key == jump_key: # redo left keybind
+                                left_key = event.key
+                                changing_left = False
+                                changing_keys = False
+                elif changing_jump and changing_keys: # change jump keybind
                     jump_key = event.key
                     changing_jump = False
                     changing_keys = False
+                    if jump_key == right_key or jump_key == left_key: # duplicate keybinds
+                        changing_jump = True
+                        changing_keys = True
+                        if event.type == pygame.KEYDOWN:
+                            if not event.key == left_key and not event.key == right_key: # redo jump keybind
+                                jump_key = event.key
+                                changing_jump = False
+                                changing_keys = False
 
     # updates if keybind gets changed
     change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (255, 255, 255))
@@ -261,6 +287,9 @@ while valid:
 
     if changing_keys:
         screen.blit(changing_text, changing_text_rect)
+
+    if right_key == left_key or right_key == jump_key or left_key == jump_key:
+        screen.blit(changing_error_text, changing_error_text_rect)
 
     if customize:
         screen.blit(back_text, back_text_rect)
