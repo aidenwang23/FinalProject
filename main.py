@@ -16,11 +16,11 @@ screen = pygame.display.set_mode(size)
 
 # background setup
 background_paths = [
-    "cavern.png", #https://www.shutterstock.com/search/cave-pixel credit
+    "cavern.png", #https://slashdashgamesstudio.itch.io/cave-background-pixel-art credit
     "underwater.png", #https://craftpix.net/freebies/free-underwater-world-pixel-art-backgrounds/ credit
     "forest.png", #https://www.freepik.com/free-photos-vectors/sprite-forest-background credit
-    "sky.jpg", #https://www.vecteezy.com/vector-art/42818355-8bit-pixel-graphic-blue-sky-background-with-clouds credit
-    "space.png" #https://www.istockphoto.com/photos/pixel-art-space credit
+    "sky.jpg", #https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/ credit
+    "space.png" #https://opengameart.org/content/space-star-background credit
 ]
 bg_scale = 3.0
 bg_manager = BackgroundManager(background_paths, bg_scale)
