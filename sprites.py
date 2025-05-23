@@ -6,10 +6,10 @@ SCREEN_HEIGHT = 1020
 SCREEN_WIDTH = 1920
 
 class Player:
-    def __init__(self, x, y, scale):
+    def __init__(self, x, y, state, scale):
         self.x = x
         self.y = y
-        self.image = pygame.image.load("Sprites/character.png")
+        self.image = pygame.image.load(f"Sprites/Character/{state}.png")
         self.image = pygame.transform.scale_by(self.image, scale)
         self.image_size = self.image.get_size()
         self.rect = pygame.Rect(self.x, self.y, self.image_size[0], self.image_size[1])
@@ -46,3 +46,15 @@ class BackgroundManager:
     def next(self):
         if self.index < len(self.backgrounds) - 1:
             self.index += 1
+    
+class LoadingScreen:
+    def __init__(self, scale):
+        self.image = pygame.image.load("Sprites/Screens/loading.png")
+        self.image = pygame.transform.scale_by(self.image, scale)
+        self.image_size = self.image.get_size()
+    
+    def position(self):
+        return (SCREEN_WIDTH/2-int(self.image_size[0] / 2), SCREEN_HEIGHT/2-int(self.image_size[1] / 2))
+
+    def draw(self, screen):
+        screen.blit(self.image, self.position())

@@ -3,7 +3,7 @@ import random
 import time
 import math
 import os
-from sprites import Player, Background, BackgroundManager
+from sprites import Player, Background, BackgroundManager, LoadingScreen
 
 # screen setup
 pygame.init()
@@ -19,17 +19,33 @@ background_paths = [
     "cavern.png", #https://slashdashgamesstudio.itch.io/cave-background-pixel-art credit
     "underwater.png", #https://craftpix.net/freebies/free-underwater-world-pixel-art-backgrounds/ credit
     "forest.png", #https://www.freepik.com/free-photos-vectors/sprite-forest-background credit
-    "sky.jpg", #https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/ credit
+    "sky.png", #https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/ credit
     "space.png" #https://opengameart.org/content/space-star-background credit
 ]
-bg_scale = 3.0
-bg_manager = BackgroundManager(background_paths, bg_scale)
+bg_manager = BackgroundManager(background_paths, 1.0)
+
+# loading screen setup
+loading_screen = LoadingScreen(0.85)
+# ill fix the math below later
+play_text = my_font.render("play", True, (0, 0, 0))
+play_text_rect = play_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
+settings_text = my_font.render("settings", True, (0, 0, 0))
+settings_text_rect = settings_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/10))
+customize_text = my_font.render("customize", True, (0, 0, 0))
+customize_text_rect = customize_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10))
+rules_text = my_font.render("rules", True, (0, 0, 0))
+rules_text_rect = rules_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10))
+quit_text = my_font.render("quit", True, (0, 0, 0))
+quit_text_rect = quit_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10))
+
 
 # game settings
 valid = True # game running
+load = True # loading screen
 run = False # in a stage
-pause = False # paused
 settings = False # changing settings
+customize = False # customizing character
+pause = False # paused
 
 # physics components
 gravity = 1500
@@ -46,6 +62,7 @@ clock = pygame.time.Clock()
 start_time = time.time()
 pause_time = 0
 elapsed_time = 0
+start_pause_time = time.time()
 
 # keybinds
 left_key = pygame.K_LEFT
@@ -64,31 +81,29 @@ changing_jump = False
 changing_keys = False
 
 # clock text
-display_time = my_font.render(f"{elapsed_time}", True, (0, 0, 0))
+display_time = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
 display_time_rect = display_time.get_rect(center=(10, 20))
 
 # paused screen text
-paused_text = my_font.render("paused", True, (0, 0, 0))
+paused_text = my_font.render("paused", True, (255, 255, 255))
 paused_text_rect = paused_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
 #settings screen text
-settings_text = my_font.render("settings", True, (0, 0, 0))
-settings_text_rect = settings_text.get_rect(center=(SCREEN_WIDTH/2, 20))
 back_text = my_font.render("back", False, (255, 255, 255))
 back_text_rect = back_text.get_rect(center=(40, SCREEN_HEIGHT-25))
 
 # keybind changing text
-change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (0, 0, 0))
+change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (255, 255, 255))
 change_right_rect = change_right.get_rect(center=(SCREEN_WIDTH/2, 20))
-change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (0, 0, 0))
+change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (255, 255, 255))
 change_left_rect = change_left.get_rect(center=(SCREEN_WIDTH/2, 65))
-change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (0, 0, 0))
+change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (255, 255, 255))
 change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH/2, 110))
-changing_text = my_font.render("press a key to change the keybind", True, (0, 0, 0))
+changing_text = my_font.render("press a key to change the keybind", True, (255, 255, 255))
 changing_text_rect = changing_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 
 # loads sprite
-a = Player(x_position, y_position, 0.2)
+a = Player(x_position, y_position, "idle", 0.2)
 
 while valid:
     dt = clock.tick(120) / 1000  # delta time in seconds
@@ -120,9 +135,24 @@ while valid:
                 moving_left = False
             elif keys[right_key]: # to stop moving right
                 moving_right = False
+
+        if load:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if play_text_rect.collidepoint(event.pos):
+                    run = True
+                    load = False
+                if settings_text_rect.collidepoint(event.pos):
+                    settings = True
+                    load = False
+                if customize_text_rect.collidepoint(event.pos):
+                    customize = True
+                    load = False
+                if quit_text_rect.collidepoint(event.pos):
+                    valid = False
+                    load = False
          
         if settings:
-            if event.type == pygame.MOUSEBUTTONDOWN: # detect click location
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 if change_right_rect.collidepoint(event.pos) and not changing_keys: # changing right keybind
                     changing_right = True
                     changing_keys = True
@@ -147,23 +177,22 @@ while valid:
                     changing_keys = False
 
     # updates if keybind gets changed
-    change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (0, 0, 0))
+    change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (255, 255, 255))
     change_right_rect = change_right.get_rect(center=(SCREEN_WIDTH/2, 20))
-    change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (0, 0, 0))
+    change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (255, 255, 255))
     change_left_rect = change_left.get_rect(center=(SCREEN_WIDTH/2, 65))
-    change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (0, 0, 0))
+    change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (255, 255, 255))
     change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH/2, 110))
 
     if True:
-        # refreshes the screen
-        screen.fill((0, 0, 0))
+        screen.fill((0, 0, 0)) # refreshes the screen
 
-        if pause:
+        if not run or pause:
             pause_time = int(time.time() - start_pause_time) # pause duration
         else:
             # elapsed time
             elapsed_time = int(time.time() - start_time) - pause_time # unpause duration
-            display_time = my_font.render(f"{elapsed_time}", True, (0, 0, 0))
+            display_time = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
 
             # horizontal movement
             if keys[left_key]:
@@ -204,14 +233,15 @@ while valid:
     bg_manager.draw(screen)
     screen.blit(a.surface, a.position())
 
+    if load: 
+        loading_screen.draw(screen)
+        screen.blit(play_text, play_text_rect)
+        screen.blit(settings_text, settings_text_rect)
+        screen.blit(customize_text, customize_text_rect)
+        screen.blit(quit_text, quit_text_rect)
+
     if run:
         screen.blit(display_time, display_time_rect)
-
-    if not settings:
-        screen.blit(settings_text, settings_text_rect)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if settings_text_rect.collidepoint(event.pos):
-                settings = True
 
     if settings:
         screen.blit(change_right, change_right_rect)
@@ -221,9 +251,17 @@ while valid:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if back_text_rect.collidepoint(event.pos):
                 settings = False
+                load = True
 
     if changing_keys:
         screen.blit(changing_text, changing_text_rect)
+
+    if customize:
+        screen.blit(back_text, back_text_rect)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if back_text_rect.collidepoint(event.pos):
+                customize = False
+                load = True
 
     if pause:
         screen.blit(paused_text, paused_text_rect)
