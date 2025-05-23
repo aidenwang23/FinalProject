@@ -312,4 +312,4 @@ while valid:
     if pause:
         screen.blit(paused_text, paused_text_rect)
 
-    pygame.display.flip()
+    pygame.display.flip()o
