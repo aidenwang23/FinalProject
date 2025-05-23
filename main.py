@@ -32,14 +32,11 @@ play_text_rect = play_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 settings_text = my_font.render("settings", True, (0, 0, 0))
 settings_text_rect = settings_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11))
 customize_text = my_font.render("customize", True, (0, 0, 0))
-customize_text_rect = customize_text.get_rect(
-    center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
+customize_text_rect = customize_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
 rules_text = my_font.render("rules", True, (0, 0, 0))
-rules_text_rect = rules_text.get_rect(
-    center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
+rules_text_rect = rules_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
 quit_text = my_font.render("quit", True, (0, 0, 0))
-quit_text_rect = quit_text.get_rect(center=(SCREEN_WIDTH / 2,
-                                            SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
+quit_text_rect = quit_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
 
 # game settings
 valid = True  # game running
@@ -52,7 +49,7 @@ pause = False  # paused
 
 # physics components
 gravity = 1500
-jump_strength = 700
+jump_strength = 750
 velocity_y = 0
 on_ground = False
 
@@ -105,11 +102,10 @@ change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH / 2, 110))
 changing_text = my_font.render("press a key to change the keybind", True, (255, 255, 255))
 changing_text_rect = changing_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 changing_error_text = my_font.render("the same key cannot be used for more than one keybind", True, (255, 0, 0))
-changing_error_text_rect = changing_error_text.get_rect(
-    center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 5))
+changing_error_text_rect = changing_error_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 5))
 
 # loads sprite
-a = Player(x_position, y_position, "idle", 0.2)
+a = Player(x_position, y_position, "idle", 0.135)
 
 while valid:
     dt = clock.tick(120) / 1000  # delta time in seconds
@@ -224,7 +220,14 @@ while valid:
             pause_time = int(time.time() - start_pause_time)  # pause duration
         else:
             # elapsed time
-            elapsed_time = int(time.time() - start_time) - pause_time  # unpause duration
+            elapsed_seconds = int(time.time() - start_time) - pause_time  # unpause duration
+            elapsed_minutes = int(elapsed_seconds/60)
+            elapsed_seconds %= 60
+            if elapsed_minutes < 10:
+                elapsed_minutes = "0" + str(elapsed_minutes)
+            if elapsed_seconds < 10:
+                elapsed_seconds = "0" + str(elapsed_seconds)
+            elapsed_time = str(elapsed_minutes) + ":" + str(elapsed_seconds)
             display_time = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
 
             # horizontal movement
@@ -268,7 +271,6 @@ while valid:
 
     if load:
         loading_screen.draw(screen)
-        sprite_image = pygame.image.load("cavernPlatform.png")
         screen.blit(play_text, play_text_rect)
         screen.blit(settings_text, settings_text_rect)
         screen.blit(customize_text, customize_text_rect)
@@ -277,6 +279,7 @@ while valid:
 
     if run:
         screen.blit(display_time, display_time_rect)
+        sprite_image = pygame.image.load("Sprites/Misc/cavernPlatform.png")
         screen.blit(a.surface, a.position())
 
     if settings:
@@ -284,16 +287,15 @@ while valid:
         screen.blit(change_left, change_left_rect)
         screen.blit(change_jump, change_jump_rect)
         screen.blit(back_text, back_text_rect)
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        if right_key == left_key or right_key == jump_key or left_key == jump_key:
+            screen.blit(changing_error_text, changing_error_text_rect)
+        elif event.type == pygame.MOUSEBUTTONDOWN:
             if back_text_rect.collidepoint(event.pos):
                 settings = False
                 load = True
 
     if changing_keys:
         screen.blit(changing_text, changing_text_rect)
-
-    if right_key == left_key or right_key == jump_key or left_key == jump_key:
-        screen.blit(changing_error_text, changing_error_text_rect)
 
     if customize:
         screen.blit(back_text, back_text_rect)
@@ -312,4 +314,4 @@ while valid:
     if pause:
         screen.blit(paused_text, paused_text_rect)
 
-    pygame.display.flip()o
+    pygame.display.flip()
