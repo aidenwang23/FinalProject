@@ -25,18 +25,18 @@ background_paths = [
 bg_manager = BackgroundManager(background_paths, 1.0)
 
 # loading screen setup
-loading_screen = LoadingScreen(0.85)
+loading_screen = LoadingScreen(0.875)
 # ill fix the math below later
 play_text = my_font.render("play", True, (0, 0, 0))
 play_text_rect = play_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2))
 settings_text = my_font.render("settings", True, (0, 0, 0))
-settings_text_rect = settings_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/10))
+settings_text_rect = settings_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/11))
 customize_text = my_font.render("customize", True, (0, 0, 0))
-customize_text_rect = customize_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10))
+customize_text_rect = customize_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/11+SCREEN_HEIGHT/11))
 rules_text = my_font.render("rules", True, (0, 0, 0))
-rules_text_rect = rules_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10))
+rules_text_rect = rules_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/11+SCREEN_HEIGHT/11+SCREEN_HEIGHT/11))
 quit_text = my_font.render("quit", True, (0, 0, 0))
-quit_text_rect = quit_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10+SCREEN_HEIGHT/10))
+quit_text_rect = quit_text.get_rect(center=(SCREEN_WIDTH/2, SCREEN_HEIGHT/2+SCREEN_HEIGHT/11+SCREEN_HEIGHT/11+SCREEN_HEIGHT/11+SCREEN_HEIGHT/11))
 
 
 # game settings
@@ -45,6 +45,7 @@ load = True # loading screen
 run = False # in a stage
 settings = False # changing settings
 customize = False # customizing character
+rules = False # rules page
 pause = False # paused
 
 # physics components
@@ -147,6 +148,9 @@ while valid:
                 if customize_text_rect.collidepoint(event.pos):
                     customize = True
                     load = False
+                if rules_text_rect.collidepoint(event.pos):
+                    rules = True
+                    load = False
                 if quit_text_rect.collidepoint(event.pos):
                     valid = False
                     load = False
@@ -227,21 +231,23 @@ while valid:
                 on_ground = False
 
             # update sprite
-            a.move(x_position, y_position)
+            if run:
+                a.move(x_position, y_position)
 
     # draw
     bg_manager.draw(screen)
-    screen.blit(a.surface, a.position())
 
     if load: 
         loading_screen.draw(screen)
         screen.blit(play_text, play_text_rect)
         screen.blit(settings_text, settings_text_rect)
         screen.blit(customize_text, customize_text_rect)
+        screen.blit(rules_text, rules_text_rect)
         screen.blit(quit_text, quit_text_rect)
 
     if run:
         screen.blit(display_time, display_time_rect)
+        screen.blit(a.surface, a.position())
 
     if settings:
         screen.blit(change_right, change_right_rect)
@@ -261,6 +267,13 @@ while valid:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if back_text_rect.collidepoint(event.pos):
                 customize = False
+                load = True
+
+    if rules:
+        screen.blit(back_text, back_text_rect)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if back_text_rect.collidepoint(event.pos):
+                rules = False
                 load = True
 
     if pause:
