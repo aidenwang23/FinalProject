@@ -47,9 +47,9 @@ class BackgroundManager:
         if self.index < len(self.backgrounds) - 1:
             self.index += 1
     
-class LoadingScreen:
-    def __init__(self, scale):
-        self.image = pygame.image.load("Sprites/Screens/loading.png")
+class Popup:
+    def __init__(self, image_paths, scale):
+        self.image = pygame.image.load(f"Sprites/Screens/{image_paths}")
         self.image = pygame.transform.scale_by(self.image, scale)
         self.image_size = self.image.get_size()
     

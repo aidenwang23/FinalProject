@@ -3,7 +3,7 @@ import random
 import time
 import math
 import os
-from sprites import Player, Background, BackgroundManager, LoadingScreen
+from sprites import Player, Background, BackgroundManager, Popup
 
 # screen setup
 pygame.init()
@@ -25,18 +25,25 @@ background_paths = [
 bg_manager = BackgroundManager(background_paths, 1.0)
 
 # loading screen setup
-loading_screen = LoadingScreen(0.875)
-# ill fix the math below later
-play_text = my_font.render("play", True, (0, 0, 0))
-play_text_rect = play_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-settings_text = my_font.render("settings", True, (0, 0, 0))
-settings_text_rect = settings_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11))
-customize_text = my_font.render("customize", True, (0, 0, 0))
-customize_text_rect = customize_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
-rules_text = my_font.render("rules", True, (0, 0, 0))
-rules_text_rect = rules_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
-quit_text = my_font.render("quit", True, (0, 0, 0))
-quit_text_rect = quit_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
+loading_screen = Popup("loading.png", 0.875)
+settings_screen = Popup("settings.png", 0.875)
+changing_screen = Popup("changing.png", 0.875)
+customize_screen = Popup("customize.png", 0.875)
+rules_screen = Popup("rules.png", 0.875)
+play_button = my_font.render("play", True, (0, 0, 0))
+play_button_rect = play_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+settings_button = my_font.render("settings", True, (0, 0, 0))
+settings_button_rect = settings_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 13 / 22))
+customize_button = my_font.render("customize", True, (0, 0, 0))
+customize_button_rect = customize_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 15 / 22))
+rules_button = my_font.render("rules", True, (0, 0, 0))
+rules_button_rect = rules_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 17 / 22))
+quit_button = my_font.render("quit", True, (0, 0, 0))
+quit_button_rect = quit_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 19 / 22))
+back_text = my_font.render("back", False, (0, 0, 0))
+back_text_rect = back_text.get_rect(center=(SCREEN_WIDTH / 11, SCREEN_HEIGHT * 14 / 15))
+paused_text = my_font.render("paused", True, (0, 0, 0))
+paused_text_rect = paused_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 
 # game settings
 valid = True  # game running
@@ -79,27 +86,14 @@ changing_right = False
 changing_left = False
 changing_jump = False
 changing_keys = False
+changing_duplicate = False
 
 # clock text
-display_time = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
-display_time_rect = display_time.get_rect(center=(10, 20))
-
-# paused screen text
-paused_text = my_font.render("paused", True, (255, 255, 255))
-paused_text_rect = paused_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-
-# settings screen text
-back_text = my_font.render("back", False, (255, 255, 255))
-back_text_rect = back_text.get_rect(center=(40, SCREEN_HEIGHT - 25))
+timer = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
+timer_rect = timer.get_rect(center=(10, 20))
 
 # keybind changing text
-change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (255, 255, 255))
-change_right_rect = change_right.get_rect(center=(SCREEN_WIDTH / 2, 20))
-change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (255, 255, 255))
-change_left_rect = change_left.get_rect(center=(SCREEN_WIDTH / 2, 65))
-change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (255, 255, 255))
-change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH / 2, 110))
-changing_text = my_font.render("press a key to change the keybind", True, (255, 255, 255))
+changing_text = my_font.render("press a key to change the keybind", True, (0, 0, 0))
 changing_text_rect = changing_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 changing_error_text = my_font.render("the same key cannot be used for more than one keybind", True, (255, 0, 0))
 changing_error_text_rect = changing_error_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 5))
@@ -140,19 +134,19 @@ while valid:
 
         if load:
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if play_text_rect.collidepoint(event.pos):
+                if play_button_rect.collidepoint(event.pos):
                     run = True
                     load = False
-                if settings_text_rect.collidepoint(event.pos):
+                if settings_button_rect.collidepoint(event.pos):
                     settings = True
                     load = False
-                if customize_text_rect.collidepoint(event.pos):
+                if customize_button_rect.collidepoint(event.pos):
                     customize = True
                     load = False
-                if rules_text_rect.collidepoint(event.pos):
+                if rules_button_rect.collidepoint(event.pos):
                     rules = True
                     load = False
-                if quit_text_rect.collidepoint(event.pos):
+                if quit_button_rect.collidepoint(event.pos):
                     valid = False
                     load = False
 
@@ -169,49 +163,37 @@ while valid:
                     changing_keys = True
             if event.type == pygame.KEYDOWN:
                 if changing_right and changing_keys:  # change right keybind
-                    right_key = event.key
-                    changing_right = False
-                    changing_keys = False
-                    if right_key == left_key or right_key == jump_key:  # duplicate keybinds
-                        changing_right = True
-                        changing_keys = True
-                        if event.type == pygame.KEYDOWN:
-                            if not event.key == left_key and not event.key == jump_key:  # redo right keybind
-                                right_key = event.key
-                                changing_right = False
-                                changing_keys = False
+                    if not event.key == left_key and not event.key == jump_key:  # redo right keybind until no duplicate
+                        right_key = event.key
+                        changing_right = False
+                        changing_keys = False
+                        changing_duplicate = False
+                    else:
+                        changing_duplicate = True
                 elif changing_left and changing_keys:  # change left keybind
-                    left_key = event.key
-                    changing_left = False
-                    changing_keys = False
-                    if left_key == right_key or left_key == jump_key:  # duplicate keybinds
-                        changing_left = True
-                        changing_keys = True
-                        if event.type == pygame.KEYDOWN:
-                            if not event.key == right_key and not event.key == jump_key:  # redo left keybind
-                                left_key = event.key
-                                changing_left = False
-                                changing_keys = False
+                    if not event.key == right_key and not event.key == jump_key:  # redo left keybind until no duplicate
+                        left_key = event.key
+                        changing_left = False
+                        changing_keys = False
+                        changing_duplicate = False
+                    else:
+                        changing_duplicate = True
                 elif changing_jump and changing_keys:  # change jump keybind
-                    jump_key = event.key
-                    changing_jump = False
-                    changing_keys = False
-                    if jump_key == right_key or jump_key == left_key:  # duplicate keybinds
-                        changing_jump = True
-                        changing_keys = True
-                        if event.type == pygame.KEYDOWN:
-                            if not event.key == left_key and not event.key == right_key:  # redo jump keybind
-                                jump_key = event.key
-                                changing_jump = False
-                                changing_keys = False
+                    if not event.key == left_key and not event.key == right_key:  # redo jump keybind until no duplicate
+                        jump_key = event.key
+                        changing_jump = False
+                        changing_keys = False
+                        changing_duplicate = False
+                    else:
+                        changing_duplicate = True
 
     # updates if keybind gets changed
-    change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (255, 255, 255))
-    change_right_rect = change_right.get_rect(center=(SCREEN_WIDTH / 2, 20))
-    change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (255, 255, 255))
-    change_left_rect = change_left.get_rect(center=(SCREEN_WIDTH / 2, 65))
-    change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (255, 255, 255))
-    change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH / 2, 110))
+    change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (0, 0, 0))
+    change_right_rect = change_right.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - SCREEN_HEIGHT / 6))
+    change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (0, 0, 0))
+    change_left_rect = change_left.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+    change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (0, 0, 0))
+    change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 6))
 
     if True:
         screen.fill((0, 0, 0))  # refreshes the screen
@@ -228,7 +210,7 @@ while valid:
             if elapsed_seconds < 10:
                 elapsed_seconds = "0" + str(elapsed_seconds)
             elapsed_time = str(elapsed_minutes) + ":" + str(elapsed_seconds)
-            display_time = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
+            timer = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
 
             # horizontal movement
             if keys[left_key]:
@@ -271,33 +253,36 @@ while valid:
 
     if load:
         loading_screen.draw(screen)
-        screen.blit(play_text, play_text_rect)
-        screen.blit(settings_text, settings_text_rect)
-        screen.blit(customize_text, customize_text_rect)
-        screen.blit(rules_text, rules_text_rect)
-        screen.blit(quit_text, quit_text_rect)
+        screen.blit(play_button, play_button_rect)
+        screen.blit(settings_button, settings_button_rect)
+        screen.blit(customize_button, customize_button_rect)
+        screen.blit(rules_button, rules_button_rect)
+        screen.blit(quit_button, quit_button_rect)
 
     if run:
-        screen.blit(display_time, display_time_rect)
+        screen.blit(timer, timer_rect)
         sprite_image = pygame.image.load("Sprites/Misc/cavernPlatform.png")
         screen.blit(a.surface, a.position())
 
     if settings:
+        settings_screen.draw(screen)
         screen.blit(change_right, change_right_rect)
         screen.blit(change_left, change_left_rect)
         screen.blit(change_jump, change_jump_rect)
         screen.blit(back_text, back_text_rect)
-        if right_key == left_key or right_key == jump_key or left_key == jump_key:
-            screen.blit(changing_error_text, changing_error_text_rect)
-        elif event.type == pygame.MOUSEBUTTONDOWN:
+        if event.type == pygame.MOUSEBUTTONDOWN: # cannot go back if changing keybinds
             if back_text_rect.collidepoint(event.pos):
                 settings = False
                 load = True
 
     if changing_keys:
+        changing_screen.draw(screen)
         screen.blit(changing_text, changing_text_rect)
+        if changing_duplicate:
+            screen.blit(changing_error_text, changing_error_text_rect)
 
     if customize:
+        customize_screen.draw(screen)
         screen.blit(back_text, back_text_rect)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if back_text_rect.collidepoint(event.pos):
@@ -305,6 +290,7 @@ while valid:
                 load = True
 
     if rules:
+        rules_screen.draw(screen)
         screen.blit(back_text, back_text_rect)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if back_text_rect.collidepoint(event.pos):
