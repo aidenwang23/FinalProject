@@ -27,7 +27,7 @@ stage_names = [
     "cavern", "underwater", "forest", "sky", "space"
 ]
 
-# loading screen setup
+# screen setup
 loading_screen = Popup("loading.png", 0.875)
 subject_screen = Popup("subject.png", 0.875)
 settings_screen = Popup("settings.png", 0.875)
@@ -53,6 +53,8 @@ math_text = my_font.render("math", True, (0, 0, 0))
 math_text_rect = math_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3))
 science_text = my_font.render("science", True, (0, 0, 0))
 science_text_rect = science_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 2 / 3))
+win_screen = Popup("win.png", 1)
+lose_screen = Popup("lose.png", 1)
 
 # game settings
 valid = True  # game running
@@ -78,6 +80,7 @@ science_topics = [
     "biology", "earthScience", "environmentalScience", "chemistry", "physics"
 ]
 topic = None
+answerChoice = None
 
 # physics components
 gravity = 1500
@@ -104,7 +107,7 @@ jump_key = pygame.K_UP
 
 # movement states
 moving_left = False
-moving_right = False
+moving_right = False 
 jumping = False
 
 # changing keybind states
@@ -135,10 +138,6 @@ platforms = [
     Platform(1100, 330, f"{stage_names[stage]}Platform.png", 2),
     Platform(1300, 150, f"{stage_names[stage]}Platform.png", 2)
 ]
-
-# question and answers
-question_text = my_font.render("", True, (0, 0, 0))
-question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - SCREEN_HEIGHT / 6))
 
 while valid:
     dt = clock.tick(120) / 1000  # delta time in seconds
@@ -302,23 +301,6 @@ while valid:
                 y_position = SCREEN_HEIGHT - a.surface.get_height()
                 velocity_y = 0
                 on_ground = True
-
-            if subject == "math":
-                topic = math_topics[stage]
-            elif subject == "science":
-                topic = science_topics[stage]
-
-            # TESTING THIS PORTION
-            current_question = {
-                "question": "q",
-                "choiceA": "a",
-                "choiceB": "b",
-                "choiceC": "c",
-                "choiceD": "d",
-                "correctChoice": "choiceA"
-            }
-            question_text = my_font.render(current_question["question"], True, (0, 0, 0))
-            question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - SCREEN_HEIGHT / 6))
             
             # platforms
             platforms = [
@@ -337,6 +319,8 @@ while valid:
                         y_position = platform_rect.top - a.image_size[1] // 2
                         velocity_y = 0
                         on_platform = True
+                        question = True
+                        run = False
                     elif velocity_y < 0 and player_rect.top >= platform_rect.bottom - 10:
                         y_position = platform_rect.bottom + a.image_size[1] // 2
                         velocity_y = 0
@@ -344,13 +328,77 @@ while valid:
                     a.move(x_position, y_position)
                     player_rect = a.rect
 
-            if elapsed_minutes == 15 or lives == 0:
-                lost = True
+            if subject == "math":
+                topic = math_topics[stage]
+            elif subject == "science":
+                topic = science_topics[stage]
+
+            # TESTING THIS PORTION
+            questions = []
+            answerAs = []
+            answerBs = []
+            answerCs = []
+            answerDs = []
+            correctAnswers = []
+            index = 0
+            if subject == "math":
+                file = open(f"Questions/Math/{topic}.txt", "r")
+                lines = file.readlines()
+                for i in range(0, len(lines), 7):
+                    questions.append(lines[i].strip())
+                    answerAs.append(lines[i+1].strip())
+                    answerBs.append(lines[i+2].strip())
+                    answerCs.append(lines[i+3].strip())
+                    answerDs.append(lines[i+4].strip())
+                    correctAnswers.append(lines[i+5].strip())
+                current_question = {
+                    "question": questions[index],
+                    "choiceA": answerAs[index],
+                    "choiceB": answerBs[index],
+                    "choiceC": answerCs[index],
+                    "choiceD": answerDs[index],
+                    "correctChoice": correctAnswers[index]
+                }
+            elif subject == "science":
+                file = open(f"Questions/Science/{topic}.txt", "r")
+                lines = file.readlines()
+                for i in range(0, len(lines), 7):
+                    questions.append(lines[i].strip())
+                    answerAs.append(lines[i+1].strip())
+                    answerBs.append(lines[i+2].strip())
+                    answerCs.append(lines[i+3].strip())
+                    answerDs.append(lines[i+4].strip())
+                    correctAnswers.append(lines[i+5].strip())
+                current_question = {
+                    "question": questions[index],
+                    "choiceA": answerAs[index],
+                    "choiceB": answerBs[index],
+                    "choiceC": answerCs[index],
+                    "choiceD": answerDs[index],
+                    "correctChoice": correctAnswers[index]
+                }
+            question_text = my_font.render(current_question["question"], True, (0, 0, 0))
+            question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - SCREEN_HEIGHT / 6))
+            choiceA_text = my_font.render(current_question["choiceA"], True, (0, 0, 0))
+            choiceA_text_rect = choiceA_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11))
+            choiceB_text = my_font.render(current_question["choiceB"], True, (0, 0, 0))
+            choiceB_text_rect = choiceB_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
+            choiceC_text = my_font.render(current_question["choiceC"], True, (0, 0, 0))
+            choiceC_text_rect = choiceC_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
+            choiceD_text = my_font.render(current_question["choiceD"], True, (0, 0, 0))
+            choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11 + SCREEN_HEIGHT / 11))
+
+            if elapsed_minutes == 20 or lives == 0:
+                lose = True
+            if win or lose:
+                run = False
+                question = False
 
             if run:
                 a.move(x_position, y_position)
 
-        bg_manager.draw(screen)
+        if not win and not lose:
+            bg_manager.draw(screen)
 
         if load:
             loading_screen.draw(screen)
@@ -380,11 +428,43 @@ while valid:
 
         if run:
             screen.blit(timer, timer_rect)
-            # TESTING
-            screen.blit(question_text, question_text_rect)
             for platform in platforms:
                 platform.draw(screen)
             screen.blit(a.surface, a.position())
+
+        if question:
+            question_screen.draw(screen)
+            screen.blit(question_text, question_text_rect)
+            screen.blit(choiceA_text, choiceA_text_rect)
+            screen.blit(choiceB_text, choiceB_text_rect)
+            screen.blit(choiceC_text, choiceC_text_rect)
+            screen.blit(choiceD_text, choiceD_text_rect)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if choiceA_text_rect.collidepoint(event.pos):
+                    answerChoice = "A"
+                elif choiceB_text_rect.collidepoint(event.pos):
+                    answerChoice = "B"
+                elif choiceC_text_rect.collidepoint(event.pos):
+                    answerChoice = "C"
+                elif choiceD_text_rect.collidepoint(event.pos):
+                    answerChoice = "D"
+            if answerChoice == correctAnswers[index]:
+                # FLASHES
+                # removing line 456 keeps the question screen
+                # removing line 457 cant play
+                # keep both and flashes
+                question = False
+                run = True
+            else:
+                if answerChoice == "A":
+                    choiceA_text = my_font.render(current_question["choiceA"], True, (255, 0, 0))
+                elif answerChoice == "B":
+                    choiceB_text = my_font.render(current_question["choiceB"], True, (255, 0, 0))
+                elif answerChoice == "C":
+                    choiceC_text = my_font.render(current_question["choiceC"], True, (255, 0, 0))
+                elif answerChoice == "D":
+                    choiceD_text = my_font.render(current_question["choiceD"], True, (255, 0, 0))
+                lives-=1
 
         if settings:
             settings_screen.draw(screen)
@@ -421,5 +501,11 @@ while valid:
 
         if pause and run:
             screen.blit(paused_text, paused_text_rect)
+
+        if win:
+            win_screen.draw(screen)
+        
+        if lose: 
+            lose_screen.draw(screen)
 
         pygame.display.flip()

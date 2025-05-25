@@ -1,0 +1,20 @@
+Solve for x: 3x-7 = 2x+5
+x = -12
+x = 12
+x = -5
+x = 5 
+D
+
+Solve for x: (2x+3)/5 = 7
+x = 16
+x = 1
+x = 4
+x = 5
+C
+
+Factor completely: x^2 + 7x + 10
+(x+2)(x+5)
+(x-2)(x-5)
+(x+1)(x+10)
+(x-1)(x-10)
+A
