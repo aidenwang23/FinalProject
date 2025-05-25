@@ -3,7 +3,8 @@ import random
 import time
 import math
 import os
-from sprites import Player, Background, BackgroundManager, Popup, Platform  
+from sprites import Player, Background, BackgroundManager, Popup, Platform 
+from questions import Questions
 
 # screen setup
 pygame.init()
@@ -59,7 +60,7 @@ valid = True  # game running
 load = True  # loading screen
 run = False  # in a stage
 select = False # selecting subject
-subject = "" # selected subject
+subject = None # selected subject
 question = False # answering question
 settings = False  # changing settings
 customize = False  # customizing character
@@ -77,7 +78,7 @@ math_topics = [
 science_topics = [
     "biology", "earthScience", "environmentalScience", "chemistry", "physics"
 ]
-topic = ""
+topic = None
 
 # physics components
 gravity = 1500
@@ -135,6 +136,10 @@ platforms = [
     Platform(1100, 330, f"{stage_names[stage]}Platform.png", 2),
     Platform(1300, 150, f"{stage_names[stage]}Platform.png", 2)
 ]
+
+# question and answers
+question_text = my_font.render("", True, (0, 0, 0))
+question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - SCREEN_HEIGHT / 6))
 
 while valid:
     dt = clock.tick(120) / 1000  # delta time in seconds
@@ -303,6 +308,18 @@ while valid:
                 topic = math_topics[stage]
             elif subject == "science":
                 topic = science_topics[stage]
+
+            # TESTING THIS PORTION
+            current_question = {
+                "question": "q",
+                "choiceA": "a",
+                "choiceB": "b",
+                "choiceC": "c",
+                "choiceD": "d",
+                "correctChoice": "choiceA"
+            }
+            question_text = my_font.render(current_question["question"], True, (0, 0, 0))
+            question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - SCREEN_HEIGHT / 6))
             
             # platforms
             platforms = [
@@ -364,6 +381,8 @@ while valid:
 
         if run:
             screen.blit(timer, timer_rect)
+            # TESTING
+            screen.blit(question_text, question_text_rect)
             for platform in platforms:
                 platform.draw(screen)
             screen.blit(a.surface, a.position())
