@@ -16,20 +16,25 @@ screen = pygame.display.set_mode(size)
 
 # background setup
 background_paths = [
-    "cavern.png",
-    "underwater.png",
-    "forest.png",
-    "sky.png",
-    "space.png"
+    "cavern.png",  #https://assetstore.unity.com/packages/tools/sprite-management/2d-cave-parallax-background-149247 credit
+    "underwater.png",  # https://craftpix.net/freebies/free-underwater-world-pixel-art-backgrounds/ credit
+    "forest.png",  # https://www.freepik.com/free-photos-vectors/sprite-forest-background credit
+    "sky.png",  # https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/ credit
+    "space.png"  # https://opengameart.org/content/space-star-background credit
 ]
 bg_manager = BackgroundManager(background_paths, 1.0)
+stage_names = [
+    "cavern", "underwater", "forest", "sky", "space"
+]
 
 # loading screen setup
 loading_screen = Popup("loading.png", 0.875)
+subject_screen = Popup("subject.png", 0.875)
 settings_screen = Popup("settings.png", 0.875)
 changing_screen = Popup("changing.png", 0.875)
 customize_screen = Popup("customize.png", 0.875)
 rules_screen = Popup("rules.png", 0.875)
+question_screen = Popup("question.png", 0.875)
 play_button = my_font.render("play", True, (0, 0, 0))
 play_button_rect = play_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
 settings_button = my_font.render("settings", True, (0, 0, 0))
@@ -40,29 +45,50 @@ rules_button = my_font.render("rules", True, (0, 0, 0))
 rules_button_rect = rules_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 17 / 22))
 quit_button = my_font.render("quit", True, (0, 0, 0))
 quit_button_rect = quit_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 19 / 22))
-back_text = my_font.render("back", False, (0, 0, 0))
+back_text = my_font.render("back", True, (0, 0, 0))
 back_text_rect = back_text.get_rect(center=(SCREEN_WIDTH / 11, SCREEN_HEIGHT * 14 / 15))
 paused_text = my_font.render("paused", True, (0, 0, 0))
 paused_text_rect = paused_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
+math_text = my_font.render("math", True, (0, 0, 0))
+math_text_rect = math_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3))
+science_text = my_font.render("science", True, (0, 0, 0))
+science_text_rect = science_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 2 / 3))
 
 # game settings
-valid = True
-load = True
-run = False
-settings = False
-customize = False
-rules = False
-pause = False
+valid = True  # game running
+load = True  # loading screen
+run = False  # in a stage
+select = False # selecting subject
+subject = None # selected subject
+question = False # answering question
+settings = False  # changing settings
+customize = False  # customizing character
+rules = False  # rules page
+pause = False  # paused
+stage = 0 
+lives = 3
+win = False # completed
+lose = False # lost
+
+# question setup
+math_topics = [
+    "algebra", "geometry", "statistics", "trigonometry", "calculus"
+]
+science_topics = [
+    "biology", "earthScience", "environmentalScience", "chemistry", "physics"
+]
+topic = ""
 
 # physics components
 gravity = 1500
-jump_strength = 750
+jump_strength = 775
 velocity_y = 0
-on_ground = False
+on_ground = True
+on_platform = False
 
 # sprite location
 x_position = SCREEN_WIDTH / 2
-y_position = SCREEN_HEIGHT / 2
+y_position = SCREEN_HEIGHT
 
 # time
 clock = pygame.time.Clock()
@@ -99,20 +125,20 @@ changing_error_text = my_font.render("the same key cannot be used for more than 
 changing_error_text_rect = changing_error_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 5))
 
 # loads sprite
-a = Player(x_position, y_position, "idle", 0.135)
+a = Player(x_position, y_position, "idle.png", 0.135)
 
 # platforms
 platforms = [
-    Platform(500, 800, 2),
-    Platform(700, 600, 2),
-    Platform(900, 400, 2),
-    Platform(1100, 300, 2),
-    Platform(1300, 700, 2)
+    Platform(425, 800, f"{stage_names[stage]}Platform.png", 2),
+    Platform(700, 630, f"{stage_names[stage]}Platform.png", 2),
+    Platform(900, 465, f"{stage_names[stage]}Platform.png", 2),
+    Platform(1100, 330, f"{stage_names[stage]}Platform.png", 2),
+    Platform(1300, 150, f"{stage_names[stage]}Platform.png", 2)
 ]
 
 while valid:
-    dt = clock.tick(120) / 1000
-    keys = pygame.key.get_pressed()
+    dt = clock.tick(120) / 1000  # delta time in seconds
+    keys = pygame.key.get_pressed()  # list of all keys; used for detection
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -144,7 +170,7 @@ while valid:
         if load:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if play_button_rect.collidepoint(event.pos):
-                    run = True
+                    select = True
                     load = False
                 if settings_button_rect.collidepoint(event.pos):
                     settings = True
@@ -219,119 +245,163 @@ while valid:
             elapsed_time = str(elapsed_minutes) + ":" + str(elapsed_seconds)
             timer = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
 
-            # First handle horizontal movement
-        if keys[left_key]:
-            x_position -= 400 * dt
-        if keys[right_key]:
-            x_position += 400 * dt
+            # horizontal movement
+            if keys[left_key]:
+                x_position -= 400 * dt
+            if keys[right_key]:
+                x_position += 400 * dt
 
-        a.move(x_position, y_position)
-        player_rect = a.rect
+            a.move(x_position, y_position)
+            player_rect = a.rect
 
-        # Horizontal collision
-        for platform in platforms:
-            platform_rect = platform.rect
-            if player_rect.colliderect(platform_rect):
-                if x_position < platform_rect.centerx:
-                    x_position = platform_rect.left - a.image_size[0] // 2
-                else:
-                    x_position = platform_rect.right + a.image_size[0] // 2
+            # horizontal collision
+            for platform in platforms:
+                platform_rect = platform.rect
+                if player_rect.colliderect(platform_rect):
+                    if x_position < platform_rect.centerx:
+                        x_position = platform_rect.left - a.image_size[0] // 2
+                    else:
+                        x_position = platform_rect.right + a.image_size[0] // 2
+                    a.move(x_position, y_position)
+                    player_rect = a.rect
+
+            if (on_ground or on_platform) and jumping :
+                velocity_y = -jump_strength
+                on_ground = False
+                on_platform = False
+
+            velocity_y += gravity * dt
+            y_position += velocity_y * dt
+
+            a.move(x_position, y_position)
+            player_rect = a.rect
+
+            # horizontal boundary
+            if x_position < a.surface.get_width():
+                x_position = a.surface.get_width()
+            elif x_position > SCREEN_WIDTH - a.surface.get_width():
+                x_position = SCREEN_WIDTH - a.surface.get_width()
+
+            # vertical boundary
+            if y_position < 0:
+                if stage < 4:
+                    stage+=1
+                else: 
+                    win = True
+                    run = False
+                bg_manager.next()
+                x_position = SCREEN_WIDTH / 2
+                y_position = SCREEN_HEIGHT - a.surface.get_height()
+                velocity_y = 0
+                on_ground = False
+            elif y_position >= SCREEN_HEIGHT - a.surface.get_height():
+                y_position = SCREEN_HEIGHT - a.surface.get_height()
+                velocity_y = 0
+                on_ground = True
+
+            if subject == "math":
+                topic = math_topics[stage]
+            elif subject == "science":
+                topic = science_topics[stage]
+
+            # platforms
+            platforms = [
+                Platform(425, 800, f"{stage_names[stage]}Platform.png", 2),
+                Platform(700, 630, f"{stage_names[stage]}Platform.png", 2),
+                Platform(900, 465, f"{stage_names[stage]}Platform.png", 2),
+                Platform(1100, 330, f"{stage_names[stage]}Platform.png", 2),
+                Platform(1300, 150, f"{stage_names[stage]}Platform.png", 2)
+            ]
+
+            # vertical collision
+            for platform in platforms:
+                platform_rect = platform.rect
+                if player_rect.colliderect(platform_rect):
+                    if velocity_y > 0 and player_rect.bottom <= platform_rect.top + 10:
+                        y_position = platform_rect.top - a.image_size[1] // 2
+                        velocity_y = 0
+                        on_platform = True
+                    elif velocity_y < 0 and player_rect.top >= platform_rect.bottom - 10:
+                        y_position = platform_rect.bottom + a.image_size[1] // 2
+                        velocity_y = 0
+                        on_platform = False
+                    a.move(x_position, y_position)
+                    player_rect = a.rect
+
+            if elapsed_minutes == 15 or lives == 0:
+                lost = True
+
+            if run:
                 a.move(x_position, y_position)
-                player_rect = a.rect
 
-        if on_ground and jumping:
-            velocity_y = -jump_strength
+        bg_manager.draw(screen)
 
-        velocity_y += gravity * dt
-        y_position += velocity_y * dt
+        if load:
+            loading_screen.draw(screen)
+            screen.blit(play_button, play_button_rect)
+            screen.blit(settings_button, settings_button_rect)
+            screen.blit(customize_button, customize_button_rect)
+            screen.blit(rules_button, rules_button_rect)
+            screen.blit(quit_button, quit_button_rect)
 
-        a.move(x_position, y_position)
-        player_rect = a.rect
-
-        # Vertical collision
-        for platform in platforms:
-            platform_rect = platform.rect
-            if player_rect.colliderect(platform_rect):
-                if velocity_y > 0 and player_rect.bottom <= platform_rect.top + 10:
-                    y_position = platform_rect.top - a.image_size[1] // 2
-                    velocity_y = 0
-                    on_ground = True
-                elif velocity_y < 0 and player_rect.top >= platform_rect.bottom - 10:
-                    y_position = platform_rect.bottom + a.image_size[1] // 2
-                    velocity_y = 0
-                a.move(x_position, y_position)
-                player_rect = a.rect
-
-        if x_position < a.surface.get_width():
-            x_position = a.surface.get_width()
-        elif x_position > SCREEN_WIDTH - a.surface.get_width():
-            x_position = SCREEN_WIDTH - a.surface.get_width()
-
-        if y_position < 0:
-            bg_manager.next()
-            y_position = SCREEN_HEIGHT - a.surface.get_height()
-            velocity_y = 0
-            on_ground = False
-        elif y_position >= SCREEN_HEIGHT - a.surface.get_height():
-            y_position = SCREEN_HEIGHT - a.surface.get_height()
-            velocity_y = 0
-            on_ground = True
-        else:
-            on_ground = False
+        if select:
+            subject_screen.draw(screen)
+            screen.blit(back_text, back_text_rect)
+            screen.blit(math_text, math_text_rect)
+            screen.blit(science_text, science_text_rect)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if math_text_rect.collidepoint(event.pos):
+                    subject = "math"
+                    run = True
+                    select = False
+                elif science_text_rect.collidepoint(event.pos):
+                    subject = "science"
+                    run = True
+                    select = False
+                elif back_text_rect.collidepoint(event.pos):
+                    select = False
+                    load = True
 
         if run:
-            a.move(x_position, y_position)
+            screen.blit(timer, timer_rect)
+            for platform in platforms:
+                platform.draw(screen)
+            screen.blit(a.surface, a.position())
 
-    bg_manager.draw(screen)
+        if settings:
+            settings_screen.draw(screen)
+            screen.blit(change_right, change_right_rect)
+            screen.blit(change_left, change_left_rect)
+            screen.blit(change_jump, change_jump_rect)
+            screen.blit(back_text, back_text_rect)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_text_rect.collidepoint(event.pos):
+                    settings = False
+                    load = True
 
-    if load:
-        loading_screen.draw(screen)
-        screen.blit(play_button, play_button_rect)
-        screen.blit(settings_button, settings_button_rect)
-        screen.blit(customize_button, customize_button_rect)
-        screen.blit(rules_button, rules_button_rect)
-        screen.blit(quit_button, quit_button_rect)
+        if changing_keys:
+            changing_screen.draw(screen)
+            screen.blit(changing_text, changing_text_rect)
+            if changing_duplicate:
+                screen.blit(changing_error_text, changing_error_text_rect)
 
-    if run:
-        screen.blit(timer, timer_rect)
-        for platform in platforms:
-            platform.draw(screen)
-        screen.blit(a.surface, a.position())
+        if customize:
+            customize_screen.draw(screen)
+            screen.blit(back_text, back_text_rect)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_text_rect.collidepoint(event.pos):
+                    customize = False
+                    load = True
 
-    if settings:
-        settings_screen.draw(screen)
-        screen.blit(change_right, change_right_rect)
-        screen.blit(change_left, change_left_rect)
-        screen.blit(change_jump, change_jump_rect)
-        screen.blit(back_text, back_text_rect)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if back_text_rect.collidepoint(event.pos):
-                settings = False
-                load = True
+        if rules:
+            rules_screen.draw(screen)
+            screen.blit(back_text, back_text_rect)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_text_rect.collidepoint(event.pos):
+                    rules = False
+                    load = True
 
-    if changing_keys:
-        changing_screen.draw(screen)
-        screen.blit(changing_text, changing_text_rect)
-        if changing_duplicate:
-            screen.blit(changing_error_text, changing_error_text_rect)
+        if pause and run:
+            screen.blit(paused_text, paused_text_rect)
 
-    if customize:
-        customize_screen.draw(screen)
-        screen.blit(back_text, back_text_rect)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if back_text_rect.collidepoint(event.pos):
-                customize = False
-                load = True
-
-    if rules:
-        rules_screen.draw(screen)
-        screen.blit(back_text, back_text_rect)
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if back_text_rect.collidepoint(event.pos):
-                rules = False
-                load = True
-
-    if pause:
-        screen.blit(paused_text, paused_text_rect)
-
-    pygame.display.flip()
+        pygame.display.flip()

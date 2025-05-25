@@ -6,10 +6,10 @@ SCREEN_HEIGHT = 1020
 SCREEN_WIDTH = 1920
 
 class Player:
-    def __init__(self, x, y, state, scale):
+    def __init__(self, x, y, image_path, scale):
         self.x = x
         self.y = y
-        self.image = pygame.image.load(f"Sprites/Character/{state}.png")
+        self.image = pygame.image.load(f"Sprites/Character/{image_path}")
         self.image = pygame.transform.scale_by(self.image, scale)
         self.image_size = self.image.get_size()
         self.rect = self.image.get_rect(center=(self.x, self.y))
@@ -24,8 +24,6 @@ class Player:
             self.image_size[0],
             self.image_size[1]
         )
-
-
 
     def position(self):
         return ((self.x - int(self.image_size[0] / 2)), (self.y - int(self.image_size[1] / 2)))
@@ -55,8 +53,8 @@ class BackgroundManager:
             self.index += 1
     
 class Popup:
-    def __init__(self, image_paths, scale):
-        self.image = pygame.image.load(f"Sprites/Screens/{image_paths}")
+    def __init__(self, image_path, scale):
+        self.image = pygame.image.load(f"Sprites/Screens/{image_path}")
         self.image = pygame.transform.scale_by(self.image, scale)
         self.image_size = self.image.get_size()
     
@@ -67,8 +65,8 @@ class Popup:
         screen.blit(self.image, self.position())
 
 class Platform:
-    def __init__(self, x, y, scale):
-        self.image = pygame.image.load("Sprites/Misc/testPlatform.png")
+    def __init__(self, x, y, image_path, scale):
+        self.image = pygame.image.load(f"Sprites/Platforms/{image_path}")
         self.image = pygame.transform.scale_by(self.image, scale)
         self.rect = self.image.get_rect(topleft=(x, y))
 
