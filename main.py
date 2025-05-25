@@ -59,7 +59,7 @@ valid = True  # game running
 load = True  # loading screen
 run = False  # in a stage
 select = False # selecting subject
-subject = None # selected subject
+subject = "" # selected subject
 question = False # answering question
 settings = False  # changing settings
 customize = False  # customizing character
@@ -303,7 +303,7 @@ while valid:
                 topic = math_topics[stage]
             elif subject == "science":
                 topic = science_topics[stage]
-
+            
             # platforms
             platforms = [
                 Platform(425, 800, f"{stage_names[stage]}Platform.png", 2),
