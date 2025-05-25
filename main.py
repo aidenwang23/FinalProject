@@ -3,8 +3,7 @@ import random
 import time
 import math
 import os
-from sprites import Player, Background, BackgroundManager, Popup, Platform 
-from questions import Questions
+from sprites import Player, Background, BackgroundManager, Popup, Platform
 
 # screen setup
 pygame.init()
