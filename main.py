@@ -8,7 +8,12 @@ from sprites import Player, Background, BackgroundManager, Popup, Platform, Hear
 # screen setup
 pygame.init()
 pygame.font.init()
-my_font = pygame.font.SysFont("Arial", 40)
+my_font = pygame.font.SysFont("Arial Bold", 45)
+time_display_font = pygame.font.SysFont("Arial Bold", 55)
+keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
+keybind_text_font = pygame.font.SysFont("Arial Bold", 70)
+question_text_font = pygame.font.SysFont("Arial Bold", 70)
+answer_text_font = pygame.font.SysFont("Arial Bold", 50)
 SCREEN_HEIGHT = 1020
 SCREEN_WIDTH = 1920
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -37,18 +42,18 @@ paused_screen = Popup("paused.png", 1)
 end_screen = Popup("end.png", 1)
 
 # game settings
-valid = True  # game running
-load = True  # loading screen
-run = False  # in a stage
+valid = True # game running
+load = True # loading screen
+run = False # in a stage
 select = False # selecting subject
 subject = None # selected subject
 question = False # answering question
-settings = False  # changing settings
-customize = False  # customizing character
-rules = False  # rules page
-pause = False  # paused
+settings = False # changing settings
+customize = False # customizing character
+rules = False # rules page
+pause = False # paused
 stage = 0 
-lives = 10
+lives = 1
 start_lives = lives
 win = False # completed
 lose = False # lost
@@ -104,13 +109,13 @@ changing_keys = False
 changing_duplicate = False
 
 # clock text
-timer = my_font.render("00:00", True, (255, 255, 255))
-timer_rect = timer.get_rect(topright=(SCREEN_WIDTH, 0))
+timer = time_display_font.render("00:00", True, (255, 255, 255))
+timer_rect = timer.get_rect(topright=(SCREEN_WIDTH, 5))
 
 # keybind changing text
-changing_text = my_font.render("press a key to change the keybind", True, (0, 0, 0))
+changing_text = keybind_text_font.render("press a key to change the keybind", True, (0, 0, 0))
 changing_text_rect = changing_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-changing_error_text = my_font.render("the same key cannot be used for more than one keybind", True, (255, 0, 0))
+changing_error_text = keybind_text_font.render("the same key cannot be used for more than one keybind", True, (255, 0, 0))
 changing_error_text_rect = changing_error_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 5))
 
 # loads sprite
@@ -183,7 +188,7 @@ while valid:
                 moving_right = False
             
 
-    if True:
+    if valid:
         screen.fill((0, 0, 0))
 
         if pause or not run:
@@ -198,7 +203,7 @@ while valid:
             if elapsed_seconds < 10:
                 elapsed_seconds = "0" + str(elapsed_seconds)
             elapsed_time = str(elapsed_minutes) + ":" + str(elapsed_seconds)
-            timer = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
+            timer = time_display_font.render(f"{elapsed_time}", True, (255, 255, 255))
 
             # horizontal movement
             if keys[left_key]:
@@ -273,7 +278,7 @@ while valid:
                         y_position = platform_rect.top - a.image_size[1] // 2
                         velocity_y = 0
                         on_platform = True
-                        if not landed:
+                        if not landed and len(questions) > 0:
                             question = True
                             run = False
                             landed  = True
@@ -323,17 +328,16 @@ while valid:
                     "choiceD": answer_Ds[index],
                     "correctChoice": correct_answers[index]
                 }
-
-            question_text = my_font.render(current_question["question"], True, (0, 0, 0))
-            question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 2 / 5))
-            choiceA_text = my_font.render(current_question["choiceA"], True, (0, 0, 0))
-            choiceA_text_rect = choiceA_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 13 / 22))
-            choiceB_text = my_font.render(current_question["choiceB"], True, (0, 0, 0))
-            choiceB_text_rect = choiceB_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 15 / 22))
-            choiceC_text = my_font.render(current_question["choiceC"], True, (0, 0, 0))
-            choiceC_text_rect = choiceC_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 17 / 22))
-            choiceD_text = my_font.render(current_question["choiceD"], True, (0, 0, 0))
-            choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 19 / 22))
+                question_text = question_text_font.render(current_question["question"], True, (0, 0, 0))
+                question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, 250))
+                choiceA_text = answer_text_font.render(current_question["choiceA"], True, (0, 0, 0))
+                choiceA_text_rect = choiceA_text.get_rect(center=(SCREEN_WIDTH / 2, 535))
+                choiceB_text = answer_text_font.render(current_question["choiceB"], True, (0, 0, 0))
+                choiceB_text_rect = choiceB_text.get_rect(center=(SCREEN_WIDTH / 2, 650))
+                choiceC_text = answer_text_font.render(current_question["choiceC"], True, (0, 0, 0))
+                choiceC_text_rect = choiceC_text.get_rect(center=(SCREEN_WIDTH / 2, 765))
+                choiceD_text = answer_text_font.render(current_question["choiceD"], True, (0, 0, 0))
+                choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, 880))
 
             if elapsed_minutes == 20:
                 lose = True
@@ -349,7 +353,7 @@ while valid:
 
         if load:
             loading_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONUP:
                 mouse_x, mouse_y = event.pos
                 if 550 < mouse_x < 1370 and 430 < mouse_y < 535:
                     select = True
@@ -367,10 +371,9 @@ while valid:
                     valid = False
                     load = False
 
-
         if select:
             subject_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONUP:
                 mouse_x, mouse_y = event.pos
                 if 550 < mouse_x < 1370 and 500 < mouse_y < 605:
                     subject = "science"
@@ -407,16 +410,16 @@ while valid:
             screen.blit(choiceB_text, choiceB_text_rect)
             screen.blit(choiceC_text, choiceC_text_rect)
             screen.blit(choiceD_text, choiceD_text_rect)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if choiceA_text_rect.collidepoint(event.pos):
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_x, mouse_y = event.pos
+                if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
                     answer_choice = "A"
-                elif choiceB_text_rect.collidepoint(event.pos):
+                elif 550 < mouse_x < 1370 and 595 < mouse_y < 700:
                     answer_choice = "B"
-                elif choiceC_text_rect.collidepoint(event.pos):
+                elif 550 < mouse_x < 1370 and 710 < mouse_y < 815:
                     answer_choice = "C"
-                elif choiceD_text_rect.collidepoint(event.pos):
+                elif 550 < mouse_x < 1370 and 825 < mouse_y < 930:
                     answer_choice = "D"
-            elif event.type == pygame.MOUSEBUTTONUP:
                 if answer_choice == current_question["correctChoice"]:
                     question = False
                     run = True
@@ -433,13 +436,13 @@ while valid:
                     if answer_choice not in incorrect_choices:
                         incorrect_choices.append(answer_choice)
                         if answer_choice == "A":
-                            choiceA_text = my_font.render(current_question["choiceA"], True, (255, 0, 0))
+                            choiceA_text = answer_text_font.render(current_question["choiceA"], True, (255, 0, 0))
                         elif answer_choice == "B":
-                            choiceB_text = my_font.render(current_question["choiceB"], True, (255, 0, 0))
+                            choiceB_text = answer_text_font.render(current_question["choiceB"], True, (255, 0, 0))
                         elif answer_choice == "C":
-                            choiceC_text = my_font.render(current_question["choiceC"], True, (255, 0, 0))
+                            choiceC_text = answer_text_font.render(current_question["choiceC"], True, (255, 0, 0))
                         elif answer_choice == "D":
-                            choiceD_text = my_font.render(current_question["choiceD"], True, (255, 0, 0))
+                            choiceD_text = answer_text_font.render(current_question["choiceD"], True, (255, 0, 0))
                         lives-=1
                         if lives <= 0:
                             lose = True
@@ -447,28 +450,28 @@ while valid:
 
         if pause:
             paused_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONUP:
                 mouse_x, mouse_y = event.pos
                 if 550 < mouse_x < 1370 and 500 < mouse_y < 605:
                     settings = True
                     run = False
                 elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                    run = False
                     load = True
                     pause = False
-                    run = False
 
         if settings:
             settings_screen.draw(screen)
-            change_right = my_font.render(pygame.key.name(right_key), True, (0, 0, 0))
+            change_right = keybind_display_font.render(pygame.key.name(right_key), True, (0, 0, 0))
             change_right_rect = change_right.get_rect(center=(1405, 560))
-            change_left = my_font.render(pygame.key.name(left_key), True, (0, 0, 0))
+            change_left = keybind_display_font.render(pygame.key.name(left_key), True, (0, 0, 0))
             change_left_rect = change_left.get_rect(center=(1405, 675))
-            change_jump = my_font.render(pygame.key.name(jump_key), True, (0, 0, 0))
+            change_jump = keybind_display_font.render(pygame.key.name(jump_key), True, (0, 0, 0))
             change_jump_rect = change_jump.get_rect(center=(1405, 790))
             screen.blit(change_right, change_right_rect)
             screen.blit(change_left, change_left_rect)
             screen.blit(change_jump, change_jump_rect)
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONUP:
                 mouse_x, mouse_y = event.pos
                 if 1215 < mouse_x < 1595 and 510 < mouse_y < 615 and not changing_keys:
                     changing_right = True
@@ -493,26 +496,40 @@ while valid:
 
         if customize:
             customize_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    mouse_x, mouse_y = event.pos
-                    if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
-                        customize = False
-                        load = True
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_x, mouse_y = event.pos
+                if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
+                    customize = False
+                    load = True
 
         if rules:
             rules_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    mouse_x, mouse_y = event.pos
-                    if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
-                        rules = False
-                        load = True
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_x, mouse_y = event.pos
+                if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
+                    rules = False
+                    load = True
 
         if win:
             end_screen.draw(screen)
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_x, mouse_y = event.pos
+                if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
+                    x_position = SCREEN_WIDTH / 2
+                    y_position = SCREEN_HEIGHT
+                elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                    valid = False
         
         if lose: 
             end_screen.draw(screen)
-
+            if event.type == pygame.MOUSEBUTTONUP:
+                mouse_x, mouse_y = event.pos
+                if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
+                    x_position = SCREEN_WIDTH / 2
+                    y_position = SCREEN_HEIGHT
+                elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                    valid = False
+                    
         pygame.display.flip()
+    else:
+        pygame.QUIT
