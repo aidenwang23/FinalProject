@@ -77,13 +77,14 @@ math_topics = ["algebra", "geometry", "statistics", "trigonometry", "calculus"]
 science_topics = ["biology", "earthScience", "environmentalScience", "chemistry", "physics"]
 topic = None
 questions = []
-answerAs = []
-answerBs = []
-answerCs = []
-answerDs = []
-correctAnswers = []
+answer_As = []
+answer_Bs = []
+answer_Cs = []
+answer_Ds = []
+correct_answers = []
 uploaded = False
-answerChoice = None
+answer_choice = None
+incorrect_choices = []
 
 # physics components
 gravity = 1500
@@ -348,33 +349,33 @@ while valid:
                     lines = file.readlines()
                     for i in range(0, len(lines), 7):
                         questions.append(lines[i].strip())
-                        answerAs.append(lines[i+1].strip())
-                        answerBs.append(lines[i+2].strip())
-                        answerCs.append(lines[i+3].strip())
-                        answerDs.append(lines[i+4].strip())
-                        correctAnswers.append(lines[i+5].strip())
+                        answer_As.append(lines[i+1].strip())
+                        answer_Bs.append(lines[i+2].strip())
+                        answer_Cs.append(lines[i+3].strip())
+                        answer_Ds.append(lines[i+4].strip())
+                        correct_answers.append(lines[i+5].strip())
                     uploaded = True
                 elif subject == "science":
                     file = open(f"Questions/Science/{topic}.txt", "r")
                     lines = file.readlines()
                     for i in range(0, len(lines), 7):
                         questions.append(lines[i].strip())
-                        answerAs.append(lines[i+1].strip())
-                        answerBs.append(lines[i+2].strip())
-                        answerCs.append(lines[i+3].strip())
-                        answerDs.append(lines[i+4].strip())
-                        correctAnswers.append(lines[i+5].strip())
+                        answer_As.append(lines[i+1].strip())
+                        answer_Bs.append(lines[i+2].strip())
+                        answer_Cs.append(lines[i+3].strip())
+                        answer_Ds.append(lines[i+4].strip())
+                        correct_answers.append(lines[i+5].strip())
                     uploaded = True
 
             if(len(questions) > 0):
                 index = random.randint(0,len(questions) - 1)
                 current_question = {
                     "question": questions[index],
-                    "choiceA": answerAs[index],
-                    "choiceB": answerBs[index],
-                    "choiceC": answerCs[index],
-                    "choiceD": answerDs[index],
-                    "correctChoice": correctAnswers[index]
+                    "choiceA": answer_As[index],
+                    "choiceB": answer_Bs[index],
+                    "choiceC": answer_Cs[index],
+                    "choiceD": answer_Ds[index],
+                    "correctChoice": correct_answers[index]
                 }
 
             question_text = my_font.render(current_question["question"], True, (0, 0, 0))
@@ -451,38 +452,41 @@ while valid:
             screen.blit(choiceD_text, choiceD_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if choiceA_text_rect.collidepoint(event.pos):
-                    answerChoice = "A"
+                    answer_choice = "A"
                 elif choiceB_text_rect.collidepoint(event.pos):
-                    answerChoice = "B"
+                    answer_choice = "B"
                 elif choiceC_text_rect.collidepoint(event.pos):
-                    answerChoice = "C"
+                    answer_choice = "C"
                 elif choiceD_text_rect.collidepoint(event.pos):
-                    answerChoice = "D"
+                    answer_choice = "D"
             elif event.type == pygame.MOUSEBUTTONUP:
-                if answerChoice == current_question["correctChoice"]:
+                if answer_choice == current_question["correctChoice"]:
                     question = False
                     run = True
-                    answerChoice = None
-                    if(len(questions) > 0):
+                    answer_choice = None
+                    incorrect_choices.clear()
+                    if len(questions) > 0:
                         questions.pop(index)
-                        answerAs.pop(index)
-                        answerBs.pop(index)
-                        answerCs.pop(index)
-                        answerDs.pop(index)
-                        correctAnswers.pop(index)
-                elif answerChoice != None:
-                    if answerChoice == "A":
-                        choiceA_text = my_font.render(current_question["choiceA"], True, (255, 0, 0))
-                    elif answerChoice == "B":
-                        choiceB_text = my_font.render(current_question["choiceB"], True, (255, 0, 0))
-                    elif answerChoice == "C":
-                        choiceC_text = my_font.render(current_question["choiceC"], True, (255, 0, 0))
-                    elif answerChoice == "D":
-                        choiceD_text = my_font.render(current_question["choiceD"], True, (255, 0, 0))
-                    lives-=1
-                    if lives <= 0:
-                        lose = True
-                    answerChoice = None
+                        answer_As.pop(index)
+                        answer_Bs.pop(index)
+                        answer_Cs.pop(index)
+                        answer_Ds.pop(index)
+                        correct_answers.pop(index)
+                elif answer_choice != None:
+                    if answer_choice not in incorrect_choices:
+                        incorrect_choices.append(answer_choice)
+                        if answer_choice == "A":
+                            choiceA_text = my_font.render(current_question["choiceA"], True, (255, 0, 0))
+                        elif answer_choice == "B":
+                            choiceB_text = my_font.render(current_question["choiceB"], True, (255, 0, 0))
+                        elif answer_choice == "C":
+                            choiceC_text = my_font.render(current_question["choiceC"], True, (255, 0, 0))
+                        elif answer_choice == "D":
+                            choiceD_text = my_font.render(current_question["choiceD"], True, (255, 0, 0))
+                        lives-=1
+                        if lives <= 0:
+                            lose = True
+                        answer_choice = None
 
         if settings:
             settings_screen.draw(screen)
