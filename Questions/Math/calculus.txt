@@ -1,0 +1,34 @@
+Find the derivative of f(x) = 3x² + 2x - 5.
+6x + 2
+3x² - 2x
+6x - 2
+3x² + 2
+A
+
+What is the integral of f(x) = 2x?
+x² + C
+2x² + C
+x + C
+2x + C
+A
+
+Find the limit: lim(x→2) (x² - 4)/(x - 2)
+0
+2
+4
+Does not exist
+C
+
+What is the derivative of f(x) = sin(x)?
+cos(x)
+-cos(x)
+-sin(x)
+tan(x)
+A
+
+The function f(x) = x³ has a critical point at:
+x = -1
+x = 0
+x = 1
+x = 3
+B

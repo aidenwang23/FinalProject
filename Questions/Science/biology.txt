@@ -18,3 +18,17 @@ DNA
 Protein
 Glucose
 B
+
+Which part of the cell controls its activities?
+Cell wall
+Cytoplasm
+Nucleus
+Vacuole
+C
+
+What structure surrounds the cell membrane in plant cells and provides support?
+Cell wall
+Lysosome
+Chloroplast
+Ribosome
+A
