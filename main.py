@@ -14,7 +14,7 @@ keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
 keybind_text_font = pygame.font.SysFont("Arial Bold", 70)
 question_text_font = pygame.font.SysFont("Arial Bold", 70)
 answer_text_font = pygame.font.SysFont("Arial Bold", 50)
-SCREEN_HEIGHT = 800
+SCREEN_HEIGHT = 1020
 SCREEN_WIDTH = 1920
 size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 screen = pygame.display.set_mode(size)
@@ -42,21 +42,24 @@ paused_screen = Popup("paused.png", 1)
 end_screen = Popup("end.png", 1)
 
 # game settings
-valid = True # game running
-load = True # loading screen
-run = False # in a stage
-select = False # selecting subject
-subject = None # selected subject
-question = False # answering question
-settings = False # changing settings
-customize = False # customizing character
-rules = False # rules page
-pause = False # paused
+valid = True
+load = True
+run = False
+select = False
+subject = None
+question = False
+settings = False
+customize = False
+rules = False
+pause = False
 stage = 0 
 lives = 1
 start_lives = lives
-win = False # completed
-lose = False # lost
+win = False
+lose = False
+game_start_time = pygame.time.get_ticks()
+pause_start_time = None
+total_pause_duration = 0
 
 # question setup
 math_topics = ["algebra", "geometry", "statistics", "trigonometry", "calculus"]
@@ -182,10 +185,11 @@ while valid:
         elif event.type == pygame.KEYUP:
             if event.key == jump_key:
                 jumping = False
-            elif keys[left_key]:
+            elif event.key == left_key:
                 moving_left = False
-            elif keys[right_key]:
+            elif event.key == right_key:
                 moving_right = False
+
             
 
     if valid:
@@ -250,6 +254,7 @@ while valid:
                 else: 
                     win = True
                     run = False
+
                 bg_manager.next()
                 uploaded = False
                 x_position = SCREEN_WIDTH / 2
@@ -296,8 +301,9 @@ while valid:
 
             if not uploaded:
                 if subject == "math":
-                    file = open(f"Questions/Math/{topic}.txt", "r")
-                    lines = file.readlines()
+                    with open(f"Questions/{subject.capitalize()}/{topic}.txt", "r") as file:
+                        lines = file.readlines()
+
                     for i in range(0, len(lines), 7):
                         questions.append(lines[i].strip())
                         answer_As.append(lines[i+1].strip())
@@ -339,7 +345,7 @@ while valid:
                 choiceD_text = answer_text_font.render(current_question["choiceD"], True, (0, 0, 0))
                 choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, 880))
 
-            if elapsed_minutes == 20:
+            if int(elapsed_minutes) >= 20 and not (win or lose):
                 lose = True
             if win or lose:
                 run = False
@@ -471,22 +477,30 @@ while valid:
             screen.blit(change_right, change_right_rect)
             screen.blit(change_left, change_left_rect)
             screen.blit(change_jump, change_jump_rect)
+
+            if changing_keys:
+                screen.blit(changing_text, changing_text_rect)
+                if changing_duplicate:
+                    screen.blit(changing_error_text, changing_error_text_rect)
+
             if event.type == pygame.MOUSEBUTTONUP:
                 mouse_x, mouse_y = event.pos
-                if 1215 < mouse_x < 1595 and 510 < mouse_y < 615 and not changing_keys:
+                if 1170 < mouse_x < 1640 and 515 < mouse_y < 605:
+                    changing_keys = True
                     changing_right = True
+                elif 1170 < mouse_x < 1640 and 635 < mouse_y < 725:
                     changing_keys = True
-                elif 1215 < mouse_x < 1595 and 625 < mouse_y < 730 and not changing_keys:
                     changing_left = True
+                elif 1170 < mouse_x < 1640 and 755 < mouse_y < 845:
                     changing_keys = True
-                elif 1215 < mouse_x < 1595 and 740 < mouse_y < 845 and not changing_keys:
                     changing_jump = True
-                    changing_keys = True
-                elif 10 < mouse_x < 160 and 880 < mouse_y < 1015 and not pause:
+                elif 10 < mouse_x < 160 and 880 < mouse_y < 1015:
                     settings = False
-                    load = True
-                elif 10 < mouse_x < 160 and 880 < mouse_y < 1015 and pause:
-                    settings = False
+                    if pause:
+                        pause = True
+                    else:
+                        load = True
+
 
         if changing_keys:
             changing_screen.draw(screen)

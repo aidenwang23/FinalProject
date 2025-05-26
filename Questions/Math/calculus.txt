@@ -1,15 +1,15 @@
-Find the derivative of f(x) = 3x² + 2x - 5.
-6x + 2
-3x² - 2x
-6x - 2
-3x² + 2
+Find the derivative of f(x) = 3x + 2
+3
+2
+3x
+1
 A
 
-What is the integral of f(x) = 2x?
-x² + C
-2x² + C
+What is the integral of f(x) = 5?
+5x + C
 x + C
-2x + C
+5 + C
+C
 A
 
 Find the limit: lim(x→2) (x² - 4)/(x - 2)
@@ -26,9 +26,9 @@ cos(x)
 tan(x)
 A
 
-The function f(x) = x³ has a critical point at:
-x = -1
+The function f(x) = ln(x) has a critical point at:
 x = 0
 x = 1
-x = 3
+x = e
+x = ∞
 B
