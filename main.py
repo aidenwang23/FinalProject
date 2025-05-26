@@ -34,26 +34,7 @@ customize_screen = Popup("customize.png", 1)
 rules_screen = Popup("rules.png", 1)
 question_screen = Popup("question.png", 1)
 paused_screen = Popup("paused.png", 1)
-play_button = my_font.render("play", True, (0, 0, 0))
-play_button_rect = play_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-settings_button = my_font.render("settings", True, (0, 0, 0))
-settings_button_rect = settings_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 13 / 22))
-customize_button = my_font.render("customize", True, (0, 0, 0))
-customize_button_rect = customize_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 15 / 22))
-rules_button = my_font.render("rules", True, (0, 0, 0))
-rules_button_rect = rules_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 17 / 22))
-quit_button = my_font.render("quit", True, (0, 0, 0))
-quit_button_rect = quit_button.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 19 / 22))
-back_text = my_font.render("back", True, (0, 0, 0))
-back_text_rect = back_text.get_rect(bottomleft=(0, SCREEN_HEIGHT))
-paused_text = my_font.render("paused", True, (0, 0, 0))
-paused_text_rect = paused_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-math_text = my_font.render("math", True, (0, 0, 0))
-math_text_rect = math_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3))
-science_text = my_font.render("science", True, (0, 0, 0))
-science_text_rect = science_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT * 2 / 3))
-win_screen = Popup("win.png", 1)
-lose_screen = Popup("lose.png", 1)
+end_screen = Popup("end.png", 1)
 
 # game settings
 valid = True  # game running
@@ -156,10 +137,12 @@ while valid:
             settings = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                if pause and run:
+                if pause and not run:
                     pause = False
+                    run = True
                 elif not pause and run:
                     pause = True
+                    run = False
                     start_pause_time = time.time()
             elif event.key == jump_key:
                 jumping = True
@@ -167,6 +150,30 @@ while valid:
                 moving_left = True
             elif keys[right_key]:
                 moving_right = True
+            if changing_right and changing_keys:
+                if not event.key == left_key and not event.key == jump_key and not event.key == pygame.K_ESCAPE:
+                    right_key = event.key
+                    changing_right = False
+                    changing_keys = False
+                    changing_duplicate = False
+                else:
+                    changing_duplicate = True
+            elif changing_left and changing_keys:
+                if not event.key == right_key and not event.key == jump_key and not event.key == pygame.K_ESCAPE:
+                    left_key = event.key
+                    changing_left = False
+                    changing_keys = False
+                    changing_duplicate = False
+                else:
+                    changing_duplicate = True
+            elif changing_jump and changing_keys:
+                if not event.key == left_key and not event.key == right_key and not event.key == pygame.K_ESCAPE:
+                    jump_key = event.key
+                    changing_jump = False
+                    changing_keys = False
+                    changing_duplicate = False
+                else:
+                    changing_duplicate = True
         elif event.type == pygame.KEYUP:
             if event.key == jump_key:
                 jumping = False
@@ -174,68 +181,7 @@ while valid:
                 moving_left = False
             elif keys[right_key]:
                 moving_right = False
-
-        if load:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if play_button_rect.collidepoint(event.pos):
-                    select = True
-                    load = False
-                if settings_button_rect.collidepoint(event.pos):
-                    settings = True
-                    load = False
-                if customize_button_rect.collidepoint(event.pos):
-                    customize = True
-                    load = False
-                if rules_button_rect.collidepoint(event.pos):
-                    rules = True
-                    load = False
-                if quit_button_rect.collidepoint(event.pos):
-                    valid = False
-                    load = False
-
-        if settings:
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if change_right_rect.collidepoint(event.pos) and not changing_keys:
-                    changing_right = True
-                    changing_keys = True
-                elif change_left_rect.collidepoint(event.pos) and not changing_keys:
-                    changing_left = True
-                    changing_keys = True
-                elif change_jump_rect.collidepoint(event.pos) and not changing_keys:
-                    changing_jump = True
-                    changing_keys = True
-            if event.type == pygame.KEYDOWN:
-                if changing_right and changing_keys:
-                    if not event.key == left_key and not event.key == jump_key:
-                        right_key = event.key
-                        changing_right = False
-                        changing_keys = False
-                        changing_duplicate = False
-                    else:
-                        changing_duplicate = True
-                elif changing_left and changing_keys:
-                    if not event.key == right_key and not event.key == jump_key:
-                        left_key = event.key
-                        changing_left = False
-                        changing_keys = False
-                        changing_duplicate = False
-                    else:
-                        changing_duplicate = True
-                elif changing_jump and changing_keys:
-                    if not event.key == left_key and not event.key == right_key:
-                        jump_key = event.key
-                        changing_jump = False
-                        changing_keys = False
-                        changing_duplicate = False
-                    else:
-                        changing_duplicate = True
-
-    change_right = my_font.render(f"right keybind: {pygame.key.name(right_key)}", True, (0, 0, 0))
-    change_right_rect = change_right.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - SCREEN_HEIGHT / 6))
-    change_left = my_font.render(f"left keybind: {pygame.key.name(left_key)}", True, (0, 0, 0))
-    change_left_rect = change_left.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-    change_jump = my_font.render(f"jump keybind: {pygame.key.name(jump_key)}", True, (0, 0, 0))
-    change_jump_rect = change_jump.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 6))
+            
 
     if True:
         screen.fill((0, 0, 0))
@@ -403,27 +349,38 @@ while valid:
 
         if load:
             loading_screen.draw(screen)
-            screen.blit(play_button, play_button_rect)
-            screen.blit(settings_button, settings_button_rect)
-            screen.blit(customize_button, customize_button_rect)
-            screen.blit(rules_button, rules_button_rect)
-            screen.blit(quit_button, quit_button_rect)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = event.pos
+                if 550 < mouse_x < 1370 and 430 < mouse_y < 535:
+                    select = True
+                    load = False
+                elif 550 < mouse_x < 1370 and 545 < mouse_y < 650:
+                    settings = True
+                    load = False
+                elif 550 < mouse_x < 1370 and 660 < mouse_y < 765:
+                    customize = True
+                    load = False
+                elif 550 < mouse_x < 1370 and 775 < mouse_y < 880:
+                    rules = True
+                    load = False
+                elif 550 < mouse_x < 1370 and 890 < mouse_y < 995:
+                    valid = False
+                    load = False
+
 
         if select:
             subject_screen.draw(screen)
-            screen.blit(back_text, back_text_rect)
-            screen.blit(math_text, math_text_rect)
-            screen.blit(science_text, science_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if math_text_rect.collidepoint(event.pos):
-                    subject = "math"
-                    run = True
-                    select = False
-                elif science_text_rect.collidepoint(event.pos):
+                mouse_x, mouse_y = event.pos
+                if 550 < mouse_x < 1370 and 500 < mouse_y < 605:
                     subject = "science"
                     run = True
                     select = False
-                elif back_text_rect.collidepoint(event.pos):
+                elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                    subject = "math"
+                    run = True
+                    select = False
+                elif 10 < mouse_x < 160 and 880 < mouse_y < 1015:
                     select = False
                     load = True
 
@@ -435,11 +392,11 @@ while valid:
             for i in range(lives):
                 full_heart = Heart(heart_x, 0, "fullHeart.png", 0.2)
                 full_heart.draw(screen)
-                heart_x += 20
+                heart_x += 37.5
             for i in range(start_lives - lives):
                 empty_heart = Heart(heart_x, 0, "emptyHeart.png", 0.2)
                 empty_heart.draw(screen)
-                heart_x += 20
+                heart_x += 37.5
             heart_x = 0
             screen.blit(a.surface, a.position())
 
@@ -488,16 +445,45 @@ while valid:
                             lose = True
                         answer_choice = None
 
+        if pause:
+            paused_screen.draw(screen)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = event.pos
+                if 550 < mouse_x < 1370 and 500 < mouse_y < 605:
+                    settings = True
+                    run = False
+                elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                    load = True
+                    pause = False
+                    run = False
+
         if settings:
             settings_screen.draw(screen)
+            change_right = my_font.render(pygame.key.name(right_key), True, (0, 0, 0))
+            change_right_rect = change_right.get_rect(center=(1405, 560))
+            change_left = my_font.render(pygame.key.name(left_key), True, (0, 0, 0))
+            change_left_rect = change_left.get_rect(center=(1405, 675))
+            change_jump = my_font.render(pygame.key.name(jump_key), True, (0, 0, 0))
+            change_jump_rect = change_jump.get_rect(center=(1405, 790))
             screen.blit(change_right, change_right_rect)
             screen.blit(change_left, change_left_rect)
             screen.blit(change_jump, change_jump_rect)
-            screen.blit(back_text, back_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if back_text_rect.collidepoint(event.pos):
+                mouse_x, mouse_y = event.pos
+                if 1215 < mouse_x < 1595 and 510 < mouse_y < 615 and not changing_keys:
+                    changing_right = True
+                    changing_keys = True
+                elif 1215 < mouse_x < 1595 and 625 < mouse_y < 730 and not changing_keys:
+                    changing_left = True
+                    changing_keys = True
+                elif 1215 < mouse_x < 1595 and 740 < mouse_y < 845 and not changing_keys:
+                    changing_jump = True
+                    changing_keys = True
+                elif 10 < mouse_x < 160 and 880 < mouse_y < 1015 and not pause:
                     settings = False
                     load = True
+                elif 10 < mouse_x < 160 and 880 < mouse_y < 1015 and pause:
+                    settings = False
 
         if changing_keys:
             changing_screen.draw(screen)
@@ -507,28 +493,26 @@ while valid:
 
         if customize:
             customize_screen.draw(screen)
-            screen.blit(back_text, back_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if back_text_rect.collidepoint(event.pos):
-                    customize = False
-                    load = True
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_x, mouse_y = event.pos
+                    if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
+                        customize = False
+                        load = True
 
         if rules:
             rules_screen.draw(screen)
-            screen.blit(back_text, back_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if back_text_rect.collidepoint(event.pos):
-                    rules = False
-                    load = True
-
-        if pause:
-            paused_screen.draw(screen)
-            screen.blit(paused_text, paused_text_rect)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_x, mouse_y = event.pos
+                    if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
+                        rules = False
+                        load = True
 
         if win:
-            win_screen.draw(screen)
+            end_screen.draw(screen)
         
         if lose: 
-            lose_screen.draw(screen)
+            end_screen.draw(screen)
 
         pygame.display.flip()
