@@ -3,7 +3,7 @@ import random
 import time
 import math
 import os
-from sprites import Player, Background, BackgroundManager, Popup, Platform
+from sprites import Player, Background, BackgroundManager, Popup, Platform, Heart
 
 # screen setup
 pygame.init()
@@ -68,6 +68,7 @@ rules = False  # rules page
 pause = False  # paused
 stage = 0 
 lives = 10
+start_lives = lives
 win = False # completed
 lose = False # lost
 
@@ -121,8 +122,8 @@ changing_keys = False
 changing_duplicate = False
 
 # clock text
-timer = my_font.render(f"{elapsed_time}", True, (255, 255, 255))
-timer_rect = timer.get_rect(center=(10, 20))
+timer = my_font.render("00:00", True, (255, 255, 255))
+timer_rect = timer.get_rect(topright=(SCREEN_WIDTH, 0))
 
 # keybind changing text
 changing_text = my_font.render("press a key to change the keybind", True, (0, 0, 0))
@@ -241,8 +242,7 @@ while valid:
         if pause or not run:
             pause_time = int(time.time() - start_pause_time)
         elif run or question:
-            elapsed_seconds = int(time.time() - start_time) 
-            elapsed_seconds -= pause_time
+            elapsed_seconds = int(time.time() - start_time) - pause_time
             pause_time = 0
             elapsed_minutes = int(elapsed_seconds / 60)
             elapsed_seconds %= 60
@@ -430,6 +430,16 @@ while valid:
             screen.blit(timer, timer_rect)
             for platform in platforms:
                 platform.draw(screen)
+            heart_x = 0
+            for i in range(lives):
+                full_heart = Heart(heart_x, 0, "fullHeart.png", 0.2)
+                full_heart.draw(screen)
+                heart_x += 20
+            for i in range(start_lives - lives):
+                empty_heart = Heart(heart_x, 0, "emptyHeart.png", 0.2)
+                empty_heart.draw(screen)
+                heart_x += 20
+            heart_x = 0
             screen.blit(a.surface, a.position())
 
         if question:

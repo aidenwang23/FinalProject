@@ -72,3 +72,12 @@ class Platform:
 
     def draw(self, screen):
         screen.blit(self.image, self.rect.topleft)
+
+class Heart:
+    def __init__(self, x, y, image_path, scale):
+        self.image = pygame.image.load(f"Sprites/Misc/{image_path}")
+        self.image = pygame.transform.scale_by(self.image, scale)
+        self.rect = self.image.get_rect(topleft=(x, y))
+    
+    def draw(self, screen):
+        screen.blit(self.image, self.rect.topleft)
