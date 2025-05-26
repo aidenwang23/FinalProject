@@ -462,8 +462,8 @@ while valid:
                     settings = True
                     run = False
                 elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
-                    run = False
                     load = True
+                    run = False
                     pause = False
 
         if settings:
