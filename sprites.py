@@ -52,6 +52,9 @@ class BackgroundManager:
         if self.index < len(self.backgrounds) - 1:
             self.index += 1
     
+    def restart(self):
+        self.index = 0
+    
 class Popup:
     def __init__(self, image_path, scale):
         self.image = pygame.image.load(f"Sprites/Screens/{image_path}")

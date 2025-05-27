@@ -12,7 +12,7 @@ my_font = pygame.font.SysFont("Arial Bold", 45)
 time_display_font = pygame.font.SysFont("Arial Bold", 55)
 keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
 keybind_text_font = pygame.font.SysFont("Arial Bold", 70)
-question_text_font = pygame.font.SysFont("Arial Bold", 70)
+question_text_font = pygame.font.SysFont("Arial Bold", 65)
 answer_text_font = pygame.font.SysFont("Arial Bold", 50)
 SCREEN_HEIGHT = 1020
 SCREEN_WIDTH = 1920
@@ -53,13 +53,11 @@ customize = False
 rules = False
 pause = False
 stage = 0 
-lives = 1
+lives = 10
 start_lives = lives
 win = False
 lose = False
-game_start_time = pygame.time.get_ticks()
-pause_start_time = None
-total_pause_duration = 0
+mouse_clicked = False
 
 # question setup
 math_topics = ["algebra", "geometry", "statistics", "trigonometry", "calculus"]
@@ -89,10 +87,10 @@ y_position = SCREEN_HEIGHT
 
 # time
 clock = pygame.time.Clock()
-start_time = time.time()
-pause_time = 0
-elapsed_time = 0
-start_pause_time = time.time()
+total_time = 0
+elapsed_minutes = 0
+elapsed_seconds = 0
+last_active_time = None
 
 # keybinds
 left_key = pygame.K_LEFT
@@ -145,13 +143,13 @@ while valid:
             settings = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                if pause and not run:
-                    pause = False
-                    run = True
-                elif not pause and run:
-                    pause = True
-                    run = False
-                    start_pause_time = time.time()
+                if run:
+                    if pause:
+                        pause = False
+                        run = True
+                    elif not pause:
+                        pause = True
+                        run = False
             elif event.key == jump_key:
                 jumping = True
             elif keys[left_key]:
@@ -190,25 +188,27 @@ while valid:
             elif event.key == right_key:
                 moving_right = False
 
-            
-
     if valid:
         screen.fill((0, 0, 0))
-
-        if pause or not run:
-            pause_time = int(time.time() - start_pause_time)
-        elif run or question:
-            elapsed_seconds = int(time.time() - start_time) - pause_time
-            pause_time = 0
-            elapsed_minutes = int(elapsed_seconds / 60)
-            elapsed_seconds %= 60
+    
+        if run or question:
+            if last_active_time == None:
+                last_active_time = time.time()
+            current_time = time.time()
+            total_time += current_time - last_active_time
+            last_active_time = current_time
+            elapsed_minutes = int(total_time) // 60
+            elapsed_seconds = int(total_time) % 60
             if elapsed_minutes < 10:
                 elapsed_minutes = "0" + str(elapsed_minutes)
             if elapsed_seconds < 10:
                 elapsed_seconds = "0" + str(elapsed_seconds)
-            elapsed_time = str(elapsed_minutes) + ":" + str(elapsed_seconds)
+            elapsed_time = f"{elapsed_minutes}:{elapsed_seconds}"
             timer = time_display_font.render(f"{elapsed_time}", True, (255, 255, 255))
+        else:
+            last_active_time = None
 
+        if run:
             # horizontal movement
             if keys[left_key]:
                 x_position -= 400 * dt
@@ -254,7 +254,6 @@ while valid:
                 else: 
                     win = True
                     run = False
-
                 bg_manager.next()
                 uploaded = False
                 x_position = SCREEN_WIDTH / 2
@@ -324,7 +323,7 @@ while valid:
                         correct_answers.append(lines[i+5].strip())
                     uploaded = True
 
-            if(len(questions) > 0):
+            if not landed and len(questions) > 0:
                 index = random.randint(0,len(questions) - 1)
                 current_question = {
                     "question": questions[index],
@@ -335,7 +334,7 @@ while valid:
                     "correctChoice": correct_answers[index]
                 }
                 question_text = question_text_font.render(current_question["question"], True, (0, 0, 0))
-                question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, 250))
+                question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, 270))
                 choiceA_text = answer_text_font.render(current_question["choiceA"], True, (0, 0, 0))
                 choiceA_text_rect = choiceA_text.get_rect(center=(SCREEN_WIDTH / 2, 535))
                 choiceB_text = answer_text_font.render(current_question["choiceB"], True, (0, 0, 0))
@@ -345,205 +344,243 @@ while valid:
                 choiceD_text = answer_text_font.render(current_question["choiceD"], True, (0, 0, 0))
                 choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, 880))
 
-            if int(elapsed_minutes) >= 20 and not (win or lose):
-                lose = True
-            if win or lose:
-                run = False
+        if int(elapsed_minutes) >= 15 and not (win or lose):
+            lose = True
+        if win or lose:
+            run = False
+    else:
+        pygame.QUIT
+
+    if load:
+        loading_screen.draw(screen)
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 550 < mouse_x < 1370 and 430 < mouse_y < 535:
+                select = True
+                load = False
+            elif 550 < mouse_x < 1370 and 545 < mouse_y < 650:
+                settings = True
+                load = False
+            elif 550 < mouse_x < 1370 and 660 < mouse_y < 765:
+                customize = True
+                load = False
+            elif 550 < mouse_x < 1370 and 775 < mouse_y < 880:
+                rules = True
+                load = False
+            elif 550 < mouse_x < 1370 and 890 < mouse_y < 995:
+                valid = False
+                load = False
+        else:
+            mouse_clicked = False
+
+    if select:
+        subject_screen.draw(screen)
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 550 < mouse_x < 1370 and 500 < mouse_y < 605:
+                subject = "science"
+                run = True
+                select = False
+            elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                subject = "math"
+                run = True
+                select = False
+            elif 10 < mouse_x < 160 and 880 < mouse_y < 1015:
+                select = False
+                load = True
+        else:
+            mouse_clicked = False
+
+    if run:
+        bg_manager.draw(screen)
+        screen.blit(timer, timer_rect)
+        for platform in platforms:
+            platform.draw(screen)
+        heart_x = 0
+        for i in range(lives):
+            full_heart = Heart(heart_x, 0, "fullHeart.png", 0.2)
+            full_heart.draw(screen)
+            heart_x += 37.5
+        for i in range(start_lives - lives):
+            empty_heart = Heart(heart_x, 0, "emptyHeart.png", 0.2)
+            empty_heart.draw(screen)
+            heart_x += 37.5
+        heart_x = 0
+        screen.blit(a.surface, a.position())
+
+    if question:
+        question_screen.draw(screen)
+        screen.blit(question_text, question_text_rect)
+        screen.blit(choiceA_text, choiceA_text_rect)
+        screen.blit(choiceB_text, choiceB_text_rect)
+        screen.blit(choiceC_text, choiceC_text_rect)
+        screen.blit(choiceD_text, choiceD_text_rect)
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
+                answer_choice = "A"
+            elif 550 < mouse_x < 1370 and 595 < mouse_y < 700:
+                answer_choice = "B"
+            elif 550 < mouse_x < 1370 and 710 < mouse_y < 815:
+                answer_choice = "C"
+            elif 550 < mouse_x < 1370 and 825 < mouse_y < 930:
+                answer_choice = "D"
+            if answer_choice == current_question["correctChoice"]:
                 question = False
-
-            if run:
-                a.move(x_position, y_position)
-
-        if not win and not lose:
-            bg_manager.draw(screen)
-
-        if load:
-            loading_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 550 < mouse_x < 1370 and 430 < mouse_y < 535:
-                    select = True
-                    load = False
-                elif 550 < mouse_x < 1370 and 545 < mouse_y < 650:
-                    settings = True
-                    load = False
-                elif 550 < mouse_x < 1370 and 660 < mouse_y < 765:
-                    customize = True
-                    load = False
-                elif 550 < mouse_x < 1370 and 775 < mouse_y < 880:
-                    rules = True
-                    load = False
-                elif 550 < mouse_x < 1370 and 890 < mouse_y < 995:
-                    valid = False
-                    load = False
-
-        if select:
-            subject_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 550 < mouse_x < 1370 and 500 < mouse_y < 605:
-                    subject = "science"
-                    run = True
-                    select = False
-                elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
-                    subject = "math"
-                    run = True
-                    select = False
-                elif 10 < mouse_x < 160 and 880 < mouse_y < 1015:
-                    select = False
-                    load = True
-
-        if run:
-            screen.blit(timer, timer_rect)
-            for platform in platforms:
-                platform.draw(screen)
-            heart_x = 0
-            for i in range(lives):
-                full_heart = Heart(heart_x, 0, "fullHeart.png", 0.2)
-                full_heart.draw(screen)
-                heart_x += 37.5
-            for i in range(start_lives - lives):
-                empty_heart = Heart(heart_x, 0, "emptyHeart.png", 0.2)
-                empty_heart.draw(screen)
-                heart_x += 37.5
-            heart_x = 0
-            screen.blit(a.surface, a.position())
-
-        if question:
-            question_screen.draw(screen)
-            screen.blit(question_text, question_text_rect)
-            screen.blit(choiceA_text, choiceA_text_rect)
-            screen.blit(choiceB_text, choiceB_text_rect)
-            screen.blit(choiceC_text, choiceC_text_rect)
-            screen.blit(choiceD_text, choiceD_text_rect)
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
-                    answer_choice = "A"
-                elif 550 < mouse_x < 1370 and 595 < mouse_y < 700:
-                    answer_choice = "B"
-                elif 550 < mouse_x < 1370 and 710 < mouse_y < 815:
-                    answer_choice = "C"
-                elif 550 < mouse_x < 1370 and 825 < mouse_y < 930:
-                    answer_choice = "D"
-                if answer_choice == current_question["correctChoice"]:
-                    question = False
-                    run = True
+                run = True
+                answer_choice = None
+                incorrect_choices.clear()
+                if len(questions) > 0:
+                    questions.pop(index)
+                    answer_As.pop(index)
+                    answer_Bs.pop(index)
+                    answer_Cs.pop(index)
+                    answer_Ds.pop(index)
+                    correct_answers.pop(index)
+            elif answer_choice != None:
+                if answer_choice not in incorrect_choices:
+                    incorrect_choices.append(answer_choice)
+                    if answer_choice == "A":
+                        choiceA_text = answer_text_font.render(current_question["choiceA"], True, (255, 0, 0))
+                    elif answer_choice == "B":
+                        choiceB_text = answer_text_font.render(current_question["choiceB"], True, (255, 0, 0))
+                    elif answer_choice == "C":
+                        choiceC_text = answer_text_font.render(current_question["choiceC"], True, (255, 0, 0))
+                    elif answer_choice == "D":
+                        choiceD_text = answer_text_font.render(current_question["choiceD"], True, (255, 0, 0))
+                    lives-=1
+                    if lives <= 0:
+                        lose = True
+                        question = False
                     answer_choice = None
-                    incorrect_choices.clear()
-                    if len(questions) > 0:
-                        questions.pop(index)
-                        answer_As.pop(index)
-                        answer_Bs.pop(index)
-                        answer_Cs.pop(index)
-                        answer_Ds.pop(index)
-                        correct_answers.pop(index)
-                elif answer_choice != None:
-                    if answer_choice not in incorrect_choices:
-                        incorrect_choices.append(answer_choice)
-                        if answer_choice == "A":
-                            choiceA_text = answer_text_font.render(current_question["choiceA"], True, (255, 0, 0))
-                        elif answer_choice == "B":
-                            choiceB_text = answer_text_font.render(current_question["choiceB"], True, (255, 0, 0))
-                        elif answer_choice == "C":
-                            choiceC_text = answer_text_font.render(current_question["choiceC"], True, (255, 0, 0))
-                        elif answer_choice == "D":
-                            choiceD_text = answer_text_font.render(current_question["choiceD"], True, (255, 0, 0))
-                        lives-=1
-                        if lives <= 0:
-                            lose = True
-                        answer_choice = None
+        else:
+            mouse_clicked = False
 
-        if pause:
-            paused_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 550 < mouse_x < 1370 and 500 < mouse_y < 605:
-                    settings = True
-                    run = False
-                elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
-                    load = True
-                    run = False
-                    pause = False
+    if pause:
+        paused_screen.draw(screen)
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 550 < mouse_x < 1370 and 500 < mouse_y < 605:
+                settings = True
+                run = False
+            elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                load = True
+                run = False
+                pause = False
+        else:
+            mouse_clicked = False
 
-        if settings:
-            settings_screen.draw(screen)
-            change_right = keybind_display_font.render(pygame.key.name(right_key), True, (0, 0, 0))
-            change_right_rect = change_right.get_rect(center=(1405, 560))
-            change_left = keybind_display_font.render(pygame.key.name(left_key), True, (0, 0, 0))
-            change_left_rect = change_left.get_rect(center=(1405, 675))
-            change_jump = keybind_display_font.render(pygame.key.name(jump_key), True, (0, 0, 0))
-            change_jump_rect = change_jump.get_rect(center=(1405, 790))
-            screen.blit(change_right, change_right_rect)
-            screen.blit(change_left, change_left_rect)
-            screen.blit(change_jump, change_jump_rect)
-
-            if changing_keys:
-                screen.blit(changing_text, changing_text_rect)
-                if changing_duplicate:
-                    screen.blit(changing_error_text, changing_error_text_rect)
-
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 1170 < mouse_x < 1640 and 515 < mouse_y < 605:
-                    changing_keys = True
-                    changing_right = True
-                elif 1170 < mouse_x < 1640 and 635 < mouse_y < 725:
-                    changing_keys = True
-                    changing_left = True
-                elif 1170 < mouse_x < 1640 and 755 < mouse_y < 845:
-                    changing_keys = True
-                    changing_jump = True
-                elif 10 < mouse_x < 160 and 880 < mouse_y < 1015:
-                    settings = False
-                    if pause:
-                        pause = True
-                    else:
-                        load = True
-
+    if settings:
+        settings_screen.draw(screen)
+        change_right = keybind_display_font.render(pygame.key.name(right_key), True, (0, 0, 0))
+        change_right_rect = change_right.get_rect(center=(1405, 560))
+        change_left = keybind_display_font.render(pygame.key.name(left_key), True, (0, 0, 0))
+        change_left_rect = change_left.get_rect(center=(1405, 675))
+        change_jump = keybind_display_font.render(pygame.key.name(jump_key), True, (0, 0, 0))
+        change_jump_rect = change_jump.get_rect(center=(1405, 790))
+        screen.blit(change_right, change_right_rect)
+        screen.blit(change_left, change_left_rect)
+        screen.blit(change_jump, change_jump_rect)
 
         if changing_keys:
-            changing_screen.draw(screen)
             screen.blit(changing_text, changing_text_rect)
             if changing_duplicate:
                 screen.blit(changing_error_text, changing_error_text_rect)
 
-        if customize:
-            customize_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
-                    customize = False
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 1170 < mouse_x < 1640 and 515 < mouse_y < 605:
+                changing_keys = True
+                changing_right = True
+            elif 1170 < mouse_x < 1640 and 635 < mouse_y < 725:
+                changing_keys = True
+                changing_left = True
+            elif 1170 < mouse_x < 1640 and 755 < mouse_y < 845:
+                changing_keys = True
+                changing_jump = True
+            elif 10 < mouse_x < 160 and 880 < mouse_y < 1015:
+                settings = False
+                if pause:
+                    pause = True
+                else:
                     load = True
+        else:
+            mouse_clicked = False
 
-        if rules:
-            rules_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
-                    rules = False
-                    load = True
 
-        if win:
-            end_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
-                    x_position = SCREEN_WIDTH / 2
-                    y_position = SCREEN_HEIGHT
-                elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
-                    valid = False
-        
-        if lose: 
-            end_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONUP:
-                mouse_x, mouse_y = event.pos
-                if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
-                    x_position = SCREEN_WIDTH / 2
-                    y_position = SCREEN_HEIGHT
-                elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
-                    valid = False
-                    
-        pygame.display.flip()
-    else:
-        pygame.QUIT
+    if changing_keys:
+        changing_screen.draw(screen)
+        screen.blit(changing_text, changing_text_rect)
+        if changing_duplicate:
+            screen.blit(changing_error_text, changing_error_text_rect)
+
+    if customize:
+        customize_screen.draw(screen)
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
+                customize = False
+                load = True
+        else:
+            mouse_clicked = False
+
+    if rules:
+        rules_screen.draw(screen)
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 10 < mouse_x < 160 and 880 < mouse_y < 1015:
+                rules = False
+                load = True
+        else:
+            mouse_clicked = False
+
+    if win:
+        end_screen.draw(screen)
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
+                x_position = SCREEN_WIDTH / 2
+                y_position = SCREEN_HEIGHT
+                lives = start_lives
+                total_time = 0
+                last_active_time = None
+                stage = 0
+                updated = False
+                bg_manager.restart()
+                run = True
+                win = False
+            elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                valid = False
+        else:
+            mouse_clicked = False
+    
+    if lose: 
+        end_screen.draw(screen)
+        if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+            mouse_clicked = True
+            mouse_x, mouse_y = event.pos
+            if 550 < mouse_x < 1370 and 480 < mouse_y < 585:
+                x_position = SCREEN_WIDTH / 2
+                y_position = SCREEN_HEIGHT
+                lives = start_lives
+                total_time = 0
+                last_active_time = None
+                stage = 0
+                updated = False
+                bg_manager.restart()
+                run = True
+                lose = False
+            elif 550 < mouse_x < 1370 and 675 < mouse_y < 780:
+                valid = False
+        else:
+            mouse_clicked = False
+    
+    pygame.display.flip()
