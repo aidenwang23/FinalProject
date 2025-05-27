@@ -53,6 +53,7 @@ def main():
     customize = False
     rules = False
     pause = False
+    paused_to_settings = False
     stage = 0 
     lives = 10
     start_lives = lives
@@ -93,9 +94,11 @@ def main():
     last_active_time = None
 
     # keybinds
-    left_key = pygame.K_LEFT
-    right_key = pygame.K_RIGHT
-    jump_key = pygame.K_UP
+    with open("keybinds.txt", "r") as file:
+        lines = file.readlines()
+    left_key = lines[0].strip()
+    right_key = lines[1].strip()
+    jump_key = lines[2].strip()
 
     # movement states
     moving_left = False
@@ -146,10 +149,8 @@ def main():
                     if run:
                         if pause:
                             pause = False
-                            run = True
                         elif not pause:
                             pause = True
-                            run = False
                 elif event.key == jump_key:
                     jumping = True
                 elif keys[left_key]:
@@ -190,8 +191,9 @@ def main():
 
         if valid:
             screen.fill((0, 0, 0))
+            mouse_clicked = False
         
-            if run or question:
+            if (run or question) and not pause:
                 if last_active_time == None:
                     last_active_time = time.time()
                 current_time = time.time()
@@ -305,7 +307,7 @@ def main():
 
                 if len(questions) <= 0:
                     if subject == "math":
-                        with open(f"Questions/{subject.capitalize()}/{topic}.txt", "r") as file:
+                        with open(f"Questions/Math/{topic}.txt", "r") as file:
                             lines = file.readlines()
 
                         for i in range(0, len(lines), 7):
@@ -316,8 +318,9 @@ def main():
                             answer_Ds.append(lines[i+4].strip())
                             correct_answers.append(lines[i+5].strip())
                     elif subject == "science":
-                        file = open(f"Questions/Science/{topic}.txt", "r")
-                        lines = file.readlines()
+                        with open(f"Questions/Science/{topic}.txt", "r") as file:
+                            lines = file.readlines()
+        
                         for i in range(0, len(lines), 7):
                             questions.append(lines[i].strip())
                             answer_As.append(lines[i+1].strip())
@@ -374,7 +377,7 @@ def main():
                 elif 550 <= mouse_x <= 1370 and 890 <= mouse_y <= 995:
                     valid = False
                     load = False
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
 
         if select:
@@ -393,7 +396,7 @@ def main():
                 elif 10 <= mouse_x <= 160 and 880 <= mouse_y <= 1015:
                     select = False
                     load = True
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
 
         if run:
@@ -459,7 +462,7 @@ def main():
                             lose = True
                             question = False
                         answer_choice = None
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
 
         if pause:
@@ -470,9 +473,11 @@ def main():
                 if 550 <= mouse_x <= 1370 and 500 <= mouse_y <= 605:
                     settings = True
                     run = False
+                    paused_to_settings = True
+                    pause = False
                 elif 550 <= mouse_x <= 1370 and 675 <= mouse_y <= 780:
                     main()
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
 
         if settings:
@@ -487,11 +492,6 @@ def main():
             screen.blit(change_left, change_left_rect)
             screen.blit(change_jump, change_jump_rect)
 
-            if changing_keys:
-                screen.blit(changing_text, changing_text_rect)
-                if changing_duplicate:
-                    screen.blit(changing_error_text, changing_error_text_rect)
-
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -505,11 +505,21 @@ def main():
                     changing_keys = True
                     changing_jump = True
                 elif 10 <= mouse_x <= 160 and 880 <= mouse_y <= 1015:
-                    if not pause:
+                    if not paused_to_settings:
                         load = True
+                    elif paused_to_settings:
+                        pause = True
+                        paused_to_settings = False
+                        run = True
                     settings = False
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+                        
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
+            
+            if changing_keys:
+                screen.blit(changing_text, changing_text_rect)
+                if changing_duplicate:
+                    screen.blit(changing_error_text, changing_error_text_rect)
 
 
         if changing_keys:
@@ -526,7 +536,7 @@ def main():
                 if 10 <= mouse_x <= 160 and 880 <= mouse_y <= 1015:
                     customize = False
                     load = True
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
 
         if rules:
@@ -537,7 +547,7 @@ def main():
                 if 10 <= mouse_x <= 160 and 880 <= mouse_y <= 1015:
                     rules = False
                     load = True
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
 
         if win:
@@ -549,7 +559,7 @@ def main():
                     main()
                 elif 550 <= mouse_x <= 1370 and 675 <= mouse_y <= 780:
                     valid = False
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
         
         if lose: 
@@ -561,7 +571,7 @@ def main():
                     main()
                 elif 550 <= mouse_x <= 1370 and 675 < mouse_y < 780:
                     valid = False
-            elif event.type == pygame.MOUSEBUTTONDOWN and mouse_clicked:
+            elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
         
         pygame.display.flip()
