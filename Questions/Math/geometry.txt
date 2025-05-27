@@ -20,10 +20,10 @@ What is the volume of a cube with side length 5 units?
 D
     
 The sum of the interior angles of a hexagon is:
-540°
-720°
-900°
-1080°
+540 degrees
+720 degrees
+900 degrees
+1080 degrees
 B
 
 What is the length of the hypotenuse in a right triangle with legs 6 and 8 units?

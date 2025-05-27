@@ -30,5 +30,5 @@ What is the speed of light in a vacuum?
 300 m/s
 1,500 m/s
 300,000 km/s
-9.8 m/s²
+9.8 m/s^2
 C

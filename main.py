@@ -55,7 +55,7 @@ def main():
     pause = False
     paused_to_settings = False
     stage = 0 
-    lives = 10
+    lives = 15
     start_lives = lives
     win = False
     lose = False
@@ -96,9 +96,9 @@ def main():
     # keybinds
     with open("keybinds.txt", "r") as file:
         lines = file.readlines()
-    left_key = lines[0].strip()
-    right_key = lines[1].strip()
-    jump_key = lines[2].strip()
+    right_key = int(lines[0].strip())
+    left_key = int(lines[1].strip())
+    jump_key = int(lines[2].strip())
 
     # movement states
     moving_left = False
@@ -512,7 +512,9 @@ def main():
                         paused_to_settings = False
                         run = True
                     settings = False
-                        
+                with open("keybinds.txt", "w") as file:
+                    file.write(f"{str(right_key)}\n{str(left_key)}\n{str(jump_key)}")
+
             elif event.type == pygame.MOUSEBUTTONUP and mouse_clicked:
                 mouse_clicked = False
             

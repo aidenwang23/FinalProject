@@ -13,9 +13,9 @@ Nucleus
 C
 
 What is the chemical symbol for water?
-H₂
+H2
 HO
-H₂O
+H2O
 OH
 C
 
