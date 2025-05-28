@@ -101,10 +101,6 @@ def main():
     right_key = int(lines[0].strip())
     left_key = int(lines[1].strip())
     jump_key = int(lines[2].strip())
-    
-    #rule files
-    with open("rules.txt", "r") as file:
-        rule_text = file.readlines()
 
     # movement states
     moving_left = False
@@ -543,10 +539,12 @@ def main():
         if rules:
             rules_screen.draw(screen)
             y_displacement = 200
-            for line in rule_text:
-                text_surface = rules_text_font.render(line.strip(), True, (0, 0, 0))
-                screen.blit(text_surface, (100, y_displacement)) 
-                y_displacement += 100
+            with open("rules.txt", "r") as file:
+                lines = file.readlines()
+                for line in lines:
+                    text_surface = rules_text_font.render(line.strip(), True, (0, 0, 0))
+                    screen.blit(text_surface, (100, y_displacement)) 
+                    y_displacement += 100
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
