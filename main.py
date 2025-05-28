@@ -15,7 +15,7 @@ def main():
     keybind_text_font = pygame.font.SysFont("Arial Bold", 70)
     question_text_font = pygame.font.SysFont("Arial Bold", 65)
     answer_text_font = pygame.font.SysFont("Arial Bold", 50)
-    rules_text_font = pygame.font.SysFont("Arial.Bold", 55)
+    rules_text_font = pygame.font.SysFont("Arial Bold", 55)
     SCREEN_HEIGHT = 1020
     SCREEN_WIDTH = 1920
     size = (SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -137,11 +137,11 @@ def main():
 
     # platforms
     platforms = [
-        Platform(425, 800, f"{stage_names[stage]}Platform.png", 2),
-        Platform(700, 630, f"{stage_names[stage]}Platform.png", 2),
-        Platform(900, 465, f"{stage_names[stage]}Platform.png", 2),
-        Platform(1100, 330, f"{stage_names[stage]}Platform.png", 2),
-        Platform(1300, 150, f"{stage_names[stage]}Platform.png", 2)
+        Platform(400, 850, f"{stage_names[stage]}Platform.png", 1),
+        Platform(700, 675, f"{stage_names[stage]}Platform.png", .5),
+        Platform(350, 500, f"{stage_names[stage]}Platform.png", 2),
+        Platform(750, 325, f"{stage_names[stage]}Platform.png", 2),
+        Platform(300, 150, f"{stage_names[stage]}Platform.png", 2)
     ]
 
     while valid:
