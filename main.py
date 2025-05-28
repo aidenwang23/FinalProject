@@ -15,6 +15,7 @@ def main():
     keybind_text_font = pygame.font.SysFont("Arial Bold", 70)
     question_text_font = pygame.font.SysFont("Arial Bold", 65)
     answer_text_font = pygame.font.SysFont("Arial Bold", 50)
+    rules_text_font = pygame.font.SysFont("Arial.Bold", 55)
     SCREEN_HEIGHT = 1020
     SCREEN_WIDTH = 1920
     size = (SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -61,6 +62,7 @@ def main():
     lose = False
     mouse_clicked = False
     changed_screens = False
+    y_offset = 50
 
     # question setup
     math_topics = ["algebra", "geometry", "statistics", "trigonometry", "calculus"]
@@ -74,6 +76,9 @@ def main():
     correct_answers = []
     answer_choice = None
     incorrect_choices = []
+    
+    #rules setup
+    text = []
 
     # physics components
     gravity = 1500
@@ -100,6 +105,11 @@ def main():
     right_key = int(lines[0].strip())
     left_key = int(lines[1].strip())
     jump_key = int(lines[2].strip())
+    
+    #rule files
+    with open("rules.txt", "r") as file:
+        rule_text = file.readlines()
+
 
     # movement states
     moving_left = False
@@ -537,6 +547,14 @@ def main():
 
         if rules:
             rules_screen.draw(screen)
+            with open("rules.txt", "w") as file:
+                for rule in rule_text:
+                    file.write(f"{rule}\n")
+            with open("rules.txt", "r") as file:
+                for line in file:
+                    rendered = rules_text_font.render(line.strip(), True, (255, 255, 255)) 
+                    screen.blit(rendered, (50, y_offset)) 
+                    y_offset += 35 
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
