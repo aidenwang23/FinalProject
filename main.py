@@ -56,7 +56,7 @@ def main():
     pause = False
     paused_to_settings = False
     stage = 0 
-    lives = 10
+    lives = 3
     start_lives = lives
     win = False
     lose = False
@@ -75,9 +75,6 @@ def main():
     correct_answers = []
     answer_choice = None
     incorrect_choices = []
-    
-    #rules setup
-    text = []
 
     # physics components
     gravity = 1500
@@ -108,7 +105,6 @@ def main():
     #rule files
     with open("rules.txt", "r") as file:
         rule_text = file.readlines()
-
 
     # movement states
     moving_left = False
@@ -546,11 +542,11 @@ def main():
 
         if rules:
             rules_screen.draw(screen)
-            y_displacement = 180  
+            y_displacement = 200
             for line in rule_text:
-                text_surface = rules_text_font.render(line.strip(), True, (255, 255, 255))
+                text_surface = rules_text_font.render(line.strip(), True, (0, 0, 0))
                 screen.blit(text_surface, (100, y_displacement)) 
-                y_displacement += 60  
+                y_displacement += 100
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos

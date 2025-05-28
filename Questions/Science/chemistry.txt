@@ -34,10 +34,10 @@ Plasma
 B
 
 Which of the following has the strongest intermolecular forces?
-H₂
-Cl₂
+H2
+Cl2
 HF
-CO₂
+CO2
 C
 
 A 1.0 M solution of a weak acid has a pH of 3. What does this imply?
@@ -48,10 +48,10 @@ The acid is diprotic
 C
 
 Which of the following represents the correct net ionic equation for the reaction between HCl and NaOH?
-H⁺ + OH⁻ → H₂O
-Na⁺ + OH⁻ → NaOH
-HCl + NaOH → NaCl + H₂O
-H⁺ + Na⁺ → NaH
+H+ + OH- -> H2O
+Na+ + OH- -> NaOH
+HCl + NaOH -> NaCl + H2O
+H+ + Na+ -> NaH
 A
 
 Which factor affects both the rate and equilibrium position of a chemical reaction?

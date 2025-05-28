@@ -34,10 +34,10 @@ x = ∞
 B
 
 The graph of f(x) has a horizontal tangent at x = 2. What does this mean about f '(2)?
-f '(2) > 0
-f '(2) = 0
-f '(2) < 0
-f '(2) = 2
+f'(2) > 0
+f'(2) = 0
+f'(2) < 0
+f'(2) = 2
 B
 
 The velocity of a car is given by v(t) = 20 - 2t. When is the car at rest?
@@ -48,13 +48,13 @@ t = 20
 B
 
 Which of the following functions has a constant rate of change?
-f(x) = x²
+f(x) = x^2
 f(x) = 3x + 2
-f(x) = x³
-f(x) = √x
+f(x) = x^3
+f(x) = sqrt(x)
 B
 
-A graph shows a curve with a negative slope that gets flatter as x increases. What can you say about f '(x)?
+A graph shows a curve with a negative slope that gets flatter as x increases. What can you say about f'(x)?
 Positive and increasing
 Positive and decreasing
 Negative and increasing

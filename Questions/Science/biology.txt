@@ -6,7 +6,7 @@ Organism
 C
 
 Which organelle is responsible for producing energy in the cell?
-Golgi apparatus
+Golgi Apparatus
 Ribosome
 Mitochondria
 Ucleus
@@ -20,30 +20,30 @@ Glucose
 B
 
 Which part of the cell controls its activities?
-Cell wall
+Cell Wall
 Cytoplasm
 Nucleus
 Vacuole
 C
 
 What structure surrounds the cell membrane in plant cells and provides support?
-Cell wall
+Cell Wall
 Lysosome
 Chloroplast
 Ribosome
 A
 
 Which process most directly increases genetic variation during meiosis?
-DNA replication
+DNA Replication
 Cytokinesis
-Crossing over
+Crossing Over
 Binary fission
 C
 
 If a mutation prevents the production of ATP synthase, what part of cellular respiration is directly impacted?
 Glycolysis
-Krebs cycle
-Electron transport chain
+Krebs Cycle
+Electron Transport Chain
 Fermentation
 C
 

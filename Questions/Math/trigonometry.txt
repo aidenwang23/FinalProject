@@ -16,7 +16,7 @@ What is the value of tan(0 degrees)?
 0
 1
 Undefined
-∞
+Inf.
 A
 
 Which identity is correct?

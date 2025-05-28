@@ -67,4 +67,3 @@ Weak positive
 Strong negative
 Strong positive
 C
-
