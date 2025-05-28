@@ -12,7 +12,7 @@ x + C
 C
 A
 
-Find the limit: lim(x→2) (x^2 - 4)/(x - 2)
+Find the limit: lim(x->2) (x^2 - 4)/(x - 2)
 0
 2
 4
@@ -30,7 +30,7 @@ The function f(x) = ln(x) has a critical point at:
 x = 0
 x = 1
 x = e
-x = ∞
+x = Inf.
 B
 
 Integral of the constant function f(x) = k is:
@@ -45,7 +45,7 @@ t = 0
 t = 5
 t = 10
 t = 20
-B
+C
 
 Which of the following functions has a constant rate of change?
 f(x) = x^2

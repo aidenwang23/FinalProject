@@ -5,7 +5,7 @@ What is the value of x in the equation 2x + 5 = 13?
 6
 B
 
-Simplify: 3(a + 4).
+Expand: 3(a + 4).
 3a + 4
 3a + 12
 a + 12
