@@ -19,12 +19,12 @@ What is the mode of the data set: 2, 4, 4, 6, 8?
 8
 B
 
-In a normal distribution, approximately what percent of data falls within 1 standard deviation of the mean?
-50%
-68%
-75%
-95%
-B
+A die is thrown repeatedly until a six comes up. What is the sample space for this experiment?
+Throwing a die till you get a 6.
+Throwing a die 4 times.
+Tossing a coin.
+Tossing 5 coins.
+A
 
 What is the range of the data set: 12, 15, 9, 20, 18?
 8

@@ -60,10 +60,3 @@ At the same time
 With different accelerations
 With zero speed
 B
-
-A box is pushed with a constant force across a rough surface and moves at a constant speed. What can you conclude about the net force acting on the box?
-Friction is greater than the applied force
-The applied force is greater than friction
-The net force is zero
-The box is accelerating
-C

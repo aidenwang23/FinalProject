@@ -40,12 +40,7 @@ A triangle has angles in the ratio 2:3:4. What is the largest angle?
 100 degrees
 D
 
-A ladder leans against a wall forming a 75 degrees angle with the ground. Which function would you use to find the ladder’s height up the wall?
-Sine
-Cosine
-Tangent
-Secant
-A
+
 
 Which shape has only one pair of parallel sides?
 Square
