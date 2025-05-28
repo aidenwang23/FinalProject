@@ -56,7 +56,7 @@ def main():
     pause = False
     paused_to_settings = False
     stage = 0 
-    lives = 20
+    lives = 3
     start_lives = lives
     win = False
     lose = False
@@ -418,8 +418,7 @@ def main():
             screen.blit(choiceB_text, choiceB_text_rect)
             screen.blit(choiceC_text, choiceC_text_rect)
             screen.blit(choiceD_text, choiceD_text_rect)
-            if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
-                mouse_clicked = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = event.pos
                 if 550 <= mouse_x <= 1370 and 480 <= mouse_y <= 585:
                     answer_choice = "A"
@@ -458,13 +457,11 @@ def main():
                             question = False
                         answer_choice = None
             elif event.type == pygame.MOUSEBUTTONUP:
-                mouse_clicked = False
                 changed_screens = True
 
         if pause:
             paused_screen.draw(screen)
-            if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
-                mouse_clicked = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = event.pos
                 if 550 <= mouse_x <= 1370 and 500 <= mouse_y <= 605:
                     settings = True
@@ -476,7 +473,6 @@ def main():
                     load = True
                     main()
             elif event.type == pygame.MOUSEBUTTONUP:
-                mouse_clicked = False
                 changed_screens = True
 
         if settings:
@@ -491,8 +487,7 @@ def main():
             screen.blit(change_left, change_left_rect)
             screen.blit(change_jump, change_jump_rect)
 
-            if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
-                mouse_clicked = True
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = event.pos
                 if 1170 <= mouse_x <= 1640 and 515 <= mouse_y <= 605:
                     changing_keys = True
@@ -515,7 +510,6 @@ def main():
                         run = True
                     settings = False
             elif event.type == pygame.MOUSEBUTTONUP:
-                mouse_clicked = False
                 changed_screens = True
 
         if changing_keys:
