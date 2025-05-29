@@ -6,5 +6,5 @@
 6. Controls start at up, left, and right arrow keys but can be changed through settings
 7. Avatar design can be chosen through customize
 8. You will lose if you run out of lives from incorrect answer choices or take more than 5 minutes
-9. To pause, use the escape key (this is set and cannot be changed through the game)
+9. To pause/unpause, use the escape key (this is set and cannot be changed through the game)
 10. Good luck and enjoy!!!

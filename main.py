@@ -12,7 +12,7 @@ def main():
     my_font = pygame.font.SysFont("Arial Bold", 45)
     time_display_font = pygame.font.SysFont("Arial Bold", 55)
     keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
-    keybind_text_font = pygame.font.SysFont("Arial Bold", 70)
+    keybind_text_font = pygame.font.SysFont("Arial Bold", 100)
     question_text_font = pygame.font.SysFont("Arial Bold", 65)
     answer_text_font = pygame.font.SysFont("Arial Bold", 45)
     rules_text_font = pygame.font.SysFont("Arial Bold", 55)
@@ -97,6 +97,8 @@ def main():
     total_time = 0
     elapsed_minutes = 0
     elapsed_seconds = 0
+    timer = time_display_font.render("00:00", True, (255, 255, 255))
+    timer_rect = timer.get_rect(topright=(SCREEN_WIDTH, 5))
     last_active_time = None
 
     # keybinds
@@ -117,16 +119,6 @@ def main():
     changing_jump = False
     changing_keys = False
     changing_duplicate = False
-
-    # clock text
-    timer = time_display_font.render("00:00", True, (255, 255, 255))
-    timer_rect = timer.get_rect(topright=(SCREEN_WIDTH, 5))
-
-    # keybind changing text
-    changing_text = keybind_text_font.render("press a key to change the keybind", True, (0, 0, 0))
-    changing_text_rect = changing_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2))
-    changing_error_text = keybind_text_font.render("the same key cannot be used for more than one keybind", True, (255, 0, 0))
-    changing_error_text_rect = changing_error_text.get_rect(center=(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 + SCREEN_HEIGHT / 5))
 
     # loads sprite
     a = Player(x_position, y_position, "idle.png", 0.135)
@@ -548,6 +540,15 @@ def main():
 
         if changing_keys:
             changing_screen.draw(screen)
+            if changing_right:
+                changing_text = keybind_text_font.render("Press a key to change the right keybind", True, (0, 0, 0))
+            elif changing_left:
+                changing_text = keybind_text_font.render("Press a key to change the left keybind", True, (0, 0, 0))
+            elif changing_jump:
+                changing_text = keybind_text_font.render("Press a key to change the jump keybind", True, (0, 0, 0))
+            changing_text_rect = changing_text.get_rect(center=(SCREEN_WIDTH / 2, 400))
+            changing_error_text = keybind_text_font.render("The same key cannot be used more than once", True, (225, 0, 0))
+            changing_error_text_rect = changing_error_text.get_rect(center=(SCREEN_WIDTH / 2, 700))
             screen.blit(changing_text, changing_text_rect)
             if changing_duplicate:
                 screen.blit(changing_error_text, changing_error_text_rect)
