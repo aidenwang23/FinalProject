@@ -1,69 +1,69 @@
-What layer of the Earth is made of solid iron and nickel?
-Mantle
-Crust
-Outer core
-Inner core
+What force pulls objects toward the center of the Earth?
+Friction
+Magnetism
+Gravity
+Tension
+C
+
+What quantity is the rate of change of velocity?
+Displacement
+Speed
+Acceleration
+Force
+C
+
+What happens to an object in motion with no unbalanced force acting on it?
+It slows down
+It stops
+It accelerates
+It keeps moving at constant speed
 D
 
-What is the theory that Earth's continents were once joined together?
-Plate tectonics
-Continental drift
-Seafloor spreading
-Erosion
+What does Newton’s Third Law state?
+Objects resist change in motion
+Force equals mass times acceleration
+For every action, there is an equal and opposite reaction
+Gravity is constant
+C
+
+What is the unit of force?
+Joule
+Newton
+Watt
+Meter
 B
 
-What type of rock is formed from cooling magma or lava?
-Sedimentary
-Igneous
-Metamorphic
-Fossil
+What kind of energy is stored due to an object’s position?
+Kinetic
+Thermal
+Potential
+Nuclear
+C
+
+What form of energy increases as temperature rises?
+Chemical
+Sound
+Thermal
+Nuclear
+C
+
+What simple machine is a ramp?
+Lever
+Inclined plane
+Pulley
+Wheel
 B
 
-What causes the seasons on Earth?
-Moon’s orbit
-Earth’s rotation
-Earth’s tilt
-Solar flares
+What wave property is measured from crest to crest?
+Amplitude
+Speed
+Wavelength
+Frequency
 C
 
-What is the most abundant gas in Earth’s atmosphere?
-Oxygen
-Carbon dioxide
-Nitrogen
-Hydrogen
-C
-
-What kind of boundary causes earthquakes due to plates sliding past each other?
-Convergent
-Divergent
-Transform
-Subduction
-C
-
-Which layer of the atmosphere contains most weather events?
-Mesosphere
-Thermosphere
-Troposphere
-Stratosphere
-C
-
-What process shapes Earth's surface by moving rock and soil?
-Condensation
-Erosion
-Precipitation
-Radiation
-B
-
-What scale measures the strength of an earthquake?
-Richter scale
-Fahrenheit scale
-pH scale
-Beaufort scale
-A
-
-What is the name of molten rock beneath Earth’s surface?
-Lava
-Basalt
-Magma
-Granite
+What is the speed of light in a vacuum?
+3,000 m/s
+300,000 m/s
+300,000 km/s
+3,000 km/s
 C
