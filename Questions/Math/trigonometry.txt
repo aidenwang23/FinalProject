@@ -1,69 +1,75 @@
-What is the value of sin(90 degrees)?
-0
-0.5
-0.707
+What is sin of thirty degrees?
 1
-D
+1/2
+√3/2
+0
+B
 
-What is the value of cos(0 degrees)?
-0
-0.5
+What is cos of zero degrees?
 1
-Undefined
+0
+-1
+1/2
+A
+
+What is tan of forty-five degrees?
+0
+1
+√3
+√3/3
+B
+
+What is the reference angle for one hundred fifty degrees?
+Thirty degrees
+Sixty degrees
+Forty-five degrees
+Ninety degrees
+A
+
+What is sin of ninety degrees?
+0
+1/2
+1
+√3/2
 C
 
-What is the value of tan(0 degrees)?
+What is cos of one hundred eighty degrees?
+1
+0
+-1
+1/2
+C
+
+What is the period of y equals sin of x?
+π
+2π
+1
+4π
+B
+
+What is tan of zero degrees?
 0
 1
 Undefined
-Inf.
+∞
 A
 
-Which identity is correct?
-sin(x)/cos(x) = tan(x)
-cos(x)/sin(x) = tan(x)
-sin(x) × cos(x) = tan(x)
-tan(x) = 1/sin(x)
+What is cot of forty-five degrees?
+1
+√3
+√3/3
+0
 A
 
-What is the reference angle for 210 degrees?
-30 degrees
-60 degrees
-45 degrees
-90 degrees
-A
-
-You walk 50 meters up a hill at a 30 degrees incline. How high have you climbed vertically?
-25 m
-43 m
-50 m
-13 m
-D
-
-Match the angle with its quadrant: θ = 200 degrees
+What quadrant is two hundred ten degrees in?
 I
 II
 III
 IV
 C
 
-If cos(θ) = 0, what could θ be?
-0 degrees
-90 degrees
-180 degrees
-270 degrees
-B
 
-A ferris wheel rotates at a constant rate, making a full turn every 60 seconds. What is its angular velocity in degrees per second?
-1
-2
-3
-6
-B
 
-Which triangle is a right triangle?
-Sides 3, 4, 5
-Sides 5, 5, 5
-Sides 2, 3, 4
-Sides 6, 8, 10
-A
+
+
+

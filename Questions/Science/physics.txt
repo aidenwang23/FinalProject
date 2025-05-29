@@ -1,62 +1,70 @@
+ChatGPT said:
 What force pulls objects toward the center of the Earth?
 Friction
 Magnetism
 Gravity
-Electricity
+Tension
 C
 
-What is the unit of measurement for force?
+What quantity is the rate of change of velocity?
+Displacement
+Speed
+Acceleration
+Force
+C
+
+What happens to an object in motion with no unbalanced force acting on it?
+It slows down
+It stops
+It accelerates
+It keeps moving at constant speed
+D
+
+What does Newton’s Third Law state?
+Objects resist change in motion
+Force equals mass times acceleration
+For every action, there is an equal and opposite reaction
+Gravity is constant
+C
+
+What is the unit of force?
 Joule
 Newton
 Watt
 Meter
 B
 
-What form of energy is stored in a stretched rubber band?
-Kinetic energy
-Thermal energy
-Elastic potential energy
-Gravitational energy
+What kind of energy is stored due to an object’s position?
+Kinetic
+Thermal
+Potential
+Nuclear
 C
 
-What happens to the motion of an object when balanced forces act on it?
-It speeds up
-It slows down
-It changes direction
-It stays the same
-D
+What form of energy increases as temperature rises?
+Chemical
+Sound
+Thermal
+Nuclear
+C
+
+What simple machine is a ramp?
+Lever
+Inclined plane
+Pulley
+Wheel
+B
+
+What wave property is measured from crest to crest?
+Amplitude
+Speed
+Wavelength
+Frequency
+C
 
 What is the speed of light in a vacuum?
-300 m/s
-1,500 m/s
+3,000 m/s
+300,000 m/s
 300,000 km/s
-9.8 m/s^2
+3,000 km/s
 C
-
-A car moves in a circle at constant speed. What can be said about the net force acting on it?
-There is no net force
-The net force is outward
-The net force is inward
-The net force is zero since speed is constant
-C
-
-A 10 N force is applied to a 2 kg object at rest. What is its velocity after 3 seconds?
-10 m/s
-15 m/s
-20 m/s
-30 m/s
-B
-
-A ball is thrown straight up. At its highest point:
-Velocity is zero, acceleration is zero
-Velocity is zero, acceleration is g
-Velocity is g, acceleration is zero
-Both are zero
-B
-
-Two objects of different masses are dropped from the same height. Ignoring air resistance, they hit the ground:
-At different times
-At the same time
-With different accelerations
-With zero speed
-B

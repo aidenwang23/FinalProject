@@ -1,69 +1,69 @@
 What layer of the Earth is made of solid iron and nickel?
-Crust
 Mantle
+Crust
 Outer core
 Inner core
 D
 
-What causes day and night on Earth?
-Earth's revolution around the Sun
-The Moon's orbit
-Earth's rotation on its axis
-Changes in the atmosphere
-C
+What is the theory that Earth's continents were once joined together?
+Plate tectonics
+Continental drift
+Seafloor spreading
+Erosion
+B
 
-What type of rock is formed from cooled lava or magma?
+What type of rock is formed from cooling magma or lava?
 Sedimentary
 Igneous
 Metamorphic
 Fossil
 B
 
-What is the main gas in Earth's atmosphere?
+What causes the seasons on Earth?
+Moon’s orbit
+Earth’s rotation
+Earth’s tilt
+Solar flares
+C
+
+What is the most abundant gas in Earth’s atmosphere?
 Oxygen
 Carbon dioxide
 Nitrogen
 Hydrogen
 C
 
-Which scale is used to measure earthquake magnitude?
-Fahrenheit
-Beaufort
-Richter
-Barometer
+What kind of boundary causes earthquakes due to plates sliding past each other?
+Convergent
+Divergent
+Transform
+Subduction
 C
 
-The oldest rocks on Earth are found:
-Near mid-ocean ridges
-At transform boundaries
-In continental interiors
-On oceanic crust
+Which layer of the atmosphere contains most weather events?
+Mesosphere
+Thermosphere
+Troposphere
+Stratosphere
 C
 
-Seafloor spreading is supported by:
-Magnetic striping patterns in oceanic crust
-Presence of fossils in sedimentary rocks
-Fault lines in mountains
-Volcanic eruptions at subduction zones
-A
-
-Which process leads to the formation of metamorphic rocks?
-Cooling of magma
-Compaction of sediments
-Exposure to heat and pressure
-Erosion and deposition
-C
-
-A sudden spike in global volcanic activity is most likely to:
-Raise global temperatures
-Lower global temperatures
-Increase atmospheric oxygen
-Cause plate movement to stop
+What process shapes Earth's surface by moving rock and soil?
+Condensation
+Erosion
+Precipitation
+Radiation
 B
 
-Which of the following would cause the water table to rise?
-Increased pumping
-Extended drought
-Urbanization
-Heavy rainfall
-D
+What scale measures the strength of an earthquake?
+Richter scale
+Fahrenheit scale
+pH scale
+Beaufort scale
+A
+
+What is the name of molten rock beneath Earth’s surface?
+Lava
+Basalt
+Magma
+Granite
+C

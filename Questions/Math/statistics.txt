@@ -1,69 +1,69 @@
-What is the mean of the data set: 5, 7, 3, 10, 5?
-5
-6
-7
-10
-B
-
-What is the median of the data set: 3, 5, 5, 7, 10?
-5
-6
-7
-10
+What is the probability of rolling a 2 on a standard die?
+1/6
+1/3
+1/2
+1/4
 A
 
-What is the mode of the data set: 2, 4, 4, 6, 8?
-2
-4
+What is the median of the data set: 2, 4, 6, 8, 10, 12?
 6
+7
 8
+5
 B
 
-A die is thrown repeatedly until a six comes up. What is the sample space for this experiment?
-Throwing a die till you get a 6.
-Throwing a die 4 times.
-Tossing a coin.
-Tossing 5 coins.
+What is the range of the data set: 5, 11, 3, 9, 14?
+10
+11
+9
+12
 A
 
-What is the range of the data set: 12, 15, 9, 20, 18?
+What is the z-score of 90 with a mean of 70 and SD of 10?
+1
+2
+3
+4
+B
+
+What is the probability of getting heads twice in two coin flips?
+1/2
+1/3
+1/4
+2/3
+C
+
+What is the mode of the data: 4, 5, 5, 6, 7, 7, 7?
+5
+6
+7
+None
+C
+
+What is the expected value of winning $10 with 0.4 chance?
+$2
+$4
+$6
+$10
+B
+
+What is the standard deviation of 2, 4, 4, 4, 6?
+0
+1
+2
+3
+B
+
+What is the mean of 3, 6, 9, 12, 15?
 8
 9
+10
 11
-12
-C
-
-A six-sided die is rolled twice. What is the probability that the sum is at least 10?
-1/6
-1/9
-1/12
-1/3
-A
-
-Which display best shows the spread of a data set?
-Bar graph
-Histogram
-Line graph
-Pie chart
 B
 
-In a boxplot, what does the line in the middle of the box represent?
-Mean
-Range
-Median
-Mode
-C
-
-A test has scores: 90, 85, 80, 95, 70. What is the mean?
-84
-85
-86
-87
-A
-
-What does a correlation coefficient of -0.9 suggest?
-No relationship
+What is the correlation if r = -0.92?
+Strong positive
 Weak positive
 Strong negative
-Strong positive
+No correlation
 C
