@@ -33,7 +33,7 @@ What is the length of the hypotenuse in a right triangle with legs 6 and 8 units
 8
 A
 
-A triangle has angles in ratio 2:3:5.  What is the argest angle?
+A triangle has angles in ratio 2:3:5.  What is the largest angle?
 36 degrees
 54 degrees
 60 degrees

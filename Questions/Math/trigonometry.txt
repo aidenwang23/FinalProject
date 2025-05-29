@@ -40,7 +40,7 @@ You walk 50 meters up a hill at a 30 degrees incline. How high have you climbed 
 50 m
 B
 
-Match the angle with its quadrant: θ = 200 degrees
+Match the angle with its quadrant: 200 degrees
 I
 II
 III
@@ -65,5 +65,5 @@ Which triangle is a right triangle?
 Sides 3, 4, 5
 Sides 5, 5, 5
 Sides 2, 3, 4
-Sides 6, 8, 10
+Sides 6, 7, 10
 A

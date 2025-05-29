@@ -332,8 +332,8 @@ def main():
                         "correctChoice": correct_answers[index]
                     }
                     question_lines.clear()
-                    if len(current_question["question"]) > 75:
-                        split = current_question["question"].rfind(" ", 0, 75)
+                    if len(current_question["question"]) > 80:
+                        split = current_question["question"].rfind(" ", 0, 80)
                         question_lines.append(current_question["question"][:split])
                         question_lines.append(current_question["question"][split:])
                     else:
@@ -347,7 +347,7 @@ def main():
                     choiceD_text = answer_text_font.render(current_question["choiceD"], True, (0, 0, 0))
                     choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, 880))
 
-            if int(elapsed_minutes) >= 10 and not (win or lose):
+            if int(elapsed_minutes) >= 20 and not (win or lose):
                 lose = True
             if win or lose:
                 run = False
@@ -592,7 +592,7 @@ def main():
 
         if win:
             end_screen.draw(screen)
-            title_text = title_text_font.render("YOU LOST", True, (0, 0, 0))
+            title_text = title_text_font.render("YOU WON", True, (0, 0, 0))
             title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 280))
             body_text = body_text_font.render(f"Your took {elapsed_time} to correctly answer {correct_questions} question(s)", True, (0, 0, 0))
             body_text_rect = body_text.get_rect(center=(SCREEN_WIDTH / 2, 400))
