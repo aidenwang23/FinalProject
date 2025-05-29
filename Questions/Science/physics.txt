@@ -60,3 +60,10 @@ At the same time
 With different accelerations
 With zero speed
 B
+
+What principle explains why ice floats on water?
+Density decreases when water freezes
+Surface tension increases
+Hydrogen bonds break
+Thermal expansion reverses
+A

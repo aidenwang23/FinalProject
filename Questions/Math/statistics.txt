@@ -20,10 +20,10 @@ What is the mode of the data set: 2, 4, 4, 6, 8?
 B
 
 A die is thrown repeatedly until a six comes up. What is the sample space for this experiment?
-Throwing a die till you get a 6.
-Throwing a die 4 times.
-Tossing a coin.
-Tossing 5 coins.
+Throwing a die till you get a 6
+Throwing a die 4 times
+Tossing a coin
+Tossing 5 coins
 A
 
 What is the range of the data set: 12, 15, 9, 20, 18?
@@ -41,10 +41,10 @@ A six-sided die is rolled twice. What is the probability that the sum is at leas
 A
 
 Which display best shows the spread of a data set?
-Bar graph
+Bar Graph
 Histogram
-Line graph
-Pie chart
+Line Graph
+Pie Chart
 B
 
 In a boxplot, what does the line in the middle of the box represent?
@@ -62,8 +62,8 @@ A test has scores: 90, 85, 80, 95, 70. What is the mean?
 A
 
 What does a correlation coefficient of -0.9 suggest?
-No relationship
-Weak positive
-Strong negative
-Strong positive
+No Relationship
+Weak Positive
+Strong Negative
+Strong Positive
 C

@@ -22,7 +22,7 @@ A
 Which identity is correct?
 sin(x)/cos(x) = tan(x)
 cos(x)/sin(x) = tan(x)
-sin(x) × cos(x) = tan(x)
+sin(x) * cos(x) = tan(x)
 tan(x) = 1/sin(x)
 A
 
@@ -34,11 +34,11 @@ What is the reference angle for 210 degrees?
 A
 
 You walk 50 meters up a hill at a 30 degrees incline. How high have you climbed vertically?
+13 m
 25 m
 43 m
 50 m
-13 m
-D
+B
 
 Match the angle with its quadrant: θ = 200 degrees
 I
@@ -59,7 +59,7 @@ A ferris wheel rotates at a constant rate, making a full turn every 60 seconds. 
 2
 3
 6
-B
+D
 
 Which triangle is a right triangle?
 Sides 3, 4, 5

@@ -13,8 +13,8 @@ def main():
     time_display_font = pygame.font.SysFont("Arial Bold", 55)
     keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
     keybind_text_font = pygame.font.SysFont("Arial Bold", 70)
-    question_text_font = pygame.font.SysFont("Arial Bold", 70)
-    answer_text_font = pygame.font.SysFont("Arial Bold", 50)
+    question_text_font = pygame.font.SysFont("Arial Bold", 65)
+    answer_text_font = pygame.font.SysFont("Arial Bold", 45)
     rules_text_font = pygame.font.SysFont("Arial Bold", 55)
     title_text_font = pygame.font.SysFont("Arial Bold", 150)
     body_text_font = pygame.font.SysFont("Arial Bold", 70)
@@ -78,6 +78,7 @@ def main():
     answer_choice = None
     incorrect_choices = []
     question_lines = []
+    correct_questions = 0
 
     # physics components
     gravity = 1500
@@ -339,8 +340,8 @@ def main():
                         "correctChoice": correct_answers[index]
                     }
                     question_lines.clear()
-                    if len(current_question["question"]) > 65:
-                        split = current_question["question"].rfind(" ", 0, 65)
+                    if len(current_question["question"]) > 75:
+                        split = current_question["question"].rfind(" ", 0, 75)
                         question_lines.append(current_question["question"][:split])
                         question_lines.append(current_question["question"][split:])
                     else:
@@ -450,6 +451,7 @@ def main():
                 elif 550 <= mouse_x <= 1370 and 825 <= mouse_y <= 930:
                     answer_choice = "D"
                 if answer_choice == current_question["correctChoice"]:
+                    correct_questions += 1
                     question = False
                     run = True
                     answer_choice = None
@@ -570,13 +572,13 @@ def main():
             title_text = title_text_font.render("Rules", True, (0, 0, 0))
             title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 150))
             screen.blit(title_text, title_text_rect)
-            rules_y = 275
+            rules_y = 250
             with open("rules.txt", "r") as file:
                 lines = file.readlines()
                 for line in lines:
                     text_surface = rules_text_font.render(line.strip(), True, (0, 0, 0))
-                    screen.blit(text_surface, (100, rules_y)) 
-                    rules_y += 85
+                    screen.blit(text_surface, (90, rules_y)) 
+                    rules_y += 70
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -589,9 +591,12 @@ def main():
 
         if win:
             end_screen.draw(screen)
-            title_text = title_text_font.render("YOU WON", True, (0, 0, 0))
-            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 300))
+            title_text = title_text_font.render("YOU LOST", True, (0, 0, 0))
+            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 280))
+            body_text = body_text_font.render(f"Your took {elapsed_time} to correctly answer {correct_questions} question(s)", True, (0, 0, 0))
+            body_text_rect = body_text.get_rect(center=(SCREEN_WIDTH / 2, 400))
             screen.blit(title_text, title_text_rect)
+            screen.blit(body_text, body_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -608,8 +613,11 @@ def main():
         if lose: 
             end_screen.draw(screen)
             title_text = title_text_font.render("YOU LOST", True, (0, 0, 0))
-            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 300))
+            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 280))
+            body_text = body_text_font.render(f"You survived for {elapsed_time} and answered {correct_questions} question(s) correctly", True, (0, 0, 0))
+            body_text_rect = body_text.get_rect(center=(SCREEN_WIDTH / 2, 400))
             screen.blit(title_text, title_text_rect)
+            screen.blit(body_text, body_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos

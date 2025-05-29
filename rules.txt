@@ -1,7 +1,10 @@
 1. Get to the very top by jumping through the platforms and solving each question
-2. You have 3 lives; if you get questions wrong 3 times, you can choose to restart
-3. Questions are randomized per topic, but topics are set to a certain order
+2. Questions are randomized per topic, but topics are set to a certain order
+3. Questions will reappear when you jump/fall on a platform
 4. Math topics are algebra, geometry, statistics, trigonometry, and calculus
 5. Science topics are biology, earth science, environmental science, chemistry, and physics
-6. Controls start at UP, LEFT, RIGHT arrow but can be changed
-7. ENJOY!!!
+6. Controls start at up, left, and right arrow keys but can be changed through settings
+7. Avatar design can be chosen through customize
+8. You will lose if you run out of lives from incorrect answer choices or take more than 5 minutes
+9. To pause, use the escape key (this is set and cannot be changed through the game)
+10. Good luck and enjoy!!!

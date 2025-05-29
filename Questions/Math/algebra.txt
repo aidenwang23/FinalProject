@@ -36,8 +36,8 @@ B
 Write this statement as an equation: 4 times a number equals 40.
 4 * y = 40
 4 + y = 40
-4 = y × 40
-4 × 40 = y
+4 = y * 40
+4 * 40 = y
 A
 
 What is the value of y in the equation y = 6 - 2x when x = -3?
@@ -52,13 +52,13 @@ Simplify: 4(x - 2) + 3(x + 1)
 7x + 2
 x + 5
 x - 5
-B
+A
 
-Solve for x: 8x - 3 = 2(3x + 1)
-0
+Solve for x: 8x - 3 = 2(3x + 3)
 1
 2
 3
+5
 C
 
 What is the slope of the line passing through the points (1, -2) and (4, 4)?

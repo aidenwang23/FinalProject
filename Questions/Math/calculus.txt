@@ -31,14 +31,14 @@ x = 0
 x = 1
 x = e
 x = Inf.
-B
+A
 
 Integral of the constant function f(x) = k is:
 C
 0
 kx+C
 k+C
-C   
+C
 
 The velocity of a car is given by v(t) = 20 - 2t. When is the car at rest?
 t = 0
@@ -54,8 +54,8 @@ f(x) = x^3
 f(x) = sqrt(x)
 B
 
-When does the function x^2 -1 reach the maximum?
-Do not exist
+When does the function x^2 - 1 reach the maximum?
+Does not exist
 1
 0
 -1
