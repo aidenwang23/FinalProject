@@ -13,7 +13,7 @@ def main():
     time_display_font = pygame.font.SysFont("Arial Bold", 55)
     keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
     keybind_text_font = pygame.font.SysFont("Arial Bold", 70)
-    question_text_font = pygame.font.SysFont("Arial Bold", 65)
+    question_text_font = pygame.font.SysFont("Arial Bold", 70)
     answer_text_font = pygame.font.SysFont("Arial Bold", 50)
     rules_text_font = pygame.font.SysFont("Arial Bold", 55)
     title_text_font = pygame.font.SysFont("Arial Bold", 150)
@@ -77,6 +77,7 @@ def main():
     correct_answers = []
     answer_choice = None
     incorrect_choices = []
+    question_lines = []
 
     # physics components
     gravity = 1500
@@ -273,6 +274,7 @@ def main():
                     answer_Cs.clear()
                     answer_Ds.clear()
                     correct_answers.clear()
+                    question_lines.clear()
                     x_position = SCREEN_WIDTH / 2
                     y_position = SCREEN_HEIGHT - a.surface.get_height()
                     velocity_y = 0
@@ -327,7 +329,7 @@ def main():
                             correct_answers.append(lines[i+5].strip())
 
                 if not landed and len(questions) > 0:
-                    index = random.randint(0,len(questions) - 1)
+                    index = random.randint(0, len(questions) - 1)
                     current_question = {
                         "question": questions[index],
                         "choiceA": answer_As[index],
@@ -336,8 +338,13 @@ def main():
                         "choiceD": answer_Ds[index],
                         "correctChoice": correct_answers[index]
                     }
-                    question_text = question_text_font.render(current_question["question"], True, (0, 0, 0))
-                    question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, 270))
+                    question_lines.clear()
+                    if len(current_question["question"]) > 65:
+                        split = current_question["question"].rfind(" ", 0, 65)
+                        question_lines.append(current_question["question"][:split])
+                        question_lines.append(current_question["question"][split:])
+                    else:
+                        question_lines.append(current_question["question"])
                     choiceA_text = answer_text_font.render(current_question["choiceA"], True, (0, 0, 0))
                     choiceA_text_rect = choiceA_text.get_rect(center=(SCREEN_WIDTH / 2, 535))
                     choiceB_text = answer_text_font.render(current_question["choiceB"], True, (0, 0, 0))
@@ -412,12 +419,21 @@ def main():
                 empty_heart = Heart(heart_x, 0, "emptyHeart.png", 0.2)
                 empty_heart.draw(screen)
                 heart_x += 37.5
-            heart_x = 0
             screen.blit(a.surface, a.position())
 
         if question:
             question_screen.draw(screen)
-            screen.blit(question_text, question_text_rect)
+            question_y = 250
+            if len(question_lines) > 1:
+                for line in question_lines:
+                    question_text = question_text_font.render(line, True, (0, 0, 0))
+                    question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, question_y))
+                    screen.blit(question_text, question_text_rect)
+                    question_y += 50
+            elif len(question_lines) == 1:
+                question_text = question_text_font.render(question_lines[0], True, (0, 0, 0))
+                question_text_rect = question_text.get_rect(center=(SCREEN_WIDTH / 2, 275))
+                screen.blit(question_text, question_text_rect)
             screen.blit(choiceA_text, choiceA_text_rect)
             screen.blit(choiceB_text, choiceB_text_rect)
             screen.blit(choiceC_text, choiceC_text_rect)
@@ -554,13 +570,13 @@ def main():
             title_text = title_text_font.render("Rules", True, (0, 0, 0))
             title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 150))
             screen.blit(title_text, title_text_rect)
-            y_displacement = 275
+            rules_y = 275
             with open("rules.txt", "r") as file:
                 lines = file.readlines()
                 for line in lines:
                     text_surface = rules_text_font.render(line.strip(), True, (0, 0, 0))
-                    screen.blit(text_surface, (100, y_displacement)) 
-                    y_displacement += 85
+                    screen.blit(text_surface, (100, rules_y)) 
+                    rules_y += 85
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
