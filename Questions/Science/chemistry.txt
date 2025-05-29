@@ -1,69 +1,69 @@
-What is the smallest particle of an element that retains the properties of that element?
+What is the smallest particle of an element that retains its properties?
 Atom
 Molecule
 Proton
 Electron
 A
 
-Which subatomic particle has a negative charge?
-Proton
+What subatomic particle has a negative charge?
 Neutron
+Proton
 Electron
 Nucleus
 C
 
-What is the chemical symbol for water?
-H2
-HO
-H2O
-OH
-C
-
-What is the pH of a neutral substance like pure water?
-0
-7
-10
-14
+What is the number of protons in an atom called?
+Mass number
+Atomic number
+Isotope
+Charge
 B
 
-Which state of matter has a definite volume but no definite shape?
+What kind of bond forms when electrons are shared between atoms?
+Ionic bond
+Hydrogen bond
+Covalent bond
+Metallic bond
+C
+
+What state of matter has a definite volume but no definite shape?
 Solid
 Liquid
 Gas
 Plasma
 B
 
-Which of the following has the strongest intermolecular forces?
-H2
-Cl2
-HF
-CO2
+What type of reaction releases energy in the form of heat or light?
+Endothermic
+Exothermic
+Decomposition
+Neutralization
+B
+
+What is the pH of a neutral solution?
+Zero
+Seven
+Fourteen
+One
+B
+
+What is the name of the phase change from a liquid to a gas?
+Condensation
+Freezing
+Evaporation
+Sublimation
 C
 
-A 1.0 M solution of a weak acid has a pH of 3. What does this imply?
-The acid completely ionizes
-The acid is neutral
-The acid partially ionizes
-The acid is diprotic
+What law states that mass is conserved in a chemical reaction?
+Boyle’s law
+Law of definite proportions
+Law of conservation of mass
+Dalton’s law
 C
 
-Which of the following represents the correct net ionic equation for the reaction between HCl and NaOH?
-H+ + OH- -> H2O
-Na+ + OH- -> NaOH
-HCl + NaOH -> NaCl + H2O
-H+ + Na+ -> NaH
-A
-
-Which factor affects both the rate and equilibrium position of a chemical reaction?
-Catalyst
-Concentration
-Temperature
-Surface area
-C
-
-Which of the following best explains why metals conduct electricity?
-Delocalized electrons
-High ionization energy
-Strong covalent bonds
-Fixed valence shells
-A
+What is the molar mass of water (H₂O)?
+16 grams
+18 grams
+20 grams
+22 grams
+B
