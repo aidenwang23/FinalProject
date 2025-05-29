@@ -1,69 +1,69 @@
-What is the sum of the interior angles of a hexagon?
-360 degrees
-540 degrees
-720 degrees
-900 degrees
-C
-
-What is the area of a triangle with base 10 and height 6?
+What is the area of a triangle with base 10 units and height 6 units?
 30
 60
-40
+15
 20
 A
 
-Two angles are supplementary. If one is 70 degrees, what is the other?
-110 degrees
-100 degrees
-90 degrees
-80 degrees
-A
-
-A right triangle has legs of 3 and 4. What is the hypotenuse?
-5
+A square has a perimeter of 36 units. What is the length of one side?
 6
-7
 8
-A
+9
+12
+C
 
-How many sides does a regular polygon have if each interior angle is 120 degrees?
-5
-6
-7
-8
+What is the volume of a cube with side length 5 units?
+15
+25
+100
+125
+D
+    
+The sum of the interior angles of a hexagon is:
+540 degrees
+720 degrees
+900 degrees
+1080 degrees
 B
 
-What is the perimeter of a square with side length 9?
-36
-27
-81
-18
-A
-
-What is the volume of a cube with edge length 5?
-125
-100
-25
-75
-A
-
-Which type of triangle has no equal sides?
-Equilateral
-Isosceles
-Scalene
-Right
-C
-
-What is the length of the diagonal of a square with side length 4?
-4
+What is the length of the hypotenuse in a right triangle with legs 6 and 8 units?
+10
+12
+14
 8
-4 sqrt(2)
-2 sqrt(2)
-C
-
-What is the area of a circle with radius 7?
-49pi
-14pi
-28pi
-21pi
 A
+
+A triangle has angles in ratio 2:3:5.  What is the argest angle?
+36 degrees
+54 degrees
+60 degrees
+90 degrees
+D
+
+Which shape has only one pair of parallel sides?
+Square
+Rhombus
+Parallelogram
+Trapezoid
+D
+
+A circle has a diameter of 10 cm. What is its circumference (use pi = 3.14)?
+31.4 cm
+15.7 cm
+20 cm
+25 cm
+A
+
+Two angles are supplementary and one is 3 times the other. What is the smaller angle?
+30 degrees
+45 degrees
+60 degrees
+90 degrees
+B
+
+A sector has radius 10 cm and central angle 60 degrees. What is its arc length? (Use pi = 3.14)
+5.23 cm
+10.47 cm
+20.94 cm
+31.4 cm
+B
