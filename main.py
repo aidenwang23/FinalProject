@@ -594,13 +594,13 @@ def main():
             title_text = title_text_font.render("Rules", True, (0, 0, 0))
             title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 150))
             screen.blit(title_text, title_text_rect)
-            rules_y = 250
+            rules_y = 240
             with open("rules.txt", "r") as file:
                 lines = file.readlines()
                 for line in lines:
                     text_surface = rules_text_font.render(line.strip(), True, (0, 0, 0))
                     screen.blit(text_surface, (90, rules_y)) 
-                    rules_y += 70
+                    rules_y += 65
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos

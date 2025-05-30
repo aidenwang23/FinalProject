@@ -40,7 +40,7 @@ III
 IV
 C
 
-If cos(θ) = 0, what could θ be?
+If cos() = 0, what could the angle be?
 0 degrees
 90 degrees
 180 degrees
@@ -61,23 +61,23 @@ Sides 2, 3, 4
 Sides 6, 7, 10
 A
 
-If sin(θ) = 3/5 and θ is in quadrant II, what is cos(θ)?
+If sin() = 3/5 and θ is in quadrant II, what is cos()?
 -4/5
 4/5
 -3/5
 3/5
 A
 
-What is the exact value of sin(π - π/6)?
+What is the exact value of sin(pi - pi/6)?
 1/2
-√3/2
+sqrt(3)/2
 -1/2
--√3/2
+-sqrt(3)/2
 B
 
-Given tan(θ) = -1 and θ is in quadrant IV, what is sin(θ)?
--√2/2
-√2/2
+Given tan() = -1 and the angle is in quadrant IV, what is sin()?
+-sqrt(2)/2
+sqrt(2)/2
 -1
 1
 A
@@ -96,21 +96,21 @@ If cos(A) = 5/13 and A is in quadrant I, find tan(A).
 12/13
 A
 
-What is the period of the function y = 3sin(2x - π)?
-π
-2π
-π/2
+What is the period of the function y = 3sin(2x - pi)?
+pi
+2pi
+pi/2
 2
 A
 
 What is the value of sin(−300 degrees)?
 −1/2
 1/2
-−√3/2
-√3/2
+−sqrt(3)/2
+sqrt(3)/2
 A
 
-The angle of elevation to the top of a building is 35°, and the observer is standing 100 ft away. What trig function would best find the building’s height?
+The angle of elevation to the top of a building is 35 degrees, and the observer is standing 100 ft away. What trig function would best find the building's height?
 sin
 cos
 tan
@@ -124,7 +124,7 @@ What is the amplitude of y = -4cos(3x)?
 -3
 C
 
-If cot(θ) = 3/4 and θ is in quadrant III, what is sin(θ)?
+If cot() = 3/4 and the angle is in quadrant III, what is sin()?
 -3/5
 -4/5
 -5/7
@@ -132,10 +132,10 @@ If cot(θ) = 3/4 and θ is in quadrant III, what is sin(θ)?
 B
 
 The general solution to sin(x) = 1/2 is
-x = π/6 + 2πn
-x = π/6 + nπ
-x = π/6, 5π/6 + 2πn
-x = π/6, 5π/6 + 2πn
+x = pi/6 + 2(pi)n
+x = pi/6 + (pi)n
+x = pi/6, 5pi/6 + 2(pi)n
+x = pi/6, 5pi/6 + 2(pi)n
 D
 
 Which identity is valid for all values of x?
@@ -146,43 +146,43 @@ sec(x) = 1/sin(x)
 B
 
 Solve: 2cos(x) - 1 = 0
-x = π/3, 5π/3
-x = π/4, 7π/4
-x = π/2, 3π/2
-x = 0, 2π
+x = pi/3, 5pi/3
+x = pi/4, 7pi/4
+x = pi/2, 3pi/2
+x = 0, 2pi
 A
 
-What is the phase shift of y = sin(x - π/3)?
-π
--π/3
-π/3
+What is the phase shift of y = sin(x - pi/3)?
+pi
+-pi/3
+pi/3
 0
 C
 
 If sin(2x) = cos(x), which of the following is true?
-x = π/6
-x = π/4
-x = π/3
-x = π/2
+x = pi/6
+x = pi/4
+x = pi/3
+x = pi/2
 D
 
 Which of the following expresses cos(x) in terms of tan(x)?
-1 / √(1 + tan²(x))
+1 / sqrt(1 + tan^2(x))
 1 / (1 + tan(x))
-1 / (1 + sin²(x))
+1 / (1 + sin^2(x))
 cos(x) = tan(x)/sin(x)
 A
 
-What is the horizontal shift of y = 2cos(4x + π)?
-π
-π/2
--π/4
-π/4
+What is the horizontal shift of y = 2cos(4x + pi)?
+pi
+pi/2
+-pi/4
+pi/4
 C
 
-If tan(θ) = 1 and θ is in quadrant III, what is sin(θ)?
-1/√2
--1/√2
-√2
--√2
+If tan() = 1 and the angle is in quadrant III, what is sin()?
+1/sqrt(2)
+-1/sqrt(2)
+sqrt(2)
+-sqrt(2)
 B

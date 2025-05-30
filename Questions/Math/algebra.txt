@@ -47,7 +47,7 @@ What is the value of y in the equation y = 6 - 2x when x = -3?
 -6
 A
 
-Simplify: 4(x - 2) + 3(x + 1)
+Expand: 4(x - 2) + 3(x + 1)
 7x - 5
 7x + 2
 x + 5
@@ -117,7 +117,7 @@ x = 5 only
 x = 2 only
 A
 
-Simplify: 5(x - 3) + 2(x + 4)
+Expand: 5(x - 3) + 2(x + 4)
 5x - 15 + 2x + 8
 7x - 7
 6x - 12
@@ -156,7 +156,7 @@ Range of f(x) = 2x + 3
 All real numbers
 x > 0
 x < 0
-y ≥ 3
+y >= 3
 A
 
 If a - 4 = 10, what is a?
@@ -180,7 +180,7 @@ Slope between (2, 3) and (6, -5)
 1
 A
 
-Simplify: 4(x + 1) - 3(x - 2)
+Expand: 4(x + 1) - 3(x - 2)
 4x + 4 - 3x + 6
 x + 10
 x - 2

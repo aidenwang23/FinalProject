@@ -76,10 +76,10 @@ A projectile is launched at 30 m/s at an angle of 60 degrees. What is the vertic
 D
 
 What is the unit of electric field strength?
-N·m
+N*m
 C/V
 N/C
-V·C
+V*C
 C
 
 Which law explains why you feel a backward push when firing a gun?
@@ -103,11 +103,11 @@ What is the frequency of a wave with a period of 0.2 seconds?
 20 Hz
 B
 
-If an object’s kinetic energy doubles, what happens to its speed?
+If an object's kinetic energy doubles, what happens to its speed?
 Doubles
 Halves
 Stays the same
-Increases by √2
+Increases by sqrt(2)
 D
 
 Which color of light has the highest frequency?
@@ -125,8 +125,8 @@ Diverging
 B
 
 A 0.5 kg ball moving at 4 m/s hits a wall and bounces back at 2 m/s. What is the change in momentum?
-1 kg·m/s
-2 kg·m/s
-3 kg·m/s
-4 kg·m/s
+1 kg*m/s
+2 kg*m/s
+3 kg*m/s
+4 kg*m/s
 C

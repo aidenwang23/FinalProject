@@ -47,11 +47,11 @@ Distance traveled
 Slope
 C
 
-Find the limit: lim(x→2) (x - 2)/(x - 2)
+Find the limit: lim(x->2) (x - 2)/(x - 2)
 0
 1
 2
-undefined
+Undefined
 B
 
 What is the derivative of f(x) = 5x + 3?
@@ -75,18 +75,18 @@ sin(x)
 -sin(x)
 D
 
-Find lim(x→0) (sin(x)/x)
+Find lim(x->0) (sin(x)/x)
 0
 1
-undefined
-∞
+Undefined
+Inf.
 B
 
-If f '(x) = 0 for all x in an interval, then f(x) is
-increasing
-decreasing
-a constant
-undefined
+If f'(x) = 0 for all x in an interval, then f(x) is
+Increasing
+Decreasing
+Constant
+Undefined
 C
 
 Which function has no derivative at x = 0?
@@ -96,9 +96,9 @@ f(x) = sin(x)
 f(x) = 3x + 1
 A
 
-If the graph of f '(x) is above the x-axis, then f(x) is
-constant
-increasing
-decreasing
-at a max
+If the graph of f'(x) is above the x-axis, then f(x) is
+Constant
+Increasing
+Decreasing
+At a Max
 B

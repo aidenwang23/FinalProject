@@ -1,15 +1,15 @@
 What is the main cause of global warming?
-Ozone layer
-Carbon dioxide emissions
+Ozone Layer
+Carbon Dioxide Emissions
 Deforestation
-Natural climate cycles
+Natural Climate Cycles
 B
 
 Which renewable energy source comes from sunlight?
-Wind energy
-Geothermal energy
-Solar energy
-Hydroelectric energy
+Wind Energy
+Geothermal Energy
+Solar Energy
+Hydroelectric Energy
 C
 
 What process do plants use to remove carbon dioxide from the air?
@@ -49,9 +49,9 @@ D
 
 Which practice leads to desertification?
 Overirrigation
-Contour plowing
+Contour Plowing
 Deforestation
-Crop rotation
+Crop Rotation
 C
 
 Which of the following best explains why bioaccumulation affects top predators the most?
@@ -68,7 +68,7 @@ Decomposers are not involved
 Denitrification returns nitrogen to the atmosphere
 D
 
-Which process in the carbon cycle removes CO₂ from the atmosphere?
+Which process in the carbon cycle removes CO2 from the atmosphere?
 Respiration
 Combustion
 Photosynthesis
@@ -76,10 +76,10 @@ Decomposition
 C
 
 Which of the following is the primary cause of ocean acidification?
-Plastic pollution
-Oil spills
-Rising sea temperatures
-Increased atmospheric CO₂
+Plastic Pollution
+Oil Spills
+Rising Sea Temperatures
+Increased Atmospheric CO2
 D
 
 What biome is characterized by low rainfall, permafrost, and short growing seasons?
@@ -90,10 +90,10 @@ Desert
 B
 
 Which gas is most responsible for global warming due to human activity?
-CH₄
-CO₂
-N₂
-O₃
+CH4
+CO2
+N2
+O3
 B
 
 Which farming method helps prevent soil erosion the most effectively?
@@ -107,7 +107,7 @@ What is the largest reservoir of freshwater on Earth?
 Lakes
 Atmosphere
 Groundwater
-Glaciers and ice caps
+Glaciers and Ice Caps
 D
 
 The tragedy of the commons is best illustrated by:
@@ -125,15 +125,15 @@ RCRA
 B
 
 Which of the following is a nonrenewable resource?
-Geothermal energy
-Wind energy
-Natural gas
-Tidal energy
+Geothermal Energy
+Wind Energy
+Natural Gas
+Tidal Energy
 C
 
-What is the best indicator of a country’s environmental impact?
+What is the best indicator of a country's environmental impact?
 Total GDP
-CO₂ per capita
+CO2 per capita
 Ecological footprint
 Population density
 C

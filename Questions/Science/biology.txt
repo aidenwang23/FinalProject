@@ -69,10 +69,10 @@ Adding a noncompetitive inhibitor
 B
 
 Which process results in two identical daughter cells?
-meiosis
-mitosis
-binary fission
-transcription
+Meiosis
+Mitosis
+Binary Fission
+Transcription
 B
 
 During which phase of the cell cycle does DNA replication occur?
@@ -83,24 +83,24 @@ M
 B
 
 Which organelle helps detoxify poisons in the liver?
-smooth ER
-rough ER
-mitochondria
-lysosome
+Smooth ER
+Rough ER
+Mitochondria
+Lysosome
 A
 
 In a food web, which organisms are always found at the base?
-herbivores
-omnivores
-producers
-decomposers
+Herbivores
+Omnivores
+Producers
+Decomposers
 C
 
 What type of bond connects the nitrogenous bases in DNA?
-ionic
-hydrogen
-covalent
-peptide
+Ionic
+Hydrogen
+Covalent
+Peptide
 B
 
 What would happen if the spindle fibers were disrupted during mitosis?
@@ -111,17 +111,17 @@ Chromatids wouldn't separate
 D
 
 Which organ system is directly responsible for removing metabolic wastes?
-digestive
-circulatory
-excretory
-nervous
+Digestive
+Circulatory
+Excretory
+Nervous
 C
 
 Which macromolecule provides long-term energy storage?
-carbohydrates
-proteins
-lipids
-nucleic acids
+Carbohydrates
+Proteins
+Lipids
+Nucleic Acids
 C
 
 How is a virus different from a living cell?
@@ -132,8 +132,8 @@ It requires a host to replicate
 D
 
 What is the role of messenger RNA in protein synthesis?
-forms ribosomes
-delivers amino acids
-carries the genetic code
-copies DNA
+Forms Ribosomes
+Delivers Amino Acids
+Carries The Genetic Code
+Copies DNA
 C

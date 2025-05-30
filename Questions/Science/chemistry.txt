@@ -62,13 +62,13 @@ Surface area
 C
 
 Which of the following best explains why metals conduct electricity?
-Delocalized electrons
-High ionization energy
-Strong covalent bonds
-Fixed valence shells
+Delocalized Electrons
+High Ionization Energy
+Strong Covalent Bonds
+Fixed Valence Shells
 A
 
-What is the oxidation number of sulfur in H₂SO₄?
+What is the oxidation number of sulfur in H2SO4?
 +4
 +6
 -2
@@ -76,16 +76,16 @@ What is the oxidation number of sulfur in H₂SO₄?
 B
 
 Which of the following compounds has a trigonal planar molecular geometry?
-NH₃
-CH₄
-BF₃
-H₂O
+NH3
+CH4
+BF3
+H2O
 C
 
 Which quantum number defines the shape of an orbital?
 n
 l
-mₗ
+m
 s
 B
 
@@ -102,9 +102,10 @@ Mg
 Cl
 Ne
 D
+
 Which gas law explains why a balloon shrinks when placed in a freezer?
-Boyle’s Law
-Charles’s Law
-Avogadro’s Law
-Dalton’s Law
+Boyle's Law
+Charles's Law
+Avogadro's Law
+Dalton's Law
 B

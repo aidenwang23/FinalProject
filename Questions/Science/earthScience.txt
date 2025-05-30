@@ -1,8 +1,8 @@
 What type of boundary created the Himalaya Mountains?
 Transform
 Divergent
-Convergent (continental-continental)
-Convergent (oceanic-continental)
+Convergent (Continental-Continental)
+Convergent (Oceanic-Continental)
 C
 
 Which radioactive isotope is most commonly used to date very old rocks (millions to billions of years)?
@@ -12,18 +12,18 @@ Potassium-39
 Radon-222
 B
 
-Which process is responsible for Earth’s internal heat that drives plate tectonics?
-Solar radiation
-Radioactive decay
-Gravitational pull of the Moon
+Which process is responsible for Earth's internal heat that drives plate tectonics?
+Solar Radiation
+Radioactive Decay
+Gravitational Pull of the Moon
 Photosynthesis
 B
 
 Which of the following is a direct cause of Earth's precession?
-Plate tectonics
-Tidal forces from the Moon
-Eccentric orbit
-Uneven solar heating
+Plate Tectonics
+Tidal Forces From the Moon
+Eccentric Orbit
+Uneven Solar Heating
 B
 
 What does a high albedo indicate about a surface?
@@ -48,12 +48,11 @@ Drier-than-average conditions
 B
 
 Which geological feature is formed by a mantle plume?
-Mid-ocean ridge
-Subduction zone
-Hot spot volcano
-Transform fault
+Mid-ocean Ridge
+Subduction Zone
+Hot Spot Volcano
+Transform Fault
 C
-
 
 Which layer of Earth's atmosphere is responsible for weather?
 Stratosphere
@@ -77,10 +76,10 @@ Mesosphere
 B
 
 What is the main cause of the Coriolis effect on Earth?
-Sun's gravity
-Ocean tides
-Earth's rotation
-Magnetic field
+Sun's Gravity
+Ocean Tides
+Earth's Rotation
+Magnetic Field
 C
 
 Which mineral is the hardest on the Mohs hardness scale?
@@ -106,16 +105,16 @@ B
 
 What is the main driver of deep ocean currents (thermohaline circulation)?
 Wind
-Earth’s rotation
-Salinity and temperature differences
-Gravitational pull of the Moon
+Earth's Rotation
+Salinity and Temperature Differences
+Gravitational Pull of the Moon
 C
 
 Which event occurs when the Moon passes directly between Earth and the Sun?
-Lunar eclipse
-Solar eclipse
-New moon
-Spring tide
+Lunar Eclipse
+Solar Eclipse
+New Moon
+Spring Tide
 B
 
 What is the average salinity of ocean water?
