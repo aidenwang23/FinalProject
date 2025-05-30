@@ -9,7 +9,7 @@ def main():
     # screen setup
     pygame.init()
     pygame.font.init()
-    my_font = pygame.font.SysFont("Arial Bold", 45)
+    important_text_font = pygame.font.SysFont("Arial Bold", 250)
     time_display_font = pygame.font.SysFont("Arial Bold", 55)
     keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
     keybind_text_font = pygame.font.SysFont("Arial Bold", 100)
@@ -48,6 +48,7 @@ def main():
     # game settings
     valid = True
     load = True
+    credit = False
     run = False
     select = False
     subject = None
@@ -353,10 +354,16 @@ def main():
 
         if load:
             loading_screen.draw(screen)
+            name_text = important_text_font.render("GAME NAME", True, (0, 0, 0))
+            name_text_rect = name_text.get_rect(center=(SCREEN_WIDTH / 2, 275))
+            screen.blit(name_text, name_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
-                if 550 <= mouse_x <= 1370 and 430 <= mouse_y <= 535:
+                if name_text_rect.collidepoint(event.pos):
+                    credit = True
+                    load = False
+                elif 550 <= mouse_x <= 1370 and 430 <= mouse_y <= 535:
                     select = True
                     load = False
                 elif 550 <= mouse_x <= 1370 and 545 <= mouse_y <= 650:
