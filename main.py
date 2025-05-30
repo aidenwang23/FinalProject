@@ -15,6 +15,7 @@ def main():
     keybind_text_font = pygame.font.SysFont("Arial Bold", 100)
     question_text_font = pygame.font.SysFont("Arial Bold", 65)
     answer_text_font = pygame.font.SysFont("Arial Bold", 45)
+    credits_text_font = pygame.font.SysFont("Arial Bold", 55)
     rules_text_font = pygame.font.SysFont("Arial Bold", 55)
     title_text_font = pygame.font.SysFont("Arial Bold", 150)
     body_text_font = pygame.font.SysFont("Arial Bold", 70)
@@ -36,6 +37,7 @@ def main():
 
     # screen setup
     loading_screen = Popup("loading.png", 1)
+    credits_screen = Popup("credits.png", 1)
     subject_screen = Popup("subject.png", 1)
     settings_screen = Popup("settings.png", 1)
     changing_screen = Popup("changing.png", 1)
@@ -48,7 +50,7 @@ def main():
     # game settings
     valid = True
     load = True
-    credit = False
+    credits = False
     run = False
     select = False
     subject = None
@@ -113,6 +115,7 @@ def main():
     moving_left = False
     moving_right = False 
     jumping = False
+    current_movement = None
 
     # changing keybind states
     changing_right = False
@@ -122,7 +125,7 @@ def main():
     changing_duplicate = False
 
     # loads sprite
-    idle = Player(x_position, y_position, "idle.png", 0.135)
+    player = Player(x_position, y_position, "idle.png", 0.135)
 
     # platforms
     platforms = [
@@ -189,7 +192,7 @@ def main():
 
         if valid:
             screen.fill((0, 0, 0))
-            player_rect = idle.rect
+            player_rect = player.rect
         
             if (run or question) and not pause:
                 if last_active_time == None:
@@ -221,19 +224,19 @@ def main():
                 else:
                     moving_right = False
 
-                idle.move(x_position, y_position)
-                player_rect = idle.rect
+                player.move(x_position, y_position)
+                player_rect = player.rect
 
                 # horizontal collision
                 for platform in platforms:
                     platform_rect = platform.rect
                     if player_rect.colliderect(platform_rect):
                         if x_position < platform_rect.centerx:
-                            x_position = platform_rect.left - idle.image_size[0] // 2
+                            x_position = platform_rect.left - player.image_size[0] // 2
                         else:
-                            x_position = platform_rect.right + idle.image_size[0] // 2
-                        idle.move(x_position, y_position)
-                        player_rect = idle.rect
+                            x_position = platform_rect.right + player.image_size[0] // 2
+                        player.move(x_position, y_position)
+                        player_rect = player.rect
 
                 if (on_ground or on_platform) and jumping:
                     velocity_y = -jump_strength
@@ -244,14 +247,14 @@ def main():
                 velocity_y += gravity * dt
                 y_position += velocity_y * dt
 
-                idle.move(x_position, y_position)
-                player_rect = idle.rect
+                player.move(x_position, y_position)
+                player_rect = player.rect
 
                 # horizontal boundary
-                if x_position < idle.surface.get_width():
-                    x_position = idle.surface.get_width()
-                elif x_position > SCREEN_WIDTH - idle.surface.get_width():
-                    x_position = SCREEN_WIDTH - idle.surface.get_width()
+                if x_position < player.surface.get_width():
+                    x_position = player.surface.get_width()
+                elif x_position > SCREEN_WIDTH - player.surface.get_width():
+                    x_position = SCREEN_WIDTH - player.surface.get_width()
 
                 # vertical boundary
                 if y_position < 0:
@@ -269,11 +272,11 @@ def main():
                     correct_answers.clear()
                     question_lines.clear()
                     x_position = SCREEN_WIDTH / 2
-                    y_position = SCREEN_HEIGHT - idle.surface.get_height()
+                    y_position = SCREEN_HEIGHT - player.surface.get_height()
                     velocity_y = 0
                     on_ground = False
-                elif y_position >= SCREEN_HEIGHT - idle.surface.get_height():
-                    y_position = SCREEN_HEIGHT - idle.surface.get_height()
+                elif y_position >= SCREEN_HEIGHT - player.surface.get_height():
+                    y_position = SCREEN_HEIGHT - player.surface.get_height()
                     velocity_y = 0
                     on_ground = True
                 
@@ -291,7 +294,7 @@ def main():
                     platform_rect = platform.rect
                     if player_rect.colliderect(platform_rect):
                         if velocity_y > 0 and player_rect.bottom <= platform_rect.top + 10:
-                            y_position = platform_rect.top - idle.image_size[1] // 2
+                            y_position = platform_rect.top - player.image_size[1] // 2
                             velocity_y = 0
                             on_platform = True
                             if not landed and len(questions) > 0:
@@ -299,11 +302,11 @@ def main():
                                 run = False
                                 landed  = True
                         elif velocity_y < 0 and player_rect.top >= platform_rect.bottom - 10:
-                            y_position = platform_rect.bottom + idle.image_size[1] // 2
+                            y_position = platform_rect.bottom + player.image_size[1] // 2
                             velocity_y = 0
                             on_platform = False
-                        idle.move(x_position, y_position)
-                        player_rect = idle.rect
+                        player.move(x_position, y_position)
+                        player_rect = player.rect
 
                 if subject == "Math":
                     topic = math_topics[stage]
@@ -347,6 +350,18 @@ def main():
                     choiceD_text = answer_text_font.render(current_question["choiceD"], True, (0, 0, 0))
                     choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, 880))
 
+            if moving_right:
+                current_movement = "right"
+            elif moving_left:
+                current_movement = "left"
+            elif not (on_ground or on_platform):
+                if velocity_y > 0:
+                    current_movement = "fall"
+                elif velocity_y < 0:
+                    current_movement = "jump"
+            else:
+                current_movement = "idle"
+
             if int(elapsed_minutes) >= 20 and not (win or lose):
                 lose = True
             if win or lose:
@@ -361,7 +376,7 @@ def main():
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
                 if name_text_rect.collidepoint(event.pos):
-                    credit = True
+                    credits = True
                     load = False
                 elif 550 <= mouse_x <= 1370 and 430 <= mouse_y <= 535:
                     select = True
@@ -377,6 +392,29 @@ def main():
                     load = False
                 elif 550 <= mouse_x <= 1370 and 890 <= mouse_y <= 995:
                     valid = False
+            elif event.type == pygame.MOUSEBUTTONUP:
+                mouse_clicked = False
+                changed_screens = True
+
+        if credits:
+            credits_screen.draw(screen)
+            title_text = title_text_font.render("Credits", True, (0, 0, 0))
+            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 150))
+            screen.blit(title_text, title_text_rect)
+            credits_y = 240
+            with open("credits.txt", "r") as file:
+                lines = file.readlines()
+                for line in lines:
+                    credits_text = credits_text_font.render(line.strip(), True, (0, 0, 0))
+                    credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
+                    screen.blit(credits_text, credits_text_rect) 
+                    credits_y += 65
+            if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
+                mouse_clicked = True
+                mouse_x, mouse_y = event.pos
+                if 10 <= mouse_x <= 160 and 880 <= mouse_y <= 1015:
+                    credits = False
+                    load = True
             elif event.type == pygame.MOUSEBUTTONUP:
                 mouse_clicked = False
                 changed_screens = True
@@ -418,29 +456,14 @@ def main():
                 empty_heart = Heart(heart_x, 0, "emptyHeart.png", 0.2)
                 empty_heart.draw(screen)
                 heart_x += 37.5
-            idle = Player(x_position, y_position, "idle.png", 0.135)
-            fall = Player(x_position, y_position, "fall.png", 0.5)
-            jump = Player(x_position, y_position, "jump.png", 0.4)
-            right1 = Player(x_position, y_position, "right1.png", 0.5)
-            right2 = Player(x_position, y_position, "right2.png", 0.5)
-            left1 = Player(x_position, y_position, "left1.png", 0.25)
-            left2 = Player(x_position, y_position, "left2.png", 0.25)
-            if not (on_ground or on_platform) and velocity_y > 0:
-                screen.blit(fall.surface, fall.position())
-            elif not (on_ground or on_platform) and velocity_y < 0:
-                screen.blit(jump.surface, jump.position())
-            elif moving_right:
+            if current_movement == "right" or current_movement == "left":
                 if (0 < total_time % 1 < 0.25) or (0.5 < total_time % 1 < 0.75):
-                    screen.blit(right1.surface, right1.position())
+                    player = Player(x_position, y_position, f"{current_movement}1.png", 0.1)
                 elif (0.25 <= total_time % 1 <= 0.5) or (0.75 <= total_time % 1 < 1):
-                    screen.blit(right2.surface, right2.position())
-            elif moving_left:
-                if (0 < total_time % 1 < 0.25) or (0.5 < total_time % 1 < 0.75):
-                    screen.blit(left1.surface, left1.position())
-                elif (0.25 <= total_time % 1 <= 0.5) or (0.75 <= total_time % 1 < 1):
-                    screen.blit(left2.surface, left2.position())
+                    player = Player(x_position, y_position, f"{current_movement}2.png", 0.1)
             else:
-                screen.blit(idle.surface, idle.position())
+                player = Player(x_position, y_position, f"{current_movement}.png", 0.1)
+            screen.blit(player.surface, player.position())
 
         if question:
             question_screen.draw(screen)
