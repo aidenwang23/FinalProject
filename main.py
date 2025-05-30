@@ -121,7 +121,7 @@ def main():
     changing_duplicate = False
 
     # loads sprite
-    a = Player(x_position, y_position, "idle.png", 0.135)
+    idle = Player(x_position, y_position, "idle.png", 0.135)
 
     # platforms
     platforms = [
@@ -152,10 +152,6 @@ def main():
                             pause = True
                 elif event.key == jump_key:
                     jumping = True
-                elif keys[left_key]:
-                    moving_left = True
-                elif keys[right_key]:
-                    moving_right = True
                 elif changing_keys:
                     if changing_right:
                         if not (event.key == left_key or event.key == jump_key or event.key == pygame.K_ESCAPE):
@@ -189,13 +185,10 @@ def main():
             elif event.type == pygame.KEYUP:
                 if event.key == jump_key:
                     jumping = False
-                elif event.key == left_key:
-                    moving_left = False
-                elif event.key == right_key:
-                    moving_right = False
 
         if valid:
             screen.fill((0, 0, 0))
+            player_rect = idle.rect
         
             if (run or question) and not pause:
                 if last_active_time == None:
@@ -218,22 +211,28 @@ def main():
                 # horizontal movement
                 if keys[left_key]:
                     x_position -= 400 * dt
+                    moving_left = True
+                else: 
+                    moving_left = False
                 if keys[right_key]:
                     x_position += 400 * dt
+                    moving_right = True
+                else:
+                    moving_right = False
 
-                a.move(x_position, y_position)
-                player_rect = a.rect
+                idle.move(x_position, y_position)
+                player_rect = idle.rect
 
                 # horizontal collision
                 for platform in platforms:
                     platform_rect = platform.rect
                     if player_rect.colliderect(platform_rect):
                         if x_position < platform_rect.centerx:
-                            x_position = platform_rect.left - a.image_size[0] // 2
+                            x_position = platform_rect.left - idle.image_size[0] // 2
                         else:
-                            x_position = platform_rect.right + a.image_size[0] // 2
-                        a.move(x_position, y_position)
-                        player_rect = a.rect
+                            x_position = platform_rect.right + idle.image_size[0] // 2
+                        idle.move(x_position, y_position)
+                        player_rect = idle.rect
 
                 if (on_ground or on_platform) and jumping:
                     velocity_y = -jump_strength
@@ -244,14 +243,14 @@ def main():
                 velocity_y += gravity * dt
                 y_position += velocity_y * dt
 
-                a.move(x_position, y_position)
-                player_rect = a.rect
+                idle.move(x_position, y_position)
+                player_rect = idle.rect
 
                 # horizontal boundary
-                if x_position < a.surface.get_width():
-                    x_position = a.surface.get_width()
-                elif x_position > SCREEN_WIDTH - a.surface.get_width():
-                    x_position = SCREEN_WIDTH - a.surface.get_width()
+                if x_position < idle.surface.get_width():
+                    x_position = idle.surface.get_width()
+                elif x_position > SCREEN_WIDTH - idle.surface.get_width():
+                    x_position = SCREEN_WIDTH - idle.surface.get_width()
 
                 # vertical boundary
                 if y_position < 0:
@@ -269,11 +268,11 @@ def main():
                     correct_answers.clear()
                     question_lines.clear()
                     x_position = SCREEN_WIDTH / 2
-                    y_position = SCREEN_HEIGHT - a.surface.get_height()
+                    y_position = SCREEN_HEIGHT - idle.surface.get_height()
                     velocity_y = 0
                     on_ground = False
-                elif y_position >= SCREEN_HEIGHT - a.surface.get_height():
-                    y_position = SCREEN_HEIGHT - a.surface.get_height()
+                elif y_position >= SCREEN_HEIGHT - idle.surface.get_height():
+                    y_position = SCREEN_HEIGHT - idle.surface.get_height()
                     velocity_y = 0
                     on_ground = True
                 
@@ -291,7 +290,7 @@ def main():
                     platform_rect = platform.rect
                     if player_rect.colliderect(platform_rect):
                         if velocity_y > 0 and player_rect.bottom <= platform_rect.top + 10:
-                            y_position = platform_rect.top - a.image_size[1] // 2
+                            y_position = platform_rect.top - idle.image_size[1] // 2
                             velocity_y = 0
                             on_platform = True
                             if not landed and len(questions) > 0:
@@ -299,11 +298,11 @@ def main():
                                 run = False
                                 landed  = True
                         elif velocity_y < 0 and player_rect.top >= platform_rect.bottom - 10:
-                            y_position = platform_rect.bottom + a.image_size[1] // 2
+                            y_position = platform_rect.bottom + idle.image_size[1] // 2
                             velocity_y = 0
                             on_platform = False
-                        a.move(x_position, y_position)
-                        player_rect = a.rect
+                        idle.move(x_position, y_position)
+                        player_rect = idle.rect
 
                 if subject == "Math":
                     topic = math_topics[stage]
@@ -412,7 +411,29 @@ def main():
                 empty_heart = Heart(heart_x, 0, "emptyHeart.png", 0.2)
                 empty_heart.draw(screen)
                 heart_x += 37.5
-            screen.blit(a.surface, a.position())
+            idle = Player(x_position, y_position, "idle.png", 0.135)
+            fall = Player(x_position, y_position, "fall.png", 0.5)
+            jump = Player(x_position, y_position, "jump.png", 0.4)
+            right1 = Player(x_position, y_position, "right1.png", 0.5)
+            right2 = Player(x_position, y_position, "right2.png", 0.5)
+            left1 = Player(x_position, y_position, "left1.png", 0.25)
+            left2 = Player(x_position, y_position, "left2.png", 0.25)
+            if not (on_ground or on_platform) and velocity_y > 0:
+                screen.blit(fall.surface, fall.position())
+            elif not (on_ground or on_platform) and velocity_y < 0:
+                screen.blit(jump.surface, jump.position())
+            elif moving_right:
+                if (0 < total_time % 1 < 0.25) or (0.5 < total_time % 1 < 0.75):
+                    screen.blit(right1.surface, right1.position())
+                elif (0.25 <= total_time % 1 <= 0.5) or (0.75 <= total_time % 1 < 1):
+                    screen.blit(right2.surface, right2.position())
+            elif moving_left:
+                if (0 < total_time % 1 < 0.25) or (0.5 < total_time % 1 < 0.75):
+                    screen.blit(left1.surface, left1.position())
+                elif (0.25 <= total_time % 1 <= 0.5) or (0.75 <= total_time % 1 < 1):
+                    screen.blit(left2.surface, left2.position())
+            else:
+                screen.blit(idle.surface, idle.position())
 
         if question:
             question_screen.draw(screen)
