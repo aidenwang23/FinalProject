@@ -12,13 +12,6 @@ x + C
 C
 A
 
-Find the limit: lim(x->2) (x^2 - 4)/(x - 2)
-0
-2
-4
-Does not exist
-C
-
 What is the derivative of f(x) = sin(x)?
 cos(x)
 -cos(x)
@@ -29,9 +22,9 @@ A
 The function f(x) = ln(x) has a critical point at:
 x = 0
 x = 1
-x = e
+x = DNE
 x = Inf.
-A
+C
 
 Integral of the constant function f(x) = k is:
 C
@@ -47,23 +40,65 @@ t = 10
 t = 20
 C
 
-Which of the following functions has a constant rate of change?
-f(x) = x^2
-f(x) = 3x + 2
-f(x) = x^3
-f(x) = sqrt(x)
-B
-
-When does the function x^2 - 1 reach the maximum?
-Does not exist
-1
-0
--1
-A
-
 The area under the velocity-time graph represents:
 Position
 Acceleration
 Distance traveled
 Slope
 C
+
+Find the limit: lim(x→2) (x - 2)/(x - 2)
+0
+1
+2
+undefined
+B
+
+What is the derivative of f(x) = 5x + 3?
+5
+3
+x
+0
+A
+
+The slope of the tangent line to y = -6x + 9 at any point is
+6
+-6
+0
+9
+B
+
+What is the derivative of f(x) = cos(x)?
+cos(x)
+sin(x)
+-tan(x)
+-sin(x)
+D
+
+Find lim(x→0) (sin(x)/x)
+0
+1
+undefined
+∞
+B
+
+If f '(x) = 0 for all x in an interval, then f(x) is
+increasing
+decreasing
+a constant
+undefined
+C
+
+Which function has no derivative at x = 0?
+f(x) = |x|
+f(x) = x
+f(x) = sin(x)
+f(x) = 3x + 1
+A
+
+If the graph of f '(x) is above the x-axis, then f(x) is
+constant
+increasing
+decreasing
+at a max
+B

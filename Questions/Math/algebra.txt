@@ -58,8 +58,8 @@ Solve for x: 8x - 3 = 2(3x + 3)
 1
 2
 3
-5
-C
+None of the Above
+D
 
 What is the slope of the line passing through the points (1, -2) and (4, 4)?
 2
@@ -67,3 +67,136 @@ What is the slope of the line passing through the points (1, -2) and (4, 4)?
 3
 -3
 A
+
+Solve: 5x - 7 = 2x + 8
+12
+5
+3
+6
+B
+
+Solve: (x/2) + 4 = (x/3) + 5
+6
+12
+18
+24
+A
+
+Solve the system: 2x + y = 7, x - y = 1
+(2, 3)
+(3, 1)
+(1, 3)
+None of the above
+D
+
+If f(x) = 2x - 3, find f(4)
+5
+6
+7
+8
+C
+
+Solve: (x - 4)(x + 1) = 0
+x = -1, 4
+x = 4 only
+x = 1, -4
+x = 0
+A
+
+Solve: (x - 2)(x - 5) = 0
+x = 2, 5
+x = -2, 5
+x = 5 only
+x = 2 only
+A
+
+Solve: (x - 2)(x - 5) = 0
+x = 2, 5
+x = -2, 5
+x = 5 only
+x = 2 only
+A
+
+Simplify: 5(x - 3) + 2(x + 4)
+5x - 15 + 2x + 8
+7x - 7
+6x - 12
+7x - 13
+B
+
+Solve: (x - 4)(x + 1) = 0
+x = -1, 4
+x = 4
+x = -1
+x = 1
+A
+
+Find the y-intercept of y = 2x - 5
+-3
+0
+-5
+2
+C
+
+Solve: 3/(x + 1) = 1/2
+x = 5
+x = -3
+x = 2
+x = 1
+A
+
+Line perpendicular to y = -2x + 3
+y = (1/2)x - 1
+y = 2x + 4
+y = (1/2)x + 3
+y = (1/2)x - 3
+C
+
+Range of f(x) = 2x + 3
+All real numbers
+x > 0
+x < 0
+y ≥ 3
+A
+
+If a - 4 = 10, what is a?
+6
+12
+14
+10
+C
+
+Find x-intercepts of y = x(x - 6)
+x = 0, 6
+x = 1, 5
+x = -1, -6
+x = 3, -3
+A
+
+Slope between (2, 3) and (6, -5)
+-2
+-1
+2
+1
+A
+
+Simplify: 4(x + 1) - 3(x - 2)
+4x + 4 - 3x + 6
+x + 10
+x - 2
+x + 1
+B
+
+Find y-intercept of 4x - 2y = 6
+-3
+3
+-1
+1
+A
+
+Solve: (x + 2)/(x - 3) = 1
+x = 5
+x = 3
+x = 0
+None of the above
+D

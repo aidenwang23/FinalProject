@@ -67,3 +67,138 @@ Weak Positive
 Strong Negative
 Strong Positive
 C
+
+Which statistic is resistant to extreme values?
+mean
+range
+standard deviation
+median
+D
+
+A class scored the following on a quiz: 70, 80, 80, 90, 100. What is the interquartile range (IQR)?
+10
+15
+20
+25
+A
+
+In a survey, 60% of people prefer tea over coffee. If 250 people are surveyed, how many preferred tea?
+100
+125
+150
+175
+C
+
+What is the probability of drawing a red card or a queen from a standard deck of 52 cards?
+1/2
+15/52
+28/52
+30/52
+C
+
+A sample of 5 students had test scores of 80, 85, 90, 95, and 100. What is the standard deviation approximately?
+5
+7
+8
+10
+C
+(Note: Estimate using average distance from mean = 90)
+
+Which sampling method could result in undercoverage?
+simple random sampling
+stratified sampling
+voluntary response
+systematic sampling
+C
+
+In a normal distribution, what percent of data falls within one standard deviation of the mean?
+50%
+68%
+75%
+95%
+B
+
+The box plot shows a right-skewed distribution. Which of the following is most likely true?
+mean < median
+mean = median
+mean > median
+mean is unknown
+C
+
+You toss a die three times. What is the probability of getting at least one 6?
+1/6
+5/6
+91/216
+125/216
+C
+(Hint: Use complement: 1 - (5/6)³ = 91/216)
+
+A dataset has a mean of 50 and standard deviation of 10. What is the z-score of a value of 35?
+-2
+-1.5
+-1
+-0.5
+B
+
+Which of the following is NOT a condition for performing a one-sample t-test?
+data is approximately normal
+sample size is less than 30
+data are independent
+population standard deviation is known
+D
+
+You roll two dice. What is the probability that the sum is greater than 10?
+1/6
+1/9
+1/12
+5/36
+C
+
+A distribution is skewed left. Which is most likely true?
+mean > median
+mean = median
+mean < median
+mean is undefined
+C
+
+In a class of 30 students, 18 passed a test. What is the sample proportion of students who passed?
+0.5
+0.6
+0.75
+0.9
+B
+
+Which of the following situations would best be analyzed with a chi-square test?
+comparing two means
+testing one mean
+comparing two proportions
+testing independence of two categorical variables
+D
+
+If the p-value is 0.08 and alpha is 0.05, what should you conclude?
+Reject the null hypothesis
+Fail to reject the null hypothesis
+Accept the alternative hypothesis
+The test is inconclusive
+B
+
+A confidence interval for a mean is (12, 18). Which of the following could be the sample mean?
+10
+12
+15
+18
+C
+
+What type of bias occurs when certain members of a population are less likely to be included in the sample?
+response bias
+voluntary bias
+undercoverage
+nonresponse bias
+C
+
+If the correlation between two variables is -0.85, what can be said about the relationship?
+It is weak and positive
+It is strong and negative
+It is weak and negative
+There is no relationship
+B

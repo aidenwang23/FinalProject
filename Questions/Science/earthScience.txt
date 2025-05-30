@@ -1,69 +1,140 @@
-What layer of the Earth is made of solid iron and nickel?
-Crust
-Mantle
-Outer core
-Inner core
-D
-
-What causes day and night on Earth?
-Earth's revolution around the Sun
-The Moon's orbit
-Earth's rotation on its axis
-Changes in the atmosphere
+What type of boundary created the Himalaya Mountains?
+Transform
+Divergent
+Convergent (continental-continental)
+Convergent (oceanic-continental)
 C
 
-What type of rock is formed from cooled lava or magma?
-Sedimentary
-Igneous
-Metamorphic
-Fossil
+Which radioactive isotope is most commonly used to date very old rocks (millions to billions of years)?
+Carbon-14
+Uranium-238
+Potassium-39
+Radon-222
 B
 
-What is the main gas in Earth's atmosphere?
-Oxygen
-Carbon dioxide
-Nitrogen
-Hydrogen
-C
+Which process is responsible for Earth’s internal heat that drives plate tectonics?
+Solar radiation
+Radioactive decay
+Gravitational pull of the Moon
+Photosynthesis
+B
 
-Which scale is used to measure earthquake magnitude?
-Fahrenheit
-Beaufort
-Richter
+Which of the following is a direct cause of Earth's precession?
+Plate tectonics
+Tidal forces from the Moon
+Eccentric orbit
+Uneven solar heating
+B
+
+What does a high albedo indicate about a surface?
+It emits infrared radiation
+It reflects a large amount of solar radiation
+It absorbs all radiation
+It causes magnetic anomalies
+B
+
+Which instrument is used to measure atmospheric pressure?
+Seismometer
+Anemometer
 Barometer
+Hygrometer
 C
 
-The oldest rocks on Earth are found:
-Near mid-ocean ridges
-At transform boundaries
-In continental interiors
-On oceanic crust
-C
-
-Seafloor spreading is supported by:
-Magnetic striping patterns in oceanic crust
-Presence of fossils in sedimentary rocks
-Fault lines in mountains
-Volcanic eruptions at subduction zones
-A
-
-Which process leads to the formation of metamorphic rocks?
-Cooling of magma
-Compaction of sediments
-Exposure to heat and pressure
-Erosion and deposition
-C
-
-A sudden spike in global volcanic activity is most likely to:
-Raise global temperatures
-Lower global temperatures
-Increase atmospheric oxygen
-Cause plate movement to stop
+During an El Niño event, what typically happens off the coast of South America?
+Cooler ocean temperatures and more upwelling
+Warmer ocean temperatures and suppressed upwelling
+Stronger trade winds
+Drier-than-average conditions
 B
 
-Which of the following would cause the water table to rise?
-Increased pumping
-Extended drought
-Urbanization
-Heavy rainfall
+Which geological feature is formed by a mantle plume?
+Mid-ocean ridge
+Subduction zone
+Hot spot volcano
+Transform fault
+C
+
+
+Which layer of Earth's atmosphere is responsible for weather?
+Stratosphere
+Mesosphere
+Thermosphere
+Troposphere
 D
+
+What is the name for the bending of seismic waves as they pass through different materials?
+Reflection
+Refraction
+Diffraction
+Absorption
+B
+
+Which layer of Earth's interior is plastic-like and allows tectonic plates to move?
+Lithosphere
+Asthenosphere
+Outer core
+Mesosphere
+B
+
+What is the main cause of the Coriolis effect on Earth?
+Sun's gravity
+Ocean tides
+Earth's rotation
+Magnetic field
+C
+
+Which mineral is the hardest on the Mohs hardness scale?
+Quartz
+Topaz
+Corundum
+Diamond
+D
+
+Which fossil type is best for determining the relative age of rock layers?
+Trace fossil
+Index fossil
+Mold fossil
+Cast fossil
+B
+
+Which process is responsible for forming coal?
+Volcanic activity
+Compaction and carbonization of plant material
+Cooling of magma
+Evaporation of seawater
+B
+
+What is the main driver of deep ocean currents (thermohaline circulation)?
+Wind
+Earth’s rotation
+Salinity and temperature differences
+Gravitational pull of the Moon
+C
+
+Which event occurs when the Moon passes directly between Earth and the Sun?
+Lunar eclipse
+Solar eclipse
+New moon
+Spring tide
+B
+
+What is the average salinity of ocean water?
+1%
+2.5%
+3.5%
+5%
+C
+
+Which igneous rock forms from rapid cooling at or near Earth's surface?
+Granite
+Basalt
+Gabbro
+Diorite
+B
+
+What kind of tectonic plate boundary is the San Andreas Fault?
+Divergent
+Convergent
+Transform
+Passive
+C

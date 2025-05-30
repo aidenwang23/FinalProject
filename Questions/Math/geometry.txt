@@ -67,3 +67,337 @@ A sector has radius 10 cm and central angle 60 degrees. What is its arc length? 
 20.94 cm
 31.4 cm
 B
+
+A polygon has 12 sides. What is the sum of its interior angles?
+1800 degrees
+1980 degrees
+2160 degrees
+2340 degrees
+A
+
+If two parallel lines are cut by a transversal, which angle pair is always congruent?
+same-side interiorWhat is the area of a triangle with base 10 units and height 6 units?
+30
+60
+15
+20
+A
+
+A square has a perimeter of 36 units. What is the length of one side?
+6
+8
+9
+12
+C
+
+What is the volume of a cube with side length 5 units?
+15
+25
+100
+125
+D
+    
+The sum of the interior angles of a hexagon is:
+540 degrees
+720 degrees
+900 degrees
+1080 degrees
+B
+
+What is the length of the hypotenuse in a right triangle with legs 6 and 8 units?
+10
+12
+14
+8
+A
+
+A triangle has angles in ratio 2:3:5.  What is the largest angle?
+36 degrees
+54 degrees
+60 degrees
+90 degrees
+D
+
+Which shape has only one pair of parallel sides?
+Square
+Rhombus
+Parallelogram
+Trapezoid
+D
+
+A circle has a diameter of 10 cm. What is its circumference (use pi = 3.14)?
+31.4 cm
+15.7 cm
+20 cm
+25 cm
+A
+
+Two angles are supplementary and one is 3 times the other. What is the smaller angle?
+30 degrees
+45 degrees
+60 degrees
+90 degrees
+B
+
+A sector has radius 10 cm and central angle 60 degrees. What is its arc length? (Use pi = 3.14)
+5.23 cm
+10.47 cm
+20.94 cm
+31.4 cm
+B
+
+A polygon has 12 sides. What is the sum of its interior angles?
+1800 degrees
+1980 degrees
+2160 degrees
+2340 degrees
+C
+
+If two parallel lines are cut by a transversal, which angle pair is always congruent?
+same-side interior
+alternate interior
+exterior supplementary
+adjacent vertical
+B
+
+In triangle ABC, angle A is twice angle B, and angle C is 40 degrees. What is angle A?
+70 degrees
+80 degrees
+100 degrees
+60 degrees
+C
+
+The measure of an exterior angle of a regular polygon is 20 degrees. How many sides does the polygon have?
+9
+12
+15
+18
+D
+
+In a parallelogram, one angle is 65 degrees. What is the measure of an adjacent angle?
+25 degrees
+115 degrees
+130 degrees
+155 degrees
+B
+
+A trapezoid has bases of 8 and 14 units. If its height is 6 units, what is its area?
+66
+72
+80
+84
+A
+
+In a triangle, two sides measure 5 and 7 units. Which of the following could be the third side?
+1
+12
+13
+9
+D
+
+The diagonals of a rhombus are 10 and 24 units. What is the perimeter of the rhombus?
+52
+60
+65
+68
+C
+
+The sum of the measures of the interior angles of a polygon is 1440 degrees. How many sides does it have?
+8
+9
+10
+11
+C
+
+In a regular polygon, each interior angle measures 150 degrees. How many sides does the polygon have?
+8
+10
+12
+15
+C
+
+The angle of elevation from a point on the ground to the top of a building is 45 degrees. If the point is 20 meters from the building, how tall is the building?
+10 meters
+20 meters
+30 meters
+Can’t be determined
+C
+
+The diagonals of a kite are 16 and 30 units. What is the area of the kite?
+120
+180
+240
+480
+C
+
+A circle has a central angle that intercepts an arc of 72 degrees. What fraction of the circle’s circumference is the arc?
+1/5
+1/4
+1/3
+1/2
+A
+
+Two tangents are drawn from the same external point to a circle. The angle between them is 40 degrees. What is the measure of the minor arc between the points of tangency?
+80 degrees
+140 degrees
+100 degrees
+160 degrees
+B
+
+The length of one side of a triangle is 10 units. The angle opposite that side is 60 degrees. What is the longest possible length of another side?
+10
+greater than 10
+less than 10
+equal to 10
+B
+
+A triangle has sides 9, 10, and 17 units. What is the measure of the largest angle to the nearest degree?
+60 degrees
+90 degrees
+120 degrees
+135 degrees
+C
+
+In a parallelogram, one diagonal is twice as long as the other and they intersect at right angles. What type of parallelogram is it?
+square
+rectangle
+rhombus
+trapezoid
+C
+
+What is the sum of the exterior angles, one per vertex, of any polygon?
+180 degrees
+360 degrees
+depends on the number of sides
+cannot be determined
+B
+
+An isosceles triangle has a vertex angle of 40 degrees. What is the measure of one of the base angles?
+70 degrees
+80 degrees
+90 degrees
+100 degrees
+A
+exterior supplementary
+adjacent vertical
+B
+
+In triangle ABC, angle A is twice angle B, and angle C is 40 degrees. What is angle A?
+70 degrees
+80 degrees
+100 degrees
+60 degrees
+C
+
+The measure of an exterior angle of a regular polygon is 20 degrees. How many sides does the polygon have?
+9
+12
+15
+18
+C
+
+In a parallelogram, one angle is 65 degrees. What is the measure of an adjacent angle?
+25 degrees
+115 degrees
+130 degrees
+155 degrees
+C
+
+A trapezoid has bases of 8 and 14 units. If its height is 6 units, what is its area?
+66
+72
+80
+84
+D
+
+In a triangle, two sides measure 5 and 7 units. Which of the following could be the third side?
+1
+12
+13
+9
+D
+
+The diagonals of a rhombus are 10 and 24 units. What is the perimeter of the rhombus?
+52
+60
+65
+68
+C
+(each side is 13, since diagonals bisect and form right triangles: √(5² + 12²) = 13, perimeter = 4×13 = 52)
+
+The sum of the measures of the interior angles of a polygon is 1440 degrees. How many sides does it have?
+8
+9
+10
+11
+C
+
+In a regular polygon, each interior angle measures 150 degrees. How many sides does the polygon have?
+8
+10
+12
+15
+D
+
+The angle of elevation from a point on the ground to the top of a building is 45 degrees. If the point is 20 meters from the building, how tall is the building?
+10 meters
+20 meters
+30 meters
+Can’t be determined
+B
+
+The diagonals of a kite are 16 and 30 units. What is the area of the kite?
+120
+180
+240
+480
+C
+
+A circle has a central angle that intercepts an arc of 72 degrees. What fraction of the circle’s circumference is the arc?
+1/5
+1/4
+1/3
+1/2
+A
+
+Two tangents are drawn from the same external point to a circle. The angle between them is 40 degrees. What is the measure of the minor arc between the points of tangency?
+80 degrees
+140 degrees
+100 degrees
+160 degrees
+C
+
+The length of one side of a triangle is 10 units. The angle opposite that side is 60 degrees. What is the longest possible length of another side?
+10
+greater than 10
+less than 10
+equal to 10
+B
+
+A triangle has sides 9, 10, and 17 units. What is the measure of the largest angle to the nearest degree?
+60 degrees
+90 degrees
+120 degrees
+135 degrees
+C
+
+In a parallelogram, one diagonal is twice as long as the other and they intersect at right angles. What type of parallelogram is it?
+square
+rectangle
+rhombus
+trapezoid
+C
+
+What is the sum of the exterior angles, one per vertex, of any polygon?
+180 degrees
+360 degrees
+depends on the number of sides
+cannot be determined
+B
+
+An isosceles triangle has a vertex angle of 40 degrees. What is the measure of one of the base angles?
+70 degrees
+80 degrees
+90 degrees
+100 degrees
+A

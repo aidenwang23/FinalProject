@@ -67,3 +67,66 @@ Surface tension increases
 Hydrogen bonds break
 Thermal expansion reverses
 A
+
+A projectile is launched at 30 m/s at an angle of 60 degrees. What is the vertical component of its velocity?
+15 m/s
+30 m/s
+25.98 m/s
+20.78 m/s
+D
+
+What is the unit of electric field strength?
+N·m
+C/V
+N/C
+V·C
+C
+
+Which law explains why you feel a backward push when firing a gun?
+Newton's First Law
+Newton's Second Law
+Newton's Third Law
+Law of Conservation of Energy
+C
+
+A 10 kg object is lifted to a height of 5 m. What is its gravitational potential energy?
+50 J
+100 J
+500 J
+1000 J
+C
+
+What is the frequency of a wave with a period of 0.2 seconds?
+2 Hz
+5 Hz
+10 Hz
+20 Hz
+B
+
+If an object’s kinetic energy doubles, what happens to its speed?
+Doubles
+Halves
+Stays the same
+Increases by √2
+D
+
+Which color of light has the highest frequency?
+Red
+Blue
+Green
+Yellow
+B
+
+What type of lens is used to correct farsightedness?
+Concave
+Convex
+Plane
+Diverging
+B
+
+A 0.5 kg ball moving at 4 m/s hits a wall and bounces back at 2 m/s. What is the change in momentum?
+1 kg·m/s
+2 kg·m/s
+3 kg·m/s
+4 kg·m/s
+C

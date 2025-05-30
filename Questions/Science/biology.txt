@@ -67,3 +67,73 @@ Raising temperature slightly
 Removing cofactors
 Adding a noncompetitive inhibitor
 B
+
+Which process results in two identical daughter cells?
+meiosis
+mitosis
+binary fission
+transcription
+B
+
+During which phase of the cell cycle does DNA replication occur?
+G1
+S
+G2
+M
+B
+
+Which organelle helps detoxify poisons in the liver?
+smooth ER
+rough ER
+mitochondria
+lysosome
+A
+
+In a food web, which organisms are always found at the base?
+herbivores
+omnivores
+producers
+decomposers
+C
+
+What type of bond connects the nitrogenous bases in DNA?
+ionic
+hydrogen
+covalent
+peptide
+B
+
+What would happen if the spindle fibers were disrupted during mitosis?
+DNA wouldn't replicate
+Chromosomes wouldn't line up
+The cell would stop growing
+Chromatids wouldn't separate
+D
+
+Which organ system is directly responsible for removing metabolic wastes?
+digestive
+circulatory
+excretory
+nervous
+C
+
+Which macromolecule provides long-term energy storage?
+carbohydrates
+proteins
+lipids
+nucleic acids
+C
+
+How is a virus different from a living cell?
+It has DNA
+It reproduces on its own
+It can make proteins
+It requires a host to replicate
+D
+
+What is the role of messenger RNA in protein synthesis?
+forms ribosomes
+delivers amino acids
+carries the genetic code
+copies DNA
+C

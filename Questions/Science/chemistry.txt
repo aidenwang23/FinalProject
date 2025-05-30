@@ -67,3 +67,44 @@ High ionization energy
 Strong covalent bonds
 Fixed valence shells
 A
+
+What is the oxidation number of sulfur in H₂SO₄?
++4
++6
+-2
+0
+B
+
+Which of the following compounds has a trigonal planar molecular geometry?
+NH₃
+CH₄
+BF₃
+H₂O
+C
+
+Which quantum number defines the shape of an orbital?
+n
+l
+mₗ
+s
+B
+
+What is the ∆H for a reaction if the bonds broken require 436 kJ/mol and the bonds formed release 498 kJ/mol?
++62 kJ
+-62 kJ
+-934 kJ
++934 kJ
+B
+
+Which element has the highest first ionization energy?
+Na
+Mg
+Cl
+Ne
+D
+Which gas law explains why a balloon shrinks when placed in a freezer?
+Boyle’s Law
+Charles’s Law
+Avogadro’s Law
+Dalton’s Law
+B
