@@ -13,9 +13,12 @@ def main():
     time_display_font = pygame.font.SysFont("Arial Bold", 55)
     keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
     keybind_text_font = pygame.font.SysFont("Arial Bold", 100)
-    question_text_font = pygame.font.SysFont("Arial Bold", 65)
+    question_text_font = pygame.font.SysFont("Arial Bold", 70)
     answer_text_font = pygame.font.SysFont("Arial Bold", 45)
+    subheading_text_font = pygame.font.SysFont("Arial Bold", 130)
+    name_text_font = pygame.font.SysFont("Arial Bold", 75)
     credits_text_font = pygame.font.SysFont("Arial Bold", 55)
+    credits_text_font.set_italic(True)
     rules_text_font = pygame.font.SysFont("Arial Bold", 55)
     title_text_font = pygame.font.SysFont("Arial Bold", 150)
     body_text_font = pygame.font.SysFont("Arial Bold", 70)
@@ -370,7 +373,7 @@ def main():
         if load:
             loading_screen.draw(screen)
             name_text = important_text_font.render("GAME NAME", True, (0, 0, 0))
-            name_text_rect = name_text.get_rect(center=(SCREEN_WIDTH / 2, 275))
+            name_text_rect = name_text.get_rect(center=(SCREEN_WIDTH / 2, 260))
             screen.blit(name_text, name_text_rect)
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
@@ -398,17 +401,32 @@ def main():
 
         if credits:
             credits_screen.draw(screen)
-            title_text = title_text_font.render("Credits", True, (0, 0, 0))
-            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 150))
-            screen.blit(title_text, title_text_rect)
-            credits_y = 240
+            line_count = 1
+            credits_y = 90
             with open("credits.txt", "r") as file:
                 lines = file.readlines()
                 for line in lines:
-                    credits_text = credits_text_font.render(line.strip(), True, (0, 0, 0))
-                    credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
-                    screen.blit(credits_text, credits_text_rect) 
-                    credits_y += 65
+                    if line_count == 1 or line_count == 7 or line_count == 11:
+                        credits_text = subheading_text_font.render(line.strip(), True, (0, 0, 0))
+                        credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
+                        screen.blit(credits_text, credits_text_rect)
+                        credits_y += 95
+                    elif line_count == 2 or line_count == 4 or line_count == 8 or line_count == 12:
+                        credits_text = name_text_font.render(line.strip(), True, (0, 0, 0))
+                        credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
+                        screen.blit(credits_text, credits_text_rect)
+                        credits_y += 60
+                    elif line_count == 3 or line_count == 5 or line_count == 9 or line_count == 13:
+                        credits_text = credits_text_font.render(line.strip(), True, (0, 0, 0))
+                        credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
+                        screen.blit(credits_text, credits_text_rect) 
+                        credits_y += 80
+                    else:
+                        credits_text = credits_text_font.render(line.strip(), True, (0, 0, 0))
+                        credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
+                        screen.blit(credits_text, credits_text_rect) 
+                        credits_y += 40
+                    line_count += 1
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -622,9 +640,9 @@ def main():
         if rules:
             rules_screen.draw(screen)
             title_text = title_text_font.render("Rules", True, (0, 0, 0))
-            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 150))
+            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 120))
             screen.blit(title_text, title_text_rect)
-            rules_y = 240
+            rules_y = 220
             with open("rules.txt", "r") as file:
                 lines = file.readlines()
                 for line in lines:
