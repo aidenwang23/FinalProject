@@ -88,6 +88,9 @@ def main():
     question_lines = []
     correct_questions = 0
 
+    # character setup
+    characters = ["Bear", "Bunny"]
+
     # physics components
     gravity = 1500
     jump_strength = 775
@@ -110,17 +113,20 @@ def main():
     last_active_time = None
 
     # keybinds (last saved)
-    with open("keybinds.txt", "r") as file:
+    with open("config.txt", "r") as file:
         lines = file.readlines()
-    right_key = int(lines[0].strip())
-    left_key = int(lines[1].strip())
-    jump_key = int(lines[2].strip())
+        right_key = int(lines[0].strip())
+        left_key = int(lines[1].strip())
+        jump_key = int(lines[2].strip())
+    # character (last saved)
+        character = str(lines[4].strip())
 
     # movement states
     moving_left = False
     moving_right = False 
     jumping = False
     current_movement = None
+    direction = None
 
     # changing keybind states
     changing_right = False
@@ -130,13 +136,13 @@ def main():
     changing_duplicate = False
 
     # loads sprite
-    player = Player(x_position, y_position, "idle.png", 0.135)
+    player = Player(x_position, y_position, f"{character}/idleRight.png", 0.125)
 
     # platforms
     platforms = [
         Platform(400, 850, f"{stage_names[stage]}Platform.png", 1),
-        Platform(700, 675, f"{stage_names[stage]}Platform.png", .5),
-        Platform(350, 500, f"{stage_names[stage]}Platform.png", 2),
+        Platform(700, 650, f"{stage_names[stage]}Platform.png", .5),
+        Platform(700, 650, f"{stage_names[stage]}Platform.png", .5),
         Platform(750, 325, f"{stage_names[stage]}Platform.png", 2),
         Platform(300, 150, f"{stage_names[stage]}Platform.png", 2)
     ]
@@ -189,8 +195,8 @@ def main():
                             settings = True
                         else:
                             changing_duplicate = True
-                    with open("keybinds.txt", "w") as file:
-                        file.write(f"{str(right_key)}\n{str(left_key)}\n{str(jump_key)}")
+                    with open("config.txt", "w") as file:
+                        file.write(f"{str(right_key)}\n{str(left_key)}\n{str(jump_key)}\n\n{str(character)}")
             elif event.type == pygame.KEYUP:
                 if event.key == jump_key:
                     jumping = False
@@ -344,8 +350,8 @@ def main():
                         "correctChoice": correct_answers[index]
                     }
                     question_lines.clear()
-                    if len(current_question["question"]) > 80:
-                        split = current_question["question"].rfind(" ", 0, 80)
+                    if len(current_question["question"]) > 75:
+                        split = current_question["question"].rfind(" ", 0, 75)
                         question_lines.append(current_question["question"][:split])
                         question_lines.append(current_question["question"][split:])
                     else:
@@ -360,18 +366,24 @@ def main():
                     choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, 880))
 
             # movement for sprite display
-            if moving_right:
-                current_movement = "right"
-            elif moving_left:
-                current_movement = "left"
-            elif not (on_ground or on_platform):
+            if moving_left:
+                direction = "Left"
+            elif moving_right:
+                direction = "Right"
+            if not (on_ground or on_platform):
                 if velocity_y > 0:
                     current_movement = "fall"
                 elif velocity_y < 0:
                     current_movement = "jump"
+            elif moving_right:
+                current_movement = "right"
+            elif moving_left:
+                current_movement = "left"
             else:
                 current_movement = "idle"
-
+            if direction == None:
+                direction = "Right"
+        
             # end conditions
             if int(elapsed_minutes) >= 20 and not (win or lose):
                 lose = True
@@ -484,11 +496,11 @@ def main():
                 heart_x += 37.5
             if current_movement == "right" or current_movement == "left":
                 if (0 < total_time % 1 < 0.25) or (0.5 < total_time % 1 < 0.75):
-                    player = Player(x_position, y_position, f"{current_movement}1.png", 0.1)
+                    player = Player(x_position, y_position, f"{character}/{current_movement}1.png", 0.125)
                 elif (0.25 <= total_time % 1 <= 0.5) or (0.75 <= total_time % 1 < 1):
-                    player = Player(x_position, y_position, f"{current_movement}2.png", 0.1)
+                    player = Player(x_position, y_position, f"{character}/{current_movement}2.png", 0.125)
             else:
-                player = Player(x_position, y_position, f"{current_movement}.png", 0.1)
+                player = Player(x_position, y_position, f"{character}/{current_movement}{direction}.png", 0.125)
             screen.blit(player.surface, player.position())
 
         if question:
