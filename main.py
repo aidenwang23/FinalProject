@@ -9,6 +9,12 @@ def main():
     # screen setup
     pygame.init()
     pygame.font.init()
+    SCREEN_HEIGHT = 1020
+    SCREEN_WIDTH = 1920
+    size = (SCREEN_WIDTH, SCREEN_HEIGHT)
+    screen = pygame.display.set_mode(size)
+
+    # text fonts
     important_text_font = pygame.font.SysFont("Arial Bold", 250)
     time_display_font = pygame.font.SysFont("Arial Bold", 55)
     keybind_display_font = pygame.font.SysFont("Arial Bold", 60)
@@ -22,10 +28,6 @@ def main():
     rules_text_font = pygame.font.SysFont("Arial Bold", 55)
     title_text_font = pygame.font.SysFont("Arial Bold", 150)
     body_text_font = pygame.font.SysFont("Arial Bold", 70)
-    SCREEN_HEIGHT = 1020
-    SCREEN_WIDTH = 1920
-    size = (SCREEN_WIDTH, SCREEN_HEIGHT)
-    screen = pygame.display.set_mode(size)
 
     # background setup
     background_paths = [
@@ -98,7 +100,7 @@ def main():
     x_position = SCREEN_WIDTH / 2
     y_position = SCREEN_HEIGHT
 
-    # time
+    # time setup
     clock = pygame.time.Clock()
     total_time = 0
     elapsed_minutes = 0
@@ -107,7 +109,7 @@ def main():
     timer_rect = timer.get_rect(topright=(SCREEN_WIDTH, 5))
     last_active_time = None
 
-    # keybinds
+    # keybinds (last saved)
     with open("keybinds.txt", "r") as file:
         lines = file.readlines()
     right_key = int(lines[0].strip())
@@ -197,6 +199,7 @@ def main():
             screen.fill((0, 0, 0))
             player_rect = player.rect
         
+            # timer settings
             if (run or question) and not pause:
                 if last_active_time == None:
                     last_active_time = time.time()
@@ -241,12 +244,12 @@ def main():
                         player.move(x_position, y_position)
                         player_rect = player.rect
 
+                # vertical movement
                 if (on_ground or on_platform) and jumping:
                     velocity_y = -jump_strength
                     on_ground = False
                     on_platform = False
                     landed = False
-
                 velocity_y += gravity * dt
                 y_position += velocity_y * dt
 
@@ -311,11 +314,13 @@ def main():
                         player.move(x_position, y_position)
                         player_rect = player.rect
 
+                # question setup
                 if subject == "Math":
                     topic = math_topics[stage]
                 elif subject == "Science":
                     topic = science_topics[stage]
 
+                # refill questions 
                 if len(questions) <= 0:
                     with open(f"Questions/{subject}/{topic}.txt", "r") as file:
                         lines = file.readlines()
@@ -327,6 +332,7 @@ def main():
                             answer_Ds.append(lines[i+4].strip())
                             correct_answers.append(lines[i+5].strip())
 
+                # choosing a question
                 if not landed and len(questions) > 0:
                     index = random.randint(0, len(questions) - 1)
                     current_question = {
@@ -353,6 +359,7 @@ def main():
                     choiceD_text = answer_text_font.render(current_question["choiceD"], True, (0, 0, 0))
                     choiceD_text_rect = choiceD_text.get_rect(center=(SCREEN_WIDTH / 2, 880))
 
+            # movement for sprite display
             if moving_right:
                 current_movement = "right"
             elif moving_left:
@@ -365,6 +372,7 @@ def main():
             else:
                 current_movement = "idle"
 
+            # end conditions
             if int(elapsed_minutes) >= 20 and not (win or lose):
                 lose = True
             if win or lose:

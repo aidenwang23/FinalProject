@@ -94,7 +94,7 @@ If f(x) = 2x - 3, find f(4)
 6
 7
 8
-C
+A
 
 Solve: (x - 4)(x + 1) = 0
 x = -1, 4
