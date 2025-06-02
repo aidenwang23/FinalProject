@@ -41,10 +41,10 @@ CO2
 C
 
 A 1.0 M solution of a weak acid has a pH of 3. What does this imply?
-The acid completely ionizes
-The acid is neutral
-The acid partially ionizes
-The acid is diprotic
+Acid Completely Ionizes
+Acid is Neutral
+Acid Partially Ionizes
+Acid is Diprotic
 C
 
 Which of the following represents the correct net ionic equation for the reaction between HCl and NaOH?
@@ -109,3 +109,24 @@ Charles's Law
 Avogadro's Law
 Dalton's Law
 B
+
+The half-life of a radioactive isotope is 10 days. What fraction remains after 30 days?
+1/2
+1/4
+1/8
+1/16
+C
+
+In a face-centered cubic (FCC) lattice, how many atoms are in one unit cell?
+1
+2
+4
+6
+C
+
+Which ligand is bidentate?
+NH3
+H2O
+Ethylenediamine (en)
+Cl-
+C

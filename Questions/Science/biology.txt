@@ -37,7 +37,7 @@ Which process most directly increases genetic variation during meiosis?
 DNA Replication
 Cytokinesis
 Crossing Over
-Binary fission
+Binary Fission
 C
 
 If a mutation prevents the production of ATP synthase, what part of cellular respiration is directly impacted?
@@ -48,24 +48,24 @@ Fermentation
 C
 
 A population of lizards experiences stabilizing selection. What would you expect to happen over time?
-Traits at both extremes become more common
-Intermediate traits become more common
-Genetic diversity rapidly increases
-Speciation occurs
+Traits at Both Extremes Become More Common
+Intermediate Traits Become More Common
+Genetic Diversity Rapidly Increases
+Speciation Occurs
 B
 
 Which of the following best describes the role of tRNA in translation?
-Carries DNA to the ribosome
-Brings amino acids to the ribosome
-Creates peptide bonds
+Carries DNA to the Ribosome
+Brings Amino Acids to the Ribosome
+Creates Peptide Bonds
 Unzips the DNA
 B
 
 Which change would most likely increase the rate of enzyme-catalyzed reactions initially?
-Decreasing pH to extreme levels
-Raising temperature slightly
-Removing cofactors
-Adding a noncompetitive inhibitor
+Decreasing pH to Extreme Levels
+Raising Temperature Slightly
+Removing Cofactors
+Adding a Noncompetitive Inhibitor
 B
 
 Which process results in two identical daughter cells?
@@ -104,10 +104,10 @@ Peptide
 B
 
 What would happen if the spindle fibers were disrupted during mitosis?
-DNA wouldn't replicate
-Chromosomes wouldn't line up
-The cell would stop growing
-Chromatids wouldn't separate
+DNA Wouldn't Replicate
+Chromosomes Wouldn't Line Up
+The Cell Would Stop Growing
+Chromatids Wouldn't Separate
 D
 
 Which organ system is directly responsible for removing metabolic wastes?
@@ -125,15 +125,15 @@ Nucleic Acids
 C
 
 How is a virus different from a living cell?
-It has DNA
-It reproduces on its own
-It can make proteins
-It requires a host to replicate
+Has DNA
+Reproduces on its Own
+Can Make Proteins
+Requires a Host to Replicate
 D
 
 What is the role of messenger RNA in protein synthesis?
 Forms Ribosomes
 Delivers Amino Acids
-Carries The Genetic Code
+Carries the Genetic Code
 Copies DNA
 C

@@ -33,8 +33,8 @@ def main():
     background_paths = [
         "cavern.png",  # https://assetstore.unity.com/packages/tools/sprite-management/2d-cave-parallax-background-149247 credit
         "underwater.png",  # https://craftpix.net/freebies/free-underwater-world-pixel-art-backgrounds/ credit
-        "forest.png",  # https://www.freepik.com/free-photos-vectors/sprite-forest-background credit
-        "sky.png",  # https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/ credit
+        "forest.png",  # https://wallpapers.com/background/cartoon-forest-background-1920-x-1080-367aqc08v63mo7qc.html credit
+        "sky.png",  # https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set credit
         "space.png"  # https://opengameart.org/content/space-star-background credit
     ]
     bg_manager = BackgroundManager(background_paths, 1.0)
@@ -72,7 +72,6 @@ def main():
     mouse_clicked = False
     changed_screens = False
     landed_platform = None
-
 
     # question setup
     math_topics = ["algebra", "geometry", "statistics", "trigonometry", "calculus"]
@@ -381,8 +380,8 @@ def main():
 
         if load:
             loading_screen.draw(screen)
-            name_text = important_text_font.render("GAME NAME", True, (0, 0, 0))
-            name_text_rect = name_text.get_rect(center=(SCREEN_WIDTH / 2, 260))
+            name_text = important_text_font.render("QUIZ QUEST", True, (0, 0, 0))
+            name_text_rect = name_text.get_rect(center=(SCREEN_WIDTH / 2, 255))
             screen.blit(name_text, name_text_rect)
             
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:

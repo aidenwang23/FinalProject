@@ -98,9 +98,9 @@ A
 
 The length of one side of a triangle is 10 units. The angle opposite that side is 60 degrees. What is the longest possible length of another side?
 10
-greater than 10
-less than 10
-equal to 10
+Greater than 10
+Less than 10
+Equal to 10
 B
 
 An isosceles triangle has a vertex angle of 40 degrees. What is the measure of one of the base angles?
@@ -149,7 +149,7 @@ The angle of elevation from a point on the ground to the top of a building is 45
 10 meters
 20 meters
 30 meters
-Cannot be determined
+Cannot be Determined
 B
 
 The diagonals of a kite are 16 and 30 units. What is the area of the kite?
@@ -169,6 +169,6 @@ C
 What is the sum of the exterior angles, one per vertex, of any polygon?
 180 degrees
 360 degrees
-Depends on the number of sides
-Cannot be determined
+Depends on the Number of Sides
+Cannot be Determined
 B

@@ -20,31 +20,24 @@ Decomposition
 C
 
 Which type of pollution is caused by excess nutrients in water bodies?
-Air pollution
-Thermal pollution
+Air Pollution
+Thermal Pollution
 Eutrophication
-Acid rain
+Acid Rain
 C
 
 What is biodiversity?
-The number of ecosystems in a region
-The variety of life in an area
-The amount of pollution in an environment
-The speed at which species evolve
-B
-
-Which of the following best describes the tragedy of the commons?
-Shared resources are used sustainably
-Public lands are overexploited for short-term gain
-People pay more for clean energy
-Biodiversity increases in isolated habitats
+Number of Ecosystems in a Region
+Variety of Life in an Area
+Amount of Pollution in an Environment
+Speed at Which Species Evolve
 B
 
 Which would be most effective at reducing CO2 emissions from power plants?
-Using scrubbers
-Switching to coal
-Capturing methane
-Transitioning to solar
+Using Scrubbers
+Switching to Coal
+Capturing Methane
+Transitioning to Solar
 D
 
 Which practice leads to desertification?
@@ -55,18 +48,11 @@ Crop Rotation
 C
 
 Which of the following best explains why bioaccumulation affects top predators the most?
-They consume many prey
-They are smaller
-They reproduce faster
-They avoid toxins
+They Consume Many Prey
+They are Smaller
+They Reproduce Faster
+They Avoid Toxins
 A
-
-Which statement about the nitrogen cycle is true?
-Plants absorb nitrogen directly from the air
-Nitrogen-fixing bacteria convert ammonia to nitrate
-Decomposers are not involved
-Denitrification returns nitrogen to the atmosphere
-D
 
 Which process in the carbon cycle removes CO2 from the atmosphere?
 Respiration
@@ -98,23 +84,23 @@ B
 
 Which farming method helps prevent soil erosion the most effectively?
 Monoculture
-Clear-cutting
-Contour plowing
-Slash and burn
+Clear-Cutting
+Contour Plowing
+Slash & Burn
 C
 
 What is the largest reservoir of freshwater on Earth?
 Lakes
 Atmosphere
 Groundwater
-Glaciers and Ice Caps
+Glaciers & Ice Caps
 D
 
 The tragedy of the commons is best illustrated by:
-Industrial air pollution
-Privatized land development
-Overfishing in open oceans
-Waste disposal in landfills
+Industrial Air Pollution
+Privatized Land Development
+Overfishing in Open Oceans
+Waste Disposal in Landfills
 C
 
 Which environmental law requires environmental impact statements for major federal projects?
@@ -133,7 +119,7 @@ C
 
 What is the best indicator of a country's environmental impact?
 Total GDP
-CO2 per capita
-Ecological footprint
-Population density
+CO2 per Capita
+Ecological Footprint
+Population Density
 C

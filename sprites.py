@@ -66,12 +66,6 @@ class Platform:
         screen.blit(self.image, self.rect.topleft)
 
     def generate_platforms(stage_index):
-
-        #space: https://opengameart.org/content/space-star-background
-        #sky: https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set
-        #cavern: https://assetstore.unity.com/packages/tools/sprite-management/2d-cave-parallax-background-149247
-        #forest: https://itch.io/games-like/44717/day-light-forest-background
-        #underwater: https://craftpix.net/freebies/free-underwater-world-pixel-art-backgrounds/
         stage_names = ["cavern", "underwater", "forest", "sky", "space"] 
         platform_sets = [
             # # Set 1: Straight vertical climb

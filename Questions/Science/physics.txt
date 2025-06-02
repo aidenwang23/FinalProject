@@ -13,17 +13,17 @@ Meter
 B
 
 What form of energy is stored in a stretched rubber band?
-Kinetic energy
-Thermal energy
-Elastic potential energy
-Gravitational energy
+Kinetic Energy
+Thermal Energy
+Elastic Potential Energy
+Gravitational Energy
 C
 
 What happens to the motion of an object when balanced forces act on it?
-It speeds up
-It slows down
-It changes direction
-It stays the same
+Speeds Up
+Slows Down
+Changes Direction
+Stays the Same
 D
 
 What is the speed of light in a vacuum?
@@ -34,10 +34,10 @@ What is the speed of light in a vacuum?
 C
 
 A car moves in a circle at constant speed. What can be said about the net force acting on it?
-There is no net force
-The net force is outward
-The net force is inward
-The net force is zero since speed is constant
+No Net Force
+Net Force is Outward
+Net Force is Inward
+Net Force is Zero Since Speed is Constant
 C
 
 A 10 N force is applied to a 2 kg object at rest. What is its velocity after 3 seconds?
@@ -48,24 +48,24 @@ A 10 N force is applied to a 2 kg object at rest. What is its velocity after 3 s
 B
 
 A ball is thrown straight up. At its highest point:
-Velocity is zero, acceleration is zero
-Velocity is zero, acceleration is g
-Velocity is g, acceleration is zero
-Both are zero
+Velocity is Zero & Acceleration is Zero
+Velocity is Zero & Acceleration is g
+Velocity is g & Acceleration is Zero
+Both are Zero
 B
 
 Two objects of different masses are dropped from the same height. Ignoring air resistance, they hit the ground:
-At different times
-At the same time
-With different accelerations
-With zero speed
+At Different Times
+At the Same Time
+With Different Accelerations
+With Zero Speed
 B
 
 What principle explains why ice floats on water?
-Density decreases when water freezes
-Surface tension increases
-Hydrogen bonds break
-Thermal expansion reverses
+Density Decreases When Water Freezes
+Surface Tension Increases
+Hydrogen Bonds Break
+Thermal Expansion Reverses
 A
 
 A projectile is launched at 30 m/s at an angle of 60 degrees. What is the vertical component of its velocity?
@@ -73,7 +73,7 @@ A projectile is launched at 30 m/s at an angle of 60 degrees. What is the vertic
 30 m/s
 25.98 m/s
 20.78 m/s
-D
+C
 
 What is the unit of electric field strength?
 N*m
@@ -106,7 +106,7 @@ B
 If an object's kinetic energy doubles, what happens to its speed?
 Doubles
 Halves
-Stays the same
+Stays the Same
 Increases by sqrt(2)
 D
 

@@ -21,16 +21,16 @@ B
 
 Which of the following is a direct cause of Earth's precession?
 Plate Tectonics
-Tidal Forces From the Moon
+Tidal Forces from the Moon
 Eccentric Orbit
 Uneven Solar Heating
 B
 
 What does a high albedo indicate about a surface?
-It emits infrared radiation
-It reflects a large amount of solar radiation
-It absorbs all radiation
-It causes magnetic anomalies
+Emits Infrared Radiation
+Reflects a Large Amount of Solar Radiation
+Absorbs All Radiation
+Causes Magnetic Anomalies
 B
 
 Which instrument is used to measure atmospheric pressure?
@@ -41,14 +41,14 @@ Hygrometer
 C
 
 During an El Nino event, what typically happens off the coast of South America?
-Cooler ocean temperatures and more upwelling
-Warmer ocean temperatures and suppressed upwelling
-Stronger trade winds
-Drier-than-average conditions
+Cooler Ocean Temperatures & More Upwelling
+Warmer Ocean Temperatures & Suppressed Upwelling
+Stronger Trade Winds
+Drier-than-Average Conditions
 B
 
 Which geological feature is formed by a mantle plume?
-Mid-ocean Ridge
+Mid-Ocean Ridge
 Subduction Zone
 Hot Spot Volcano
 Transform Fault
@@ -71,7 +71,7 @@ B
 Which layer of Earth's interior is plastic-like and allows tectonic plates to move?
 Lithosphere
 Asthenosphere
-Outer core
+Outer Core
 Mesosphere
 B
 
@@ -90,23 +90,23 @@ Diamond
 D
 
 Which fossil type is best for determining the relative age of rock layers?
-Trace fossil
-Index fossil
-Mold fossil
-Cast fossil
+Trace Fossil
+Index Fossil
+Mold Fossil
+Cast Fossil
 B
 
 Which process is responsible for forming coal?
-Volcanic activity
-Compaction and carbonization of plant material
-Cooling of magma
-Evaporation of seawater
+Volcanic Activity
+Compaction & Carbonization of Plant Material
+Cooling of Magma
+Evaporation of Seawater
 B
 
 What is the main driver of deep ocean currents (thermohaline circulation)?
 Wind
 Earth's Rotation
-Salinity and Temperature Differences
+Salinity & Temperature Differences
 Gravitational Pull of the Moon
 C
 

@@ -1,5 +1,4 @@
 What is the mean of the data set: 5, 7, 3, 10, 5?
-5
 6
 7
 10
@@ -20,7 +19,7 @@ What is the mode of the data set: 2, 4, 4, 6, 8?
 B
 
 A die is thrown repeatedly until a six comes up. What is the sample space for this experiment?
-Throwing a die till you get a 6
+Throwing a die until you get a 6
 Throwing a die 4 times
 Tossing a coin
 Tossing 5 coins
