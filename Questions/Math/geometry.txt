@@ -159,13 +159,6 @@ The diagonals of a kite are 16 and 30 units. What is the area of the kite?
 480
 C
 
-Two tangents are drawn from the same external point to a circle. The angle between them is 40 degrees. What is the measure of the minor arc between the points of tangency?
-80 degrees
-140 degrees
-100 degrees
-160 degrees
-B
-
 In a parallelogram, one diagonal is twice as long as the other and they intersect at right angles. What type of parallelogram is it?
 Square
 Rectangle
