@@ -66,12 +66,14 @@ def main():
     pause = False
     paused_to_settings = False
     stage = 0 
-    lives = 3
+    lives = 15
     start_lives = lives
     win = False
     lose = False
     mouse_clicked = False
     changed_screens = False
+    landed_platform = None
+
 
     # question setup
     math_topics = ["algebra", "geometry", "statistics", "trigonometry", "calculus"]
@@ -101,7 +103,8 @@ def main():
 
     # sprite location
     x_position = SCREEN_WIDTH / 2
-    y_position = SCREEN_HEIGHT
+    y_position = SCREEN_HEIGHT  # Bottom of screen explicitly
+
 
     # time setup
     clock = pygame.time.Clock()
@@ -138,14 +141,10 @@ def main():
     # loads sprite
     player = Player(x_position, y_position, f"{character}/idleRight.png", 0.125)
 
-    # platforms
-    platforms = [
-        Platform(400, 850, f"{stage_names[stage]}Platform.png", 1),
-        Platform(700, 650, f"{stage_names[stage]}Platform.png", .5),
-        Platform(700, 650, f"{stage_names[stage]}Platform.png", .5),
-        Platform(750, 325, f"{stage_names[stage]}Platform.png", 2),
-        Platform(300, 150, f"{stage_names[stage]}Platform.png", 2)
-    ]
+
+    platforms = Platform.generate_platforms(stage)
+
+
 
     while valid:
         dt = clock.tick(120) / 1000  # delta time in seconds
@@ -244,9 +243,9 @@ def main():
                     platform_rect = platform.rect
                     if player_rect.colliderect(platform_rect):
                         if x_position < platform_rect.centerx:
-                            x_position = platform_rect.left - player.image_size[0] // 2
+                            x_position = platform_rect.left - player.rect.width // 2
                         else:
-                            x_position = platform_rect.right + player.image_size[0] // 2
+                            x_position = platform_rect.right + player.rect.width // 2
                         player.move(x_position, y_position)
                         player_rect = player.rect
 
@@ -263,10 +262,10 @@ def main():
                 player_rect = player.rect
 
                 # horizontal boundary
-                if x_position < player.surface.get_width():
-                    x_position = player.surface.get_width()
-                elif x_position > SCREEN_WIDTH - player.surface.get_width():
-                    x_position = SCREEN_WIDTH - player.surface.get_width()
+                if x_position < player.image.get_width():
+                    x_position = player.image.get_width()
+                elif x_position > SCREEN_WIDTH - player.image.get_width():
+                    x_position = SCREEN_WIDTH - player.image.get_width()
 
                 # vertical boundary
                 if y_position < 0:
@@ -276,6 +275,7 @@ def main():
                         win = True
                         run = False
                     bg_manager.next()
+                    platforms = Platform.generate_platforms(stage) 
                     questions.clear()
                     answer_As.clear()
                     answer_Bs.clear()
@@ -284,39 +284,32 @@ def main():
                     correct_answers.clear()
                     question_lines.clear()
                     x_position = SCREEN_WIDTH / 2
-                    y_position = SCREEN_HEIGHT - player.surface.get_height()
+                    y_position = SCREEN_HEIGHT - player.image.get_height()
                     velocity_y = 0
                     on_ground = False
-                elif y_position >= SCREEN_HEIGHT - player.surface.get_height():
-                    y_position = SCREEN_HEIGHT - player.surface.get_height()
+                elif y_position >= SCREEN_HEIGHT - player.image.get_height():
+                    y_position = SCREEN_HEIGHT - player.image.get_height()
                     velocity_y = 0
                     on_ground = True
-                
-                # platforms
-                platforms = [
-                    Platform(425, 800, f"{stage_names[stage]}Platform.png", 2),
-                    Platform(700, 630, f"{stage_names[stage]}Platform.png", 2),
-                    Platform(900, 465, f"{stage_names[stage]}Platform.png", 2),
-                    Platform(1100, 330, f"{stage_names[stage]}Platform.png", 2),
-                    Platform(1300, 150, f"{stage_names[stage]}Platform.png", 2)
-                ]
 
                 # vertical collision
                 for platform in platforms:
                     platform_rect = platform.rect
                     if player_rect.colliderect(platform_rect):
-                        if velocity_y > 0 and player_rect.bottom <= platform_rect.top + 10:
-                            y_position = platform_rect.top - player.image_size[1] // 2
+                        if velocity_y > 0 and player_rect.bottom <= platform_rect.top + 15:
+                            y_position = platform_rect.top
                             velocity_y = 0
                             on_platform = True
                             if not landed and len(questions) > 0:
                                 question = True
                                 run = False
-                                landed  = True
-                        elif velocity_y < 0 and player_rect.top >= platform_rect.bottom - 10:
-                            y_position = platform_rect.bottom + player.image_size[1] // 2
+                                landed = True
+                                landed_platform = platform
+                        elif velocity_y < 0 and player_rect.top >= platform_rect.bottom - 15:
+                            y_position = platform_rect.bottom + player.rect.height
                             velocity_y = 0
                             on_platform = False
+
                         player.move(x_position, y_position)
                         player_rect = player.rect
 
@@ -501,7 +494,8 @@ def main():
                     player = Player(x_position, y_position, f"{character}/{current_movement}2.png", 0.125)
             else:
                 player = Player(x_position, y_position, f"{character}/{current_movement}{direction}.png", 0.125)
-            screen.blit(player.surface, player.position())
+            screen.blit(player.image, player.position())
+
 
         if question:
             question_screen.draw(screen)
@@ -535,8 +529,24 @@ def main():
                     correct_questions += 1
                     question = False
                     run = True
+
+                    if landed_platform:
+                        platform_rect = landed_platform.rect
+
+                        # Position sprite exactly where it landed horizontally
+                        y_position = platform_rect.top
+                        velocity_y = 0
+                        on_platform = True
+                        on_ground = False
+                        landed = True
+
+                        player.move(x_position, y_position)
+
+                        landed_platform = None
+
                     answer_choice = None
                     incorrect_choices.clear()
+
                     if len(questions) > 0:
                         questions.pop(index)
                         answer_As.pop(index)
@@ -544,6 +554,7 @@ def main():
                         answer_Cs.pop(index)
                         answer_Ds.pop(index)
                         correct_answers.pop(index)
+
                 elif answer_choice != None:
                     if answer_choice not in incorrect_choices:
                         incorrect_choices.append(answer_choice)
