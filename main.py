@@ -31,14 +31,13 @@ def main():
 
     # background setup
     background_paths = [
-        "cavern.png",  #https://assetstore.unity.com/packages/tools/sprite-management/2d-cave-parallax-background-149247 credit
+        "cavern.png",  # https://assetstore.unity.com/packages/tools/sprite-management/2d-cave-parallax-background-149247 credit
         "underwater.png",  # https://craftpix.net/freebies/free-underwater-world-pixel-art-backgrounds/ credit
         "forest.png",  # https://www.freepik.com/free-photos-vectors/sprite-forest-background credit
         "sky.png",  # https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/ credit
         "space.png"  # https://opengameart.org/content/space-star-background credit
     ]
     bg_manager = BackgroundManager(background_paths, 1.0)
-    stage_names = ["cavern", "underwater", "forest", "sky", "space"]
 
     # screen setup
     loading_screen = Popup("loading.png", 1)
@@ -66,7 +65,7 @@ def main():
     pause = False
     paused_to_settings = False
     stage = 0 
-    lives = 15
+    lives = 3
     start_lives = lives
     win = False
     lose = False
@@ -103,8 +102,7 @@ def main():
 
     # sprite location
     x_position = SCREEN_WIDTH / 2
-    y_position = SCREEN_HEIGHT  # Bottom of screen explicitly
-
+    y_position = SCREEN_HEIGHT
 
     # time setup
     clock = pygame.time.Clock()
@@ -141,10 +139,8 @@ def main():
     # loads sprite
     player = Player(x_position, y_position, f"{character}/idleRight.png", 0.125)
 
-
+    # loads platforms
     platforms = Platform.generate_platforms(stage)
-
-
 
     while valid:
         dt = clock.tick(120) / 1000  # delta time in seconds
@@ -388,6 +384,7 @@ def main():
             name_text = important_text_font.render("GAME NAME", True, (0, 0, 0))
             name_text_rect = name_text.get_rect(center=(SCREEN_WIDTH / 2, 260))
             screen.blit(name_text, name_text_rect)
+            
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -414,6 +411,7 @@ def main():
 
         if credits:
             credits_screen.draw(screen)
+
             line_count = 1
             credits_y = 90
             with open("credits.txt", "r") as file:
@@ -440,6 +438,7 @@ def main():
                         screen.blit(credits_text, credits_text_rect) 
                         credits_y += 40
                     line_count += 1
+
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -455,6 +454,7 @@ def main():
             title_text = title_text_font.render("Subject Selection", True, (0, 0, 0))
             title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 285))
             screen.blit(title_text, title_text_rect)
+
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -476,8 +476,10 @@ def main():
         if run:
             bg_manager.draw(screen)
             screen.blit(timer, timer_rect)
+
             for platform in platforms:
                 platform.draw(screen)
+
             heart_x = 0
             for i in range(lives):
                 full_heart = Heart(heart_x, 0, "fullHeart.png", 0.2)
@@ -487,6 +489,7 @@ def main():
                 empty_heart = Heart(heart_x, 0, "emptyHeart.png", 0.2)
                 empty_heart.draw(screen)
                 heart_x += 37.5
+
             if current_movement == "right" or current_movement == "left":
                 if (0 < total_time % 1 < 0.25) or (0.5 < total_time % 1 < 0.75):
                     player = Player(x_position, y_position, f"{character}/{current_movement}1.png", 0.125)
@@ -499,6 +502,7 @@ def main():
 
         if question:
             question_screen.draw(screen)
+
             question_y = 250
             if len(question_lines) > 1:
                 for line in question_lines:
@@ -514,6 +518,7 @@ def main():
             screen.blit(choiceB_text, choiceB_text_rect)
             screen.blit(choiceC_text, choiceC_text_rect)
             screen.blit(choiceD_text, choiceD_text_rect)
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -532,16 +537,12 @@ def main():
 
                     if landed_platform:
                         platform_rect = landed_platform.rect
-
-                        # Position sprite exactly where it landed horizontally
                         y_position = platform_rect.top
                         velocity_y = 0
                         on_platform = True
                         on_ground = False
                         landed = True
-
                         player.move(x_position, y_position)
-
                         landed_platform = None
 
                     answer_choice = None
@@ -580,6 +581,7 @@ def main():
             title_text = title_text_font.render("Paused", True, (0, 0, 0))
             title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 300))
             screen.blit(title_text, title_text_rect)
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = event.pos
                 if 550 <= mouse_x <= 1370 and 500 <= mouse_y <= 605:
@@ -658,6 +660,7 @@ def main():
             title_text = title_text_font.render("Customize", True, (0, 0, 0))
             title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 200))
             screen.blit(title_text, title_text_rect)
+
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -673,6 +676,7 @@ def main():
             title_text = title_text_font.render("Rules", True, (0, 0, 0))
             title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 120))
             screen.blit(title_text, title_text_rect)
+
             rules_y = 220
             with open("rules.txt", "r") as file:
                 lines = file.readlines()
@@ -680,6 +684,7 @@ def main():
                     text_surface = rules_text_font.render(line.strip(), True, (0, 0, 0))
                     screen.blit(text_surface, (90, rules_y)) 
                     rules_y += 65
+
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -698,6 +703,7 @@ def main():
             body_text_rect = body_text.get_rect(center=(SCREEN_WIDTH / 2, 400))
             screen.blit(title_text, title_text_rect)
             screen.blit(body_text, body_text_rect)
+
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
@@ -719,6 +725,7 @@ def main():
             body_text_rect = body_text.get_rect(center=(SCREEN_WIDTH / 2, 400))
             screen.blit(title_text, title_text_rect)
             screen.blit(body_text, body_text_rect)
+
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos

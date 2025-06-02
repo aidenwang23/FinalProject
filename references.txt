@@ -1,4 +1,0 @@
-https://www.pygame.org/docs/genindex.html
-https://www.geeksforgeeks.org/how-to-get-keyboard-input-in-pygame/
-
-https://www.vectorstock.com/royalty-free-vector/human-action-icons-stick-figures-vector-24078055

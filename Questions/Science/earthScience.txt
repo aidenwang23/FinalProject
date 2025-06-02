@@ -40,7 +40,7 @@ Barometer
 Hygrometer
 C
 
-During an El Niño event, what typically happens off the coast of South America?
+During an El Nino event, what typically happens off the coast of South America?
 Cooler ocean temperatures and more upwelling
 Warmer ocean temperatures and suppressed upwelling
 Stronger trade winds

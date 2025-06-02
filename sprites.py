@@ -65,9 +65,7 @@ class Platform:
     def draw(self, screen):
         screen.blit(self.image, self.rect.topleft)
 
-    @staticmethod
     def generate_platforms(stage_index):
-        import random
 
         #space: https://opengameart.org/content/space-star-background
         #sky: https://free-game-assets.itch.io/free-sky-with-clouds-background-pixel-art-set
@@ -102,11 +100,11 @@ class Platform:
             ],
             # Set 4: Zig-zag pattern
             [
-                (960, 700, 1.5),   
+                (960, 740, 1.5),   
                 (680, 570, 1.5),    
-                (900, 460, 1.5),  
-                (640, 240, 1.5),  
-                (1000, 90, 1.5),  
+                (900, 390, 1.5),  
+                (640, 220, 1.5),  
+                (1000, 100, 1.5),  
             ],
             # Set 5: Mixed offsets
             [
@@ -119,10 +117,7 @@ class Platform:
         ]
 
         selected = random.choice(platform_sets)
-        return [
-            Platform(x, y, f"{stage_names[stage_index]}Platform.png", scale)
-            for (x, y, scale) in selected
-        ]
+        return [Platform(x, y, f"{stage_names[stage_index]}Platform.png", scale) for (x, y, scale) in selected]
     
 class Heart:
     def __init__(self, x, y, image_path, scale):
