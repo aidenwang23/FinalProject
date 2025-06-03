@@ -65,7 +65,7 @@ def main():
     pause = False
     paused_to_settings = False
     stage = 0 
-    lives = 20
+    lives = 9
     start_lives = lives
     win = False
     lose = False
