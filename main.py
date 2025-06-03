@@ -21,10 +21,9 @@ def main():
     keybind_text_font = pygame.font.SysFont("Arial Bold", 100)
     question_text_font = pygame.font.SysFont("Arial Bold", 70)
     answer_text_font = pygame.font.SysFont("Arial Bold", 45)
-    subheading_text_font = pygame.font.SysFont("Arial Bold", 130)
+    subheading_text_font = pygame.font.SysFont("Arial Bold", 125)
     name_text_font = pygame.font.SysFont("Arial Bold", 75)
     credits_text_font = pygame.font.SysFont("Arial Bold", 55)
-    credits_text_font.set_italic(True)
     rules_text_font = pygame.font.SysFont("Arial Bold", 55)
     title_text_font = pygame.font.SysFont("Arial Bold", 150)
     body_text_font = pygame.font.SysFont("Arial Bold", 70)
@@ -418,7 +417,7 @@ def main():
             credits_screen.draw(screen)
 
             line_count = 1
-            credits_y = 90
+            credits_y = 80
             with open("credits.txt", "r") as file:
                 lines = file.readlines()
                 for line in lines:
@@ -426,22 +425,26 @@ def main():
                         credits_text = subheading_text_font.render(line.strip(), True, (0, 0, 0))
                         credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
                         screen.blit(credits_text, credits_text_rect)
-                        credits_y += 95
+                        credits_y += 85
                     elif line_count == 2 or line_count == 4 or line_count == 8 or line_count == 12:
                         credits_text = name_text_font.render(line.strip(), True, (0, 0, 0))
                         credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
                         screen.blit(credits_text, credits_text_rect)
                         credits_y += 60
-                    elif line_count == 3 or line_count == 5 or line_count == 9 or line_count == 13:
+                    elif line_count == 3 or line_count == 5 or line_count == 9 or line_count == 13 or line_count == 15:               
+                        credits_text_font.set_italic(True)
+                        if line_count == 15:
+                            credits_y -= 15
+                            credits_text_font.set_italic(False)
                         credits_text = credits_text_font.render(line.strip(), True, (0, 0, 0))
                         credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
                         screen.blit(credits_text, credits_text_rect) 
-                        credits_y += 80
+                        credits_y += 75
                     else:
                         credits_text = credits_text_font.render(line.strip(), True, (0, 0, 0))
                         credits_text_rect = credits_text.get_rect(center=(SCREEN_WIDTH / 2, credits_y))
                         screen.blit(credits_text, credits_text_rect) 
-                        credits_y += 40
+                        credits_y += 35
                     line_count += 1
 
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
