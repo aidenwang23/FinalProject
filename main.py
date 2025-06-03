@@ -45,7 +45,6 @@ def main():
     subject_screen = Popup("subject.png", 1)
     settings_screen = Popup("settings.png", 1)
     changing_screen = Popup("changing.png", 1)
-    customize_screen = Popup("customize.png", 1)
     rules_screen = Popup("rules.png", 1)
     question_screen = Popup("question.png", 1)
     paused_screen = Popup("paused.png", 1)
@@ -65,7 +64,7 @@ def main():
     pause = False
     paused_to_settings = False
     stage = 0 
-    lives = 9
+    lives = 3
     start_lives = lives
     win = False
     lose = False
@@ -87,9 +86,6 @@ def main():
     incorrect_choices = []
     question_lines = []
     correct_questions = 0
-
-    # character setup
-    characters = ["Bear", "Bunny"]
 
     # physics components
     gravity = 1500
@@ -120,6 +116,10 @@ def main():
         jump_key = int(lines[2].strip())
     # character (last saved)
         character = str(lines[4].strip())
+
+    # character setup
+    characters = ["Bear", "Bunny", "Cat"]
+    character_index = characters.index(character)
 
     # movement states
     moving_left = False
@@ -655,17 +655,29 @@ def main():
                 screen.blit(changing_error_text, changing_error_text_rect)
 
         if customize:
+            character = characters[character_index]
+            customize_screen = Popup(f"customize{character}.png", 1)
             customize_screen.draw(screen)
             title_text = title_text_font.render("Customize", True, (0, 0, 0))
-            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 200))
+            title_text_rect = title_text.get_rect(center=(SCREEN_WIDTH / 2, 100))
             screen.blit(title_text, title_text_rect)
 
             if event.type == pygame.MOUSEBUTTONDOWN and not mouse_clicked:
                 mouse_clicked = True
                 mouse_x, mouse_y = event.pos
-                if 10 <= mouse_x <= 160 and 880 <= mouse_y <= 1015:
+                if 415 <= mouse_x <= 545 and 480 <= mouse_y <= 595:
+                    character_index -= 1
+                    if character_index <= -1:
+                        character_index = len(characters) - 1
+                elif 1375 <= mouse_x <= 1505 and 480 <= mouse_y <= 595:
+                    character_index += 1
+                    if character_index >= len(characters):
+                        character_index = 0
+                elif 10 <= mouse_x <= 160 and 880 <= mouse_y <= 1015:
                     customize = False
                     load = True
+                with open("config.txt", "w") as file:
+                    file.write(f"{str(right_key)}\n{str(left_key)}\n{str(jump_key)}\n\n{str(character)}")
             elif event.type == pygame.MOUSEBUTTONUP:
                 mouse_clicked = False
                 changed_screens = True
