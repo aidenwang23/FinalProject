@@ -120,6 +120,7 @@ def main():
     # character setup
     characters = ["Bear", "Bunny", "Cat"]
     character_index = characters.index(character)
+    character_scale = 1
 
     # movement states
     moving_left = False
@@ -136,7 +137,7 @@ def main():
     changing_duplicate = False
 
     # loads sprite
-    player = Player(x_position, y_position, f"{character}/idleRight.png", 0.125)
+    player = Player(x_position, y_position, f"{character}/idleRight.png", character_scale)
 
     # loads platforms
     platforms = Platform.generate_platforms(stage)
@@ -216,6 +217,11 @@ def main():
                 timer = time_display_font.render(f"{elapsed_time}", True, (255, 255, 255))
             else:
                 last_active_time = None
+
+            # character model scale (files are slightly smaller)
+            character_scale = 0.125
+            if character == "Bunny" or character == "Cat":
+                character_scale *= (4 / 3)
 
             if run:
                 # horizontal movement
@@ -491,11 +497,11 @@ def main():
 
             if current_movement == "right" or current_movement == "left":
                 if (0 < total_time % 1 < 0.25) or (0.5 < total_time % 1 < 0.75):
-                    player = Player(x_position, y_position, f"{character}/{current_movement}1.png", 0.125)
+                    player = Player(x_position, y_position, f"{character}/{current_movement}1.png", character_scale)
                 elif (0.25 <= total_time % 1 <= 0.5) or (0.75 <= total_time % 1 < 1):
-                    player = Player(x_position, y_position, f"{character}/{current_movement}2.png", 0.125)
+                    player = Player(x_position, y_position, f"{character}/{current_movement}2.png", character_scale)
             else:
-                player = Player(x_position, y_position, f"{character}/{current_movement}{direction}.png", 0.125)
+                player = Player(x_position, y_position, f"{character}/{current_movement}{direction}.png", character_scale)
             screen.blit(player.image, player.position())
 
 
